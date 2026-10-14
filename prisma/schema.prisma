@@ -1,0 +1,182 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String      @id @default(cuid())
+  email        String      @unique
+  passwordHash String
+  name         String
+  role         String      @default("ADMIN") // ADMIN, STAFF
+  isActive     Boolean     @default(true)
+  sessions     Session[]
+  auditLogs    AuditLog[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Category {
+  id           String    @id @default(cuid())
+  name         String
+  slug         String    @unique
+  description  String?
+  image        String?
+  displayOrder Int       @default(0)
+  isPublished  Boolean   @default(true)
+  products     Product[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Product {
+  id               String           @id @default(cuid())
+  name             String
+  slug             String           @unique
+  shortDescription String
+  description      String
+  basePrice        Int              // Stored as integer PKR
+  prepTime         String           @default("4-6 hours")
+  availability     String           @default("AVAILABLE") // AVAILABLE, MADE_TO_ORDER, UNAVAILABLE
+  stock            Int              @default(0)
+  isStockTracked   Boolean          @default(false)
+  allergens        String?          // e.g., "Contains dairy, gluten, eggs"
+  ingredients      String?
+  isFeatured       Boolean          @default(false)
+  categoryId       String
+  category         Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  images           ProductImage[]
+  variants         ProductVariant[]
+  orderItems       OrderItem[]
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+}
+
+model ProductVariant {
+  id              String      @id @default(cuid())
+  productId       String
+  product         Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  name            String      // e.g. "1 Lb", "2 Lbs", "Box of 6"
+  priceAdjustment Int         @default(0) // PKR added or subtracted
+  sku             String?
+  isAvailable     Boolean     @default(true)
+  orderItems      OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model ProductImage {
+  id           String   @id @default(cuid())
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url          String
+  alt          String
+  displayOrder Int      @default(0)
+  isPrimary    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+}
+
+model Order {
+  id                  String      @id @default(cuid())
+  orderReference      String      @unique // e.g. HB-2026-9A3F
+  customerName        String
+  customerPhone       String
+  customerEmail       String?
+  serviceType         String      @default("TAKEOUT") // TAKEOUT, DELIVERY
+  requestedDate       String?     // YYYY-MM-DD
+  requestedTime       String?     // e.g. "14:00 - 16:00"
+  deliveryAddress     String?
+  notes               String?
+  status              String      @default("PENDING") // PENDING, CONFIRMED, PREPARING, READY_FOR_PICKUP, COMPLETED, CANCELLED
+  subtotal            Int         // PKR
+  discount            Int         @default(0) // PKR
+  deliveryFee         Int         @default(0) // PKR
+  total               Int         // PKR
+  isWhatsAppInitiated Boolean     @default(false)
+  internalNotes       String?
+  items               OrderItem[]
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+}
+
+model OrderItem {
+  id                   String          @id @default(cuid())
+  orderId              String
+  order                Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId            String?
+  product              Product?        @relation(fields: [productId], references: [id], onDelete: SetNull)
+  variantId            String?
+  variant              ProductVariant? @relation(fields: [variantId], references: [id], onDelete: SetNull)
+  productName          String
+  variantName          String?
+  unitPrice            Int             // PKR at order time
+  quantity             Int
+  subtotal             Int             // PKR (unitPrice * quantity)
+  customizationNote    String?         // e.g. "Happy 25th Birthday Fatima!"
+}
+
+model Promotion {
+  id           String    @id @default(cuid())
+  code         String    @unique
+  description  String?
+  discountType String    @default("PERCENTAGE") // PERCENTAGE, FIXED
+  discountValue Int      // e.g. 10 for 10% or 200 for 200 PKR
+  minOrderValue Int      @default(0)
+  maxUses      Int?
+  currentUses  Int       @default(0)
+  isActive     Boolean   @default(true)
+  startsAt     DateTime?
+  expiresAt    DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model BusinessSettings {
+  id                       String   @id @default("default")
+  businessName             String   @default("Home Bakery")
+  address                  String   @default("House R-1932, Block 17, Gulberg Town, Karachi, 75950, Pakistan")
+  phone                    String   @default("+92 330 2964562")
+  whatsappNumber           String   @default("923302964562")
+  mapsUrl                  String   @default("https://www.google.com/maps/search/?api=1&query=Home+Bakery+House+R-1932+Block+17+Gulberg+Town+Karachi")
+  googleRating             Float    @default(5.0)
+  ratingCount              Int      @default(1)
+  defaultCurrency          String   @default("PKR")
+  timezone                 String   @default("Asia/Karachi")
+  isOnlineOrderingEnabled  Boolean  @default(true)
+  isWhatsAppOrderingEnabled Boolean @default(true)
+  isTakeoutEnabled         Boolean  @default(true)
+  isDeliveryEnabled        Boolean  @default(false) // Default false per requirement
+  deliveryFee              Int      @default(250)
+  minOrderValue            Int      @default(0)
+  defaultPrepTime          String   @default("Preparation time varies by item (minimum 4-6 hours notice)")
+  listedAvailability       String   @default("Open 24 hours (Order intake and scheduling)")
+  temporaryClosureNotice   String?
+  isMaintenanceMode        Boolean  @default(false)
+  maintenanceMessage       String   @default("Home Bakery is currently undergoing scheduled maintenance. We'll be back shortly to take your artisan orders!")
+  createdAt                DateTime @default(now())
+  updatedAt                DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String   // e.g. "PRODUCT_CREATED", "ORDER_STATUS_CHANGED", "MAINTENANCE_TOGGLED"
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userName  String?
+  details   String?  // JSON string
+  ipAddress String?
+  createdAt DateTime @default(now())
+}
