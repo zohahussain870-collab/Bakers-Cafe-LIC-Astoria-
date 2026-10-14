@@ -18,6 +18,8 @@ model User {
   auditLogs    AuditLog[]
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
+
+  @@index([email])
 }
 
 model Session {
@@ -27,6 +29,9 @@ model Session {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   expiresAt DateTime
   createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([expiresAt])
 }
 
 model Category {
@@ -40,6 +45,9 @@ model Category {
   products     Product[]
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+
+  @@index([slug])
+  @@index([isPublished])
 }
 
 model Product {
@@ -63,6 +71,11 @@ model Product {
   orderItems       OrderItem[]
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([availability])
+  @@index([isFeatured])
 }
 
 model ProductVariant {
@@ -76,6 +89,8 @@ model ProductVariant {
   orderItems      OrderItem[]
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
+
+  @@index([productId])
 }
 
 model ProductImage {
@@ -87,6 +102,8 @@ model ProductImage {
   displayOrder Int      @default(0)
   isPrimary    Boolean  @default(false)
   createdAt    DateTime @default(now())
+
+  @@index([productId])
 }
 
 model Order {
@@ -110,6 +127,11 @@ model Order {
   items               OrderItem[]
   createdAt           DateTime    @default(now())
   updatedAt           DateTime    @updatedAt
+
+  @@index([orderReference])
+  @@index([customerPhone])
+  @@index([status])
+  @@index([createdAt])
 }
 
 model OrderItem {
@@ -126,6 +148,9 @@ model OrderItem {
   quantity             Int
   subtotal             Int             // PKR (unitPrice * quantity)
   customizationNote    String?         // e.g. "Happy 25th Birthday Fatima!"
+
+  @@index([orderId])
+  @@index([productId])
 }
 
 model Promotion {
@@ -142,6 +167,9 @@ model Promotion {
   expiresAt    DateTime?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+
+  @@index([code])
+  @@index([isActive])
 }
 
 model BusinessSettings {
@@ -179,4 +207,8 @@ model AuditLog {
   details   String?  // JSON string
   ipAddress String?
   createdAt DateTime @default(now())
+
+  @@index([action])
+  @@index([createdAt])
+  @@index([userId])
 }

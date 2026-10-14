@@ -1,44 +1,42 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    /* Bakery Artisan Palette */
-    --bg-cream: #FAF7F2;
-    --bg-surface: #FFFFFF;
-    --bg-warm: #F4ECE1;
-    --bg-subtle: #EFE7DC;
+:root {
+  /* Bakery Artisan Palette */
+  --bg-cream: #FAF7F2;
+  --bg-surface: #FFFFFF;
+  --bg-warm: #F4ECE1;
+  --bg-subtle: #EFE7DC;
 
-    --text-espresso: #211510;
-    --text-muted: #6B5B52;
-    --text-subtle: #8E7C72;
+  --text-espresso: #211510;
+  --text-muted: #6B5B52;
+  --text-subtle: #8E7C72;
 
-    --brand-caramel: #B87D4B;
-    --brand-caramel-hover: #9E6535;
-    --brand-caramel-light: #F7EDE2;
+  --brand-caramel: #B87D4B;
+  --brand-caramel-hover: #9E6535;
+  --brand-caramel-light: #F7EDE2;
 
-    --brand-sage: #5F7A59;
-    --brand-sage-hover: #4B6346;
-    --brand-sage-light: #EBF2EA;
+  --brand-sage: #5F7A59;
+  --brand-sage-hover: #4B6346;
+  --brand-sage-light: #EBF2EA;
 
-    --accent-gold: #C9933B;
-    --accent-gold-light: #FFF8EB;
+  --accent-gold: #C9933B;
+  --accent-gold-light: #FFF8EB;
 
-    --border-warm: #E6DCce;
-    --border-light: #F0E9DF;
+  --border-warm: #E6DCce;
+  --border-light: #F0E9DF;
 
-    --status-pending: #D97706;
-    --status-confirmed: #2563EB;
-    --status-preparing: #7C3AED;
-    --status-ready: #059669;
-    --status-completed: #16A34A;
-    --status-cancelled: #DC2626;
+  --status-pending: #D97706;
+  --status-confirmed: #2563EB;
+  --status-preparing: #7C3AED;
+  --status-ready: #059669;
+  --status-completed: #16A34A;
+  --status-cancelled: #DC2626;
 
-    --radius-sm: 0.375rem;
-    --radius-md: 0.625rem;
-    --radius-lg: 1rem;
-    --radius-xl: 1.5rem;
-    --radius-full: 9999px;
-  }
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
 }
 
 body {

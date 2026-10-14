@@ -18,7 +18,7 @@ describe("Utility Functions & Formatting", () => {
   describe("generateOrderReference", () => {
     it("should generate a reference with HB-2026- prefix", () => {
       const ref = generateOrderReference();
-      expect(ref).toMatch(/^HB-2026-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{4}$/);
+      expect(ref).toMatch(/^HB-2026-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{6}$/);
     });
 
     it("should produce non-identical random references", () => {

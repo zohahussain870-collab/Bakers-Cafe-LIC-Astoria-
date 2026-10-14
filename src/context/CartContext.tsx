@@ -26,36 +26,29 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 const STORAGE_KEY = "hb_artisan_cart_v1";
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
+  // Lazy state initializer avoids setState inside useEffect and prevents cascading re-renders
+  const [items, setItems] = useState<CartItem[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
   const [isOpen, setIsOpen] = useState(false);
   const [promoCode, setPromoCode] = useState<string | null>(null);
   const [discount, setDiscount] = useState<number>(0);
-  const [isHydrated, setIsHydrated] = useState(false);
 
-  // Load cart from localStorage
+  // Synchronize cart state to localStorage on state change
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        setItems(JSON.parse(saved));
-      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch (e) {
-      console.error("Failed to restore cart from localStorage", e);
-    } finally {
-      setIsHydrated(true);
+      console.error("Failed to persist cart to localStorage", e);
     }
-  }, []);
-
-  // Save cart changes to localStorage
-  useEffect(() => {
-    if (isHydrated) {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-      } catch (e) {
-        console.error("Failed to persist cart to localStorage", e);
-      }
-    }
-  }, [items, isHydrated]);
+  }, [items]);
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);

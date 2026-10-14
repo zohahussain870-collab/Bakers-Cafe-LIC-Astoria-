@@ -9,7 +9,6 @@ import {
   Clock,
   TrendingUp,
   AlertTriangle,
-  CheckCircle,
   PackageCheck,
   ChevronRight,
   Plus,
@@ -33,11 +32,9 @@ export default async function AdminDashboardPage() {
     ordersToday,
     pendingOrders,
     preparingOrders,
-    completedOrders,
     revenueAgg,
     recentOrders,
     lowStockProducts,
-    totalProducts,
   ] = await Promise.all([
     prisma.order.count({
       where: { createdAt: { gte: startOfToday } },
@@ -47,9 +44,6 @@ export default async function AdminDashboardPage() {
     }),
     prisma.order.count({
       where: { status: "PREPARING" },
-    }),
-    prisma.order.count({
-      where: { status: "COMPLETED" },
     }),
     prisma.order.aggregate({
       where: {

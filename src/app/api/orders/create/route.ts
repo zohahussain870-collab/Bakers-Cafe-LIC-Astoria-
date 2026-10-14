@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { generateOrderReference, normalizeWhatsAppNumber } from "@/lib/utils";
 import { BUSINESS_INFO } from "@/lib/constants";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { z } from "zod";
 
 const OrderItemSchema = z.object({
@@ -26,6 +27,21 @@ const CheckoutSchema = z.object({
 
 export async function POST(req: Request) {
   try {
+    const clientIp = getClientIp(req);
+
+    // Rate limiting: max 10 order creation requests per minute per IP
+    const rateCheck = checkRateLimit(`order_create_${clientIp}`, {
+      intervalMs: 60 * 1000,
+      maxRequests: 10,
+    });
+
+    if (!rateCheck.success) {
+      return NextResponse.json(
+        { error: "Too many order submissions. Please wait a moment and try again." },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     const parsed = CheckoutSchema.safeParse(body);
 
@@ -75,7 +91,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // SERVER-SIDE TRANSACTION: Recalculate all item prices from database
+    // SERVER-SIDE TRANSACTION: Recalculate all item prices from database atomically
     const orderResult = await prisma.$transaction(async (tx) => {
       let calculatedSubtotal = 0;
       const verifiedItems: {
@@ -114,16 +130,23 @@ export async function POST(req: Request) {
         const lineSubtotal = trueUnitPrice * item.quantity;
         calculatedSubtotal += lineSubtotal;
 
-        // Check stock if tracked
+        // Concurrency-Safe Stock Check and Conditional Decrement (OWASP & ACID Concurrency)
         if (product.isStockTracked) {
-          if (product.stock < item.quantity) {
-            throw new Error(`Insufficient stock for ${product.name}.`);
-          }
-          // Decrement stock
-          await tx.product.update({
-            where: { id: product.id },
-            data: { stock: { decrement: item.quantity } },
+          const updateResult = await tx.product.updateMany({
+            where: {
+              id: product.id,
+              stock: { gte: item.quantity },
+            },
+            data: {
+              stock: { decrement: item.quantity },
+            },
           });
+
+          if (updateResult.count === 0) {
+            throw new Error(
+              `Insufficient stock for "${product.name}". The item was just claimed by another order.`
+            );
+          }
         }
 
         verifiedItems.push({
@@ -145,7 +168,7 @@ export async function POST(req: Request) {
         );
       }
 
-      // Calculate discount on server
+      // Calculate discount on server with concurrency-safe usage increment
       let calculatedDiscount = 0;
       if (promoCode) {
         const promo = await tx.promotion.findUnique({
@@ -156,65 +179,98 @@ export async function POST(req: Request) {
           promo &&
           promo.isActive &&
           (!promo.expiresAt || promo.expiresAt >= new Date()) &&
-          calculatedSubtotal >= promo.minOrderValue &&
-          (!promo.maxUses || promo.currentUses < promo.maxUses)
+          calculatedSubtotal >= promo.minOrderValue
         ) {
-          if (promo.discountType === "PERCENTAGE") {
-            calculatedDiscount = Math.round(
-              (calculatedSubtotal * promo.discountValue) / 100
-            );
+          // Concurrency-safe atomic promotion usage reservation
+          let usageAllowed = true;
+          if (promo.maxUses !== null) {
+            const promoUpdate = await tx.promotion.updateMany({
+              where: {
+                id: promo.id,
+                currentUses: { lt: promo.maxUses },
+              },
+              data: {
+                currentUses: { increment: 1 },
+              },
+            });
+            usageAllowed = promoUpdate.count > 0;
           } else {
-            calculatedDiscount = promo.discountValue;
+            await tx.promotion.update({
+              where: { id: promo.id },
+              data: { currentUses: { increment: 1 } },
+            });
           }
-          calculatedDiscount = Math.min(calculatedDiscount, calculatedSubtotal);
 
-          // Increment promo usage
-          await tx.promotion.update({
-            where: { id: promo.id },
-            data: { currentUses: { increment: 1 } },
-          });
+          if (usageAllowed) {
+            if (promo.discountType === "PERCENTAGE") {
+              calculatedDiscount = Math.round(
+                (calculatedSubtotal * promo.discountValue) / 100
+              );
+            } else {
+              calculatedDiscount = promo.discountValue;
+            }
+            calculatedDiscount = Math.min(calculatedDiscount, calculatedSubtotal);
+          }
         }
       }
 
       const deliveryFee = serviceType === "DELIVERY" ? (settings?.deliveryFee || 250) : 0;
       const finalTotal = Math.max(0, calculatedSubtotal - calculatedDiscount + deliveryFee);
 
-      // Unique Reference Code
-      const orderRef = generateOrderReference();
+      // Generate Reference with collision-safe creation
+      let orderRef = generateOrderReference();
+      let created = false;
+      let newOrder = null;
 
-      // Create Order
-      const newOrder = await tx.order.create({
-        data: {
-          orderReference: orderRef,
-          customerName,
-          customerPhone,
-          customerEmail: customerEmail || null,
-          serviceType,
-          requestedDate,
-          requestedTime,
-          deliveryAddress: serviceType === "DELIVERY" ? deliveryAddress : null,
-          notes: notes || null,
-          status: "PENDING",
-          subtotal: calculatedSubtotal,
-          discount: calculatedDiscount,
-          deliveryFee,
-          total: finalTotal,
-          isWhatsAppInitiated: true,
-          items: {
-            create: verifiedItems.map((vi) => ({
-              productId: vi.productId,
-              variantId: vi.variantId,
-              productName: vi.productName,
-              variantName: vi.variantName,
-              unitPrice: vi.unitPrice,
-              quantity: vi.quantity,
-              subtotal: vi.subtotal,
-              customizationNote: vi.customizationNote || null,
-            })),
-          },
-        },
-        include: { items: true },
-      });
+      for (let attempt = 0; attempt < 3; attempt++) {
+        try {
+          newOrder = await tx.order.create({
+            data: {
+              orderReference: orderRef,
+              customerName,
+              customerPhone,
+              customerEmail: customerEmail || null,
+              serviceType,
+              requestedDate,
+              requestedTime,
+              deliveryAddress: serviceType === "DELIVERY" ? deliveryAddress : null,
+              notes: notes || null,
+              status: "PENDING",
+              subtotal: calculatedSubtotal,
+              discount: calculatedDiscount,
+              deliveryFee,
+              total: finalTotal,
+              isWhatsAppInitiated: true,
+              items: {
+                create: verifiedItems.map((vi) => ({
+                  productId: vi.productId,
+                  variantId: vi.variantId,
+                  productName: vi.productName,
+                  variantName: vi.variantName,
+                  unitPrice: vi.unitPrice,
+                  quantity: vi.quantity,
+                  subtotal: vi.subtotal,
+                  customizationNote: vi.customizationNote || null,
+                })),
+              },
+            },
+            include: { items: true },
+          });
+          created = true;
+          break;
+        } catch (createErr: unknown) {
+          const err = createErr as Error;
+          if (err.message && err.message.includes("Unique constraint")) {
+            orderRef = generateOrderReference(); // regenerate and retry
+          } else {
+            throw createErr;
+          }
+        }
+      }
+
+      if (!created || !newOrder) {
+        throw new Error("Failed to assign a unique order reference. Please retry.");
+      }
 
       return newOrder;
     });
@@ -260,10 +316,11 @@ export async function POST(req: Request) {
       total: orderResult.total,
       whatsAppUrl,
     });
-  } catch (error: any) {
-    console.error("Order creation failed:", error);
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error("Order creation failed:", err);
     return NextResponse.json(
-      { error: error?.message || "Failed to process order. Please try again." },
+      { error: err?.message || "Failed to process order. Please try again." },
       { status: 500 }
     );
   }

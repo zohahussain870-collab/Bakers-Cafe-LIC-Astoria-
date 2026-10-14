@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getCurrentAdmin } from "@/lib/auth";
 
+interface VariantInput {
+  name: string;
+  priceAdjustment?: number | string;
+  isAvailable?: boolean;
+}
+
 export async function POST(req: Request) {
   try {
     const admin = await getCurrentAdmin();
@@ -31,6 +37,14 @@ export async function POST(req: Request) {
     if (!name || !slug || !basePrice || !categoryId) {
       return NextResponse.json(
         { error: "Name, slug, base price, and category are required." },
+        { status: 400 }
+      );
+    }
+
+    // Validate image URL scheme if provided to prevent javascript: or data: XSS
+    if (imageUrl && !imageUrl.startsWith("https://") && !imageUrl.startsWith("http://")) {
+      return NextResponse.json(
+        { error: "Image URL must be a valid secure web address starting with https://" },
         { status: 400 }
       );
     }
@@ -77,9 +91,9 @@ export async function POST(req: Request) {
         variants:
           variants && Array.isArray(variants) && variants.length > 0
             ? {
-                create: variants.map((v: any) => ({
+                create: (variants as VariantInput[]).map((v) => ({
                   name: v.name,
-                  priceAdjustment: parseInt(v.priceAdjustment, 10) || 0,
+                  priceAdjustment: parseInt(String(v.priceAdjustment), 10) || 0,
                   isAvailable: v.isAvailable ?? true,
                 })),
               }

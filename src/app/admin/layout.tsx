@@ -1,7 +1,5 @@
 import React from "react";
 import { getCurrentAdmin } from "@/lib/auth";
-import { redirect } from "next/navigation";
-import Link from "next/link";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { AdminTopbar } from "@/components/admin/AdminTopbar";
 

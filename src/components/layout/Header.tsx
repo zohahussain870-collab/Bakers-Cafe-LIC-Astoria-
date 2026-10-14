@@ -9,10 +9,8 @@ import {
   ShoppingBag,
   Menu as MenuIcon,
   X,
-  Phone,
   MessageCircle,
   Search,
-  Clock,
   MapPin,
 } from "lucide-react";
 

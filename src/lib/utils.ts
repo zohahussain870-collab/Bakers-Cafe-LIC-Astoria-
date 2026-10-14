@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import crypto from "crypto";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -14,14 +15,15 @@ export function formatPKR(amount: number): string {
 }
 
 /**
- * Generate a cryptographically secure, non-guessable, human-readable Order Reference
- * e.g. "HB-2026-X8K2"
+ * Generate a cryptographically secure, high-entropy, human-readable Order Reference
+ * e.g. "HB-2026-X8K2M9" (32^6 = 1,073,741,824 possible permutations)
  */
 export function generateOrderReference(): string {
-  const chars = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ"; // removed ambiguous 0, 1, I, O
+  const chars = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ"; // removed ambiguous 0, 1, I, O (32 chars)
+  const bytes = crypto.randomBytes(6);
   let code = "";
-  for (let i = 0; i < 4; i++) {
-    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  for (let i = 0; i < 6; i++) {
+    code += chars.charAt(bytes[i] % chars.length);
   }
   return `HB-2026-${code}`;
 }

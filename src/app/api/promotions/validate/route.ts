@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { evaluatePromotion } from "@/lib/discounts";
 
 export async function POST(req: Request) {
   try {
@@ -12,66 +13,40 @@ export async function POST(req: Request) {
       );
     }
 
+    const orderSubtotal = typeof subtotal === "number" ? subtotal : 0;
     const cleanCode = code.trim().toUpperCase();
 
     const promo = await prisma.promotion.findUnique({
       where: { code: cleanCode },
     });
 
-    if (!promo || !promo.isActive) {
+    if (!promo) {
       return NextResponse.json(
         { error: "This promo code is invalid or has expired." },
         { status: 400 }
       );
     }
 
-    // Check expiration date
-    if (promo.expiresAt && promo.expiresAt < new Date()) {
+    const evaluation = evaluatePromotion(orderSubtotal, promo);
+
+    if (!evaluation.valid) {
       return NextResponse.json(
-        { error: "This promotion has expired." },
+        { error: evaluation.reason || "This promo code cannot be applied." },
         { status: 400 }
       );
     }
-
-    // Check minimum order value
-    if (subtotal && subtotal < promo.minOrderValue) {
-      return NextResponse.json(
-        {
-          error: `Minimum order value for this promo is PKR ${promo.minOrderValue}.`,
-        },
-        { status: 400 }
-      );
-    }
-
-    // Check max usage
-    if (promo.maxUses && promo.currentUses >= promo.maxUses) {
-      return NextResponse.json(
-        { error: "This promo code has reached its maximum usage limit." },
-        { status: 400 }
-      );
-    }
-
-    // Calculate discount in PKR
-    let discountAmount = 0;
-    if (promo.discountType === "PERCENTAGE") {
-      discountAmount = Math.round((subtotal * promo.discountValue) / 100);
-    } else {
-      discountAmount = promo.discountValue;
-    }
-
-    discountAmount = Math.min(discountAmount, subtotal);
 
     return NextResponse.json({
       valid: true,
       code: promo.code,
-      discountAmount,
+      discountAmount: evaluation.discountAmount,
       description:
         promo.description ||
         (promo.discountType === "PERCENTAGE"
           ? `${promo.discountValue}% discount applied`
           : `PKR ${promo.discountValue} discount applied`),
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Promo validation error:", error);
     return NextResponse.json(
       { error: "An unexpected error occurred while validating the promo code." },

@@ -3,17 +3,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { formatPKR, formatPakistanPhone, normalizeWhatsAppNumber } from "@/lib/utils";
-import { BUSINESS_INFO } from "@/lib/constants";
 import {
   ArrowLeft,
   Printer,
   MessageCircle,
-  Phone,
   Save,
   CheckCircle,
-  MapPin,
-  Calendar,
-  Clock,
   AlertCircle,
 } from "lucide-react";
 

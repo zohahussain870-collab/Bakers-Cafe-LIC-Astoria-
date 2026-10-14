@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { formatPKR } from "@/lib/utils";
-import { Plus, Tag, AlertCircle, Check } from "lucide-react";
+import { Plus, Tag, AlertCircle } from "lucide-react";
 
 interface PromoItem {
   id: string;
@@ -121,7 +121,7 @@ export function PromotionsManager({ initialPromos }: { initialPromos: PromoItem[
               </label>
               <select
                 value={discountType}
-                onChange={(e) => setDiscountType(e.target.value as any)}
+                onChange={(e) => setDiscountType(e.target.value as "PERCENTAGE" | "FIXED")}
                 className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
               >
                 <option value="PERCENTAGE">Percentage (%) Off</option>

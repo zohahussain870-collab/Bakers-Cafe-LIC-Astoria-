@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { formatPKR } from "@/lib/utils";
-import { Save, AlertTriangle, ShieldCheck, Check, Power, Wrench, Settings } from "lucide-react";
+import { Save, AlertTriangle, Check, Wrench } from "lucide-react";
 
 interface SettingsData {
   businessName: string;

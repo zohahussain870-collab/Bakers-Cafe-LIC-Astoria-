@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { ProductDTO, CategoryDTO } from "@/types";
 import { ProductCard } from "@/components/products/ProductCard";
-import { Search, SlidersHorizontal, X, Cake, Sparkles } from "lucide-react";
+import { Search, SlidersHorizontal, X, Cake } from "lucide-react";
 
 interface MenuCatalogProps {
   initialProducts: ProductDTO[];
@@ -88,7 +88,7 @@ export function MenuCatalog({
             <select
               value={sortBy}
               aria-label="Sort products by"
-              onChange={(e) => setSortBy(e.target.value as any)}
+              onChange={(e) => setSortBy(e.target.value as "featured" | "price-asc" | "price-desc" | "name")}
               className="px-3.5 py-2 rounded-full border border-[#E6DCce] bg-[#FAF7F2] text-xs font-semibold text-[#211510] focus:border-[#B87D4B] transition-colors"
             >
               <option value="featured">Artisan Favorites</option>

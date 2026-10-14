@@ -1,12 +1,26 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { normalizeWhatsAppNumber } from "@/lib/utils";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
   try {
+    const clientIp = getClientIp(req);
+    const rateCheck = checkRateLimit(`order_track_${clientIp}`, {
+      intervalMs: 60 * 1000,
+      maxRequests: 15,
+    });
+
+    if (!rateCheck.success) {
+      return NextResponse.json(
+        { error: "Too many tracking attempts. Please wait a minute and try again." },
+        { status: 429 }
+      );
+    }
+
     const { orderReference, phone } = await req.json();
 
-    if (!orderReference || !phone) {
+    if (!orderReference || !phone || typeof orderReference !== "string" || typeof phone !== "string") {
       return NextResponse.json(
         { error: "Both Order Reference and Phone Number are required." },
         { status: 400 }
@@ -16,6 +30,14 @@ export async function POST(req: Request) {
     const cleanRef = orderReference.trim().toUpperCase();
     const cleanPhone = normalizeWhatsAppNumber(phone);
 
+    // Enforce minimum valid Pakistani phone length (11 digits: 923XXXXXXXXX)
+    if (cleanPhone.length < 10) {
+      return NextResponse.json(
+        { error: "Please enter a valid, complete Pakistani telephone number." },
+        { status: 400 }
+      );
+    }
+
     const order = await prisma.order.findUnique({
       where: { orderReference: cleanRef },
       include: {
@@ -23,19 +45,20 @@ export async function POST(req: Request) {
       },
     });
 
+    // Uniform response to eliminate reference enumeration:
+    // If order doesn't exist, OR phone doesn't strictly match, return identical 404
     if (!order) {
       return NextResponse.json(
-        { error: "No order found matching this reference code." },
+        { error: "No order found matching the provided reference and telephone number." },
         { status: 404 }
       );
     }
 
-    // Security check: Phone number must match to prevent IDOR / public harvesting
     const orderPhoneClean = normalizeWhatsAppNumber(order.customerPhone);
-    if (!orderPhoneClean.includes(cleanPhone) && !cleanPhone.includes(orderPhoneClean)) {
+    if (orderPhoneClean !== cleanPhone) {
       return NextResponse.json(
-        { error: "The phone number does not match this order reference." },
-        { status: 403 }
+        { error: "No order found matching the provided reference and telephone number." },
+        { status: 404 }
       );
     }
 
@@ -60,7 +83,7 @@ export async function POST(req: Request) {
         customizationNote: it.customizationNote,
       })),
     });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Order tracking error:", error);
     return NextResponse.json(
       { error: "An unexpected error occurred while looking up your order." },
