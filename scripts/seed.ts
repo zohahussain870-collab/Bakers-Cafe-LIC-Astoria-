@@ -7,7 +7,7 @@ async function main() {
   console.log("🌱 Starting Home Bakery database seeding...");
 
   // 1. Provision Business Settings (Source of Truth)
-  const settings = await prisma.businessSettings.upsert({
+  await prisma.businessSettings.upsert({
     where: { id: "default" },
     update: {},
     create: {
@@ -38,29 +38,49 @@ async function main() {
   console.log("✅ Business settings provisioned");
 
   // 2. Provision Initial Admin
+  const isProd = process.env.NODE_ENV === "production";
+  const defaultDevPass = "HomeBakeryAdmin2026!";
+
+  if (isProd && (!process.env.ADMIN_PASSWORD || process.env.ADMIN_PASSWORD === defaultDevPass)) {
+    throw new Error(
+      "SECURITY BLOCKER: In production, you must configure a secure, non-default ADMIN_PASSWORD environment variable."
+    );
+  }
+
   const adminEmail = process.env.ADMIN_EMAIL || "admin@homebakery.pk";
-  const adminPassword = process.env.ADMIN_PASSWORD || "HomeBakeryAdmin2026!";
+  const adminPassword = process.env.ADMIN_PASSWORD || defaultDevPass;
   const adminName = process.env.ADMIN_NAME || "Head Baker";
 
-  const passwordHash = await bcrypt.hash(adminPassword, 12);
-
-  const admin = await prisma.user.upsert({
+  const existingAdmin = await prisma.user.findUnique({
     where: { email: adminEmail },
-    update: {
-      passwordHash,
-      name: adminName,
-      role: "ADMIN",
-      isActive: true,
-    },
-    create: {
-      email: adminEmail,
-      passwordHash,
-      name: adminName,
-      role: "ADMIN",
-      isActive: true,
-    },
   });
-  console.log(`✅ Administrator account ready: ${admin.email}`);
+
+  let admin;
+  if (!existingAdmin) {
+    const passwordHash = await bcrypt.hash(adminPassword, 12);
+    admin = await prisma.user.create({
+      data: {
+        email: adminEmail,
+        passwordHash,
+        name: adminName,
+        role: "ADMIN",
+        isActive: true,
+      },
+    });
+    console.log(`✅ Initial administrator created: ${admin.email}`);
+  } else {
+    if (process.env.RESET_ADMIN_PASSWORD === "true") {
+      const passwordHash = await bcrypt.hash(adminPassword, 12);
+      admin = await prisma.user.update({
+        where: { email: adminEmail },
+        data: { passwordHash, name: adminName, isActive: true },
+      });
+      console.log(`✅ Administrator password explicitly reset: ${admin.email}`);
+    } else {
+      admin = existingAdmin;
+      console.log(`ℹ️ Existing administrator preserved (password intact): ${admin.email}`);
+    }
+  }
 
   // 3. Categories
   const categoriesData = [

@@ -1,10 +1,11 @@
 import type { NextConfig } from "next";
 
+// Production-hardened Content Security Policy without unsafe-eval
 const cspHeader = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval';
+  script-src 'self' 'unsafe-inline';
   style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https://images.unsplash.com https://*.google.com https://*.googleapis.com;
+  img-src 'self' blob: data: https://images.unsplash.com;
   font-src 'self' data:;
   connect-src 'self' https://wa.me;
   frame-ancestors 'none';
@@ -13,6 +14,9 @@ const cspHeader = `
 `.replace(/\s{2,}/g, " ").trim();
 
 const nextConfig: NextConfig = {
+  // Disable technology stack fingerprinting (ASVS V14.3.1)
+  poweredByHeader: false,
+
   images: {
     remotePatterns: [
       {
