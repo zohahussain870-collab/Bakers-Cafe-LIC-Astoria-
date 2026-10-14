@@ -1,17 +1,23 @@
 import type { NextConfig } from "next";
 
-// Production-hardened Content Security Policy without unsafe-eval
-const cspHeader = `
-  default-src 'self';
-  script-src 'self' 'unsafe-inline';
-  style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data: https://images.unsplash.com;
-  font-src 'self' data:;
-  connect-src 'self' https://wa.me;
-  frame-ancestors 'none';
-  form-action 'self' https://wa.me;
-  base-uri 'self';
-`.replace(/\s{2,}/g, " ").trim();
+function getCspHeader(): string {
+  const isDev = process.env.NODE_ENV !== "production";
+  const scriptSrc = isDev
+    ? "'self' 'unsafe-inline' 'unsafe-eval'"
+    : "'self' 'unsafe-inline'";
+
+  return `
+    default-src 'self';
+    script-src ${scriptSrc};
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' blob: data: https://images.unsplash.com;
+    font-src 'self' data:;
+    connect-src 'self' https://wa.me;
+    frame-ancestors 'none';
+    form-action 'self' https://wa.me mailto:;
+    base-uri 'self';
+  `.replace(/\s{2,}/g, " ").trim();
+}
 
 const nextConfig: NextConfig = {
   // Disable technology stack fingerprinting (ASVS V14.3.1)
@@ -32,7 +38,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value: cspHeader,
+            value: getCspHeader(),
           },
           {
             key: "Strict-Transport-Security",

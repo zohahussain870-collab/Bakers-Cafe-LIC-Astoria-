@@ -5,6 +5,7 @@ import { CartDrawer } from "@/components/cart/CartDrawer";
 import { prisma } from "@/lib/prisma";
 import { getCurrentAdmin } from "@/lib/auth";
 import { MaintenanceShield } from "@/components/common/MaintenanceShield";
+import { ChatbotWidget } from "@/components/chatbot/ChatbotWidget";
 import Link from "next/link";
 import { ShieldAlert } from "lucide-react";
 
@@ -58,6 +59,7 @@ export default async function StorefrontLayout({
 
       <Footer />
       <CartDrawer />
+      <ChatbotWidget />
     </div>
   );
 }

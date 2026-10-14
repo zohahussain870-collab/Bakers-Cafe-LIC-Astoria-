@@ -5,6 +5,7 @@ export const BUSINESS_INFO = {
   phone: "+92 330 2964562",
   phoneClean: "+923302964562",
   whatsappNumber: "923302964562",
+  email: "contact@homebakery.pk",
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Home+Bakery+House+R-1932+Block+17+Gulberg+Town+Karachi",
   suppliedRating: {
