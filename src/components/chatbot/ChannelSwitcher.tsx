@@ -43,15 +43,15 @@ export function ChannelSwitcher({
             id={`channel-tab-${ch.id}`}
             type="button"
             onClick={() => onSelectChannel(ch.id)}
-            className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-semibold transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B87D4B] ${
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-semibold transition-all duration-150 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] ${
               isActive
-                ? "bg-white text-[#B87D4B] shadow-xs font-bold border border-[#E6DCce]"
+                ? "bg-white text-[#8F5323] shadow-xs font-bold border border-[#E6DCce]"
                 : "text-[#6B5B52] hover:text-[#211510] hover:bg-white/60"
             }`}
           >
             <Icon
               className={`w-3.5 h-3.5 transition-transform ${
-                isActive ? "text-[#B87D4B] scale-110" : "text-[#8E7C72]"
+                isActive ? "text-[#8F5323] scale-110" : "text-[#68584F]"
               }`}
             />
             <span>{ch.label}</span>

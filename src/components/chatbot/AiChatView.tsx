@@ -128,19 +128,19 @@ export function AiChatView({
             <div
               className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs sm:text-[13px] leading-relaxed shadow-2xs whitespace-pre-wrap ${
                 m.role === "user"
-                  ? "bg-[#B87D4B] text-white rounded-br-xs"
+                  ? "bg-[#8F5323] text-white rounded-br-xs"
                   : "bg-white text-[#211510] border border-[#E6DCce] rounded-bl-xs"
               }`}
             >
               {m.role === "assistant" && (
-                <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#B87D4B] uppercase tracking-wider mb-1">
+                <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#8F5323] uppercase tracking-wider mb-1">
                   <Sparkles className="w-3 h-3" />
                   <span>Home Bakery Assistant</span>
                 </div>
               )}
               {m.text}
             </div>
-            <span className="text-[10px] text-[#8E7C72] mt-0.5 px-1">
+            <span className="text-[10px] text-[#68584F] mt-0.5 px-1 font-medium">
               {new Date(m.timestamp).toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
@@ -154,13 +154,13 @@ export function AiChatView({
           <div className="flex items-start">
             <div className="bg-white border border-[#E6DCce] rounded-2xl rounded-bl-xs px-4 py-3 shadow-2xs">
               <div className="flex items-center gap-1.5">
-                <div className="w-2 h-2 rounded-full bg-[#B87D4B] animate-bounce" />
+                <div className="w-2 h-2 rounded-full bg-[#8F5323] animate-bounce" />
                 <div
-                  className="w-2 h-2 rounded-full bg-[#B87D4B] animate-bounce"
+                  className="w-2 h-2 rounded-full bg-[#8F5323] animate-bounce"
                   style={{ animationDelay: "150ms" }}
                 />
                 <div
-                  className="w-2 h-2 rounded-full bg-[#B87D4B] animate-bounce"
+                  className="w-2 h-2 rounded-full bg-[#8F5323] animate-bounce"
                   style={{ animationDelay: "300ms" }}
                 />
               </div>
@@ -192,7 +192,7 @@ export function AiChatView({
       {/* Suggested prompt chips */}
       {messages.length <= 2 && (
         <div className="px-3 pt-1 pb-2 border-t border-[#F0E9DF] bg-white">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-[#8E7C72] mb-1.5 flex items-center gap-1">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-[#68584F] mb-1.5 flex items-center gap-1">
             <ShoppingBag className="w-3 h-3" />
             <span>Suggested Questions:</span>
           </p>
@@ -203,7 +203,7 @@ export function AiChatView({
                 type="button"
                 onClick={() => handleSend(prompt)}
                 disabled={isLoading}
-                className="text-[11px] px-2.5 py-1 rounded-full bg-[#FAF7F2] border border-[#E6DCce] text-[#211510] hover:bg-[#F7EDE2] hover:border-[#B87D4B] transition-colors font-medium disabled:opacity-50 text-left"
+                className="text-[11px] px-2.5 py-1 rounded-full bg-[#FAF7F2] border border-[#E6DCce] text-[#211510] hover:bg-[#F7EDE2] hover:border-[#8F5323] transition-colors font-medium disabled:opacity-50 text-left focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#8F5323]"
               >
                 {prompt}
               </button>
@@ -214,29 +214,30 @@ export function AiChatView({
 
       {/* Message input footer */}
       <div className="p-3 bg-white border-t border-[#F0E9DF]">
-        <div className="flex items-end gap-2 bg-[#FAF7F2] border border-[#E6DCce] rounded-2xl p-1.5 focus-within:border-[#B87D4B] focus-within:ring-1 focus-within:ring-[#B87D4B] transition-all">
+        <div className="flex items-end gap-2 bg-[#FAF7F2] border border-[#E6DCce] rounded-2xl p-1.5 focus-within:border-[#8F5323] focus-within:ring-1 focus-within:ring-[#8F5323] transition-all">
           <textarea
             ref={inputRef}
             rows={1}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
+            aria-label="Ask Home Bakery assistant a question"
             placeholder="Type your question... (Enter to send)"
             disabled={isLoading}
             maxLength={1000}
-            className="flex-1 bg-transparent px-2.5 py-1 text-xs sm:text-[13px] text-[#211510] placeholder-[#8E7C72] focus:outline-none resize-none max-h-24"
+            className="flex-1 bg-transparent px-2.5 py-1 text-xs sm:text-[13px] text-[#211510] placeholder-[#68584F] focus:outline-none resize-none max-h-24"
           />
           <button
             type="button"
             onClick={() => handleSend()}
             disabled={!input.trim() || isLoading}
             aria-label="Send message"
-            className="p-2 rounded-xl bg-[#B87D4B] text-white hover:bg-[#9E6535] disabled:opacity-40 disabled:hover:bg-[#B87D4B] transition-all shrink-0 shadow-2xs"
+            className="p-2 rounded-xl bg-[#8F5323] text-white hover:bg-[#784218] disabled:opacity-40 disabled:hover:bg-[#8F5323] transition-all shrink-0 shadow-2xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
           >
             <Send className="w-4 h-4" />
           </button>
         </div>
-        <div className="flex justify-between items-center text-[10px] text-[#8E7C72] px-2 pt-1">
+        <div className="flex justify-between items-center text-[10px] text-[#68584F] px-2 pt-1 font-medium">
           <span>Shift+Enter for new line</span>
           <span>{input.length}/1000</span>
         </div>

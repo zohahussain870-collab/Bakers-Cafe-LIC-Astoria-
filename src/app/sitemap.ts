@@ -38,7 +38,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     return [...staticRoutes, ...productRoutes];
   } catch (error) {
-    console.error("Sitemap generation error:", error);
-    return staticRoutes;
+    console.error("Sitemap generation error, returning fallback product routes:", error);
+    const fallbackProductRoutes = [
+      "belgian-chocolate-fudge-cake",
+      "lotus-biscoff-cheesecake",
+      "red-velvet-dream-cake",
+      "signature-fudgy-brownie-box",
+      "artisan-cupcake-assortment",
+      "french-butter-croissants",
+    ].map((slug) => ({
+      url: `${baseUrl}/product/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: "daily" as const,
+      priority: 0.9,
+    }));
+    return [...staticRoutes, ...fallbackProductRoutes];
   }
 }

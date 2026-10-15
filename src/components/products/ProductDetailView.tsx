@@ -63,12 +63,12 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
   return (
     <div className="space-y-12">
       {/* Breadcrumb Navigation */}
-      <nav className="flex items-center gap-2 text-xs text-[#8E7C72]">
-        <Link href="/" className="hover:text-[#211510] transition-colors">
+      <nav className="flex items-center gap-2 text-xs text-[#68584F]" aria-label="Breadcrumb">
+        <Link href="/" className="hover:text-[#211510] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#8F5323] rounded-xs">
           Home
         </Link>
         <ChevronRight className="w-3.5 h-3.5" />
-        <Link href="/menu" className="hover:text-[#211510] transition-colors">
+        <Link href="/menu" className="hover:text-[#211510] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#8F5323] rounded-xs">
           Menu
         </Link>
         {product.category && (
@@ -76,14 +76,14 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
             <ChevronRight className="w-3.5 h-3.5" />
             <Link
               href={`/menu?category=${product.category.slug}`}
-              className="hover:text-[#211510] transition-colors"
+              className="hover:text-[#211510] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#8F5323] rounded-xs"
             >
               {product.category.name}
             </Link>
           </>
         )}
         <ChevronRight className="w-3.5 h-3.5" />
-        <span className="text-[#211510] font-semibold truncate max-w-xs">
+        <span className="text-[#211510] font-semibold truncate max-w-xs" aria-current="page">
           {product.name}
         </span>
       </nav>
@@ -98,11 +98,12 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
               alt={product.images?.[activeImageIndex]?.alt || product.name}
               fill
               priority
+              fetchPriority="high"
               sizes="(max-width: 1024px) 100vw, 600px"
               className="object-cover"
             />
             {product.isFeatured && (
-              <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-[#B87D4B] text-white shadow-xs">
+              <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-[#8F5323] text-white shadow-xs">
                 Signature Bake
               </span>
             )}
@@ -110,20 +111,22 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
 
           {/* Thumbnails */}
           {product.images && product.images.length > 1 && (
-            <div className="flex items-center gap-3 overflow-x-auto pb-2">
+            <div className="flex items-center gap-3 overflow-x-auto pb-2" role="region" aria-label="Product thumbnails">
               {product.images.map((img, idx) => (
                 <button
                   key={img.id}
+                  type="button"
                   onClick={() => setActiveImageIndex(idx)}
-                  className={`relative w-20 h-20 rounded-xl overflow-hidden shrink-0 border-2 transition-all ${
+                  aria-label={`View image ${idx + 1} of ${product.name}`}
+                  className={`relative w-20 h-20 rounded-xl overflow-hidden shrink-0 border-2 transition-all focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] ${
                     activeImageIndex === idx
-                      ? "border-[#B87D4B] ring-2 ring-[#B87D4B]/30"
+                      ? "border-[#8F5323] ring-2 ring-[#8F5323]/30"
                       : "border-transparent opacity-70 hover:opacity-100"
                   }`}
                 >
                   <Image
                     src={img.url}
-                    alt={img.alt}
+                    alt={img.alt || `${product.name} thumbnail ${idx + 1}`}
                     fill
                     sizes="80px"
                     className="object-cover"
@@ -138,7 +141,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
         <div className="lg:col-span-6 space-y-6">
           <div>
             {product.category && (
-              <span className="text-xs font-bold uppercase tracking-widest text-[#B87D4B]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
                 {product.category.name}
               </span>
             )}
@@ -153,13 +156,13 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
           {/* Price & Prep time Badge */}
           <div className="p-4 rounded-2xl bg-white border border-[#E6DCce] shadow-2xs flex flex-wrap items-center justify-between gap-4">
             <div>
-              <span className="text-xs text-[#8E7C72] block">Current Selection</span>
+              <span className="text-xs text-[#68584F] block font-medium">Current Selection</span>
               <span className="font-serif text-3xl font-extrabold text-[#211510]">
                 {formatPKR(unitPrice)}
               </span>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EBF2EA] text-[#5F7A59] border border-[#5F7A59]/20 text-xs font-semibold">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EBF2EA] text-[#3B5934] border border-[#3B5934]/20 text-xs font-semibold">
               <Clock className="w-4 h-4" />
               <span>Prep Time: {product.prepTime}</span>
             </div>
@@ -178,10 +181,12 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
                   return (
                     <button
                       key={v.id}
+                      type="button"
                       onClick={() => setSelectedVariant(v)}
-                      className={`p-3.5 rounded-xl border text-left transition-all flex items-center justify-between ${
+                      aria-pressed={isSelected}
+                      className={`p-3.5 rounded-xl border text-left transition-all flex items-center justify-between focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] ${
                         isSelected
-                          ? "border-[#B87D4B] bg-[#F7EDE2] shadow-2xs ring-1 ring-[#B87D4B]"
+                          ? "border-[#8F5323] bg-[#F7EDE2] shadow-2xs ring-1 ring-[#8F5323]"
                           : "border-[#E6DCce] bg-white hover:bg-[#FAF7F2]"
                       }`}
                     >
@@ -189,12 +194,12 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
                         <span className="text-xs sm:text-sm font-semibold text-[#211510] block">
                           {v.name}
                         </span>
-                        <span className="text-xs text-[#8E7C72]">
+                        <span className="text-xs text-[#68584F] font-medium">
                           {formatPKR(vPrice)}
                         </span>
                       </div>
                       {isSelected && (
-                        <div className="w-5 h-5 rounded-full bg-[#B87D4B] text-white flex items-center justify-center shrink-0">
+                        <div className="w-5 h-5 rounded-full bg-[#8F5323] text-white flex items-center justify-center shrink-0">
                           <Check className="w-3 h-3" />
                         </div>
                       )}
@@ -214,7 +219,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
               >
                 Custom Inscription / Piping Note (Optional)
               </label>
-              <span className="text-[#8E7C72]">Free of charge</span>
+              <span className="text-[#68584F] font-medium">Free of charge</span>
             </div>
             <input
               id="customNote"
@@ -223,7 +228,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
               value={customNote}
               onChange={(e) => setCustomNote(e.target.value)}
               maxLength={80}
-              className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-white text-xs sm:text-sm text-[#211510] placeholder-[#8E7C72] focus:border-[#B87D4B] transition-colors"
+              className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-white text-xs sm:text-sm text-[#211510] placeholder-[#68584F] focus:border-[#8F5323] focus:ring-1 focus:ring-[#8F5323] transition-colors"
             />
           </div>
 
@@ -233,9 +238,10 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
               {/* Stepper */}
               <div className="flex items-center justify-between border border-[#E6DCce] rounded-full bg-white p-1 w-full sm:w-36 shadow-2xs">
                 <button
+                  type="button"
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                   aria-label="Decrease quantity"
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-[#6B5B52] hover:bg-[#F4ECE1] transition-colors"
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-[#6B5B52] hover:bg-[#F4ECE1] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#8F5323]"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
@@ -243,9 +249,10 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
                   {quantity}
                 </span>
                 <button
+                  type="button"
                   onClick={() => setQuantity((q) => q + 1)}
                   aria-label="Increase quantity"
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-[#6B5B52] hover:bg-[#F4ECE1] transition-colors"
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-[#6B5B52] hover:bg-[#F4ECE1] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#8F5323]"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -253,12 +260,14 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
 
               {/* Add to Basket Button */}
               <button
+                type="button"
                 onClick={handleAddToCart}
                 disabled={product.availability === "UNAVAILABLE"}
-                className={`flex-1 w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full font-medium text-sm sm:text-base transition-all shadow-md hover:shadow-lg ${
+                aria-label={`Add ${quantity} ${product.name} to basket for ${formatPKR(totalPrice)}`}
+                className={`flex-1 w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full font-medium text-sm sm:text-base transition-all shadow-md hover:shadow-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] ${
                   isAdded
-                    ? "bg-[#5F7A59] text-white"
-                    : "bg-[#B87D4B] hover:bg-[#9E6535] text-white"
+                    ? "bg-[#3B5934] text-white"
+                    : "bg-[#8F5323] hover:bg-[#784218] text-white"
                 }`}
               >
                 {isAdded ? (
@@ -280,16 +289,16 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
               href={whatsappInquiryUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-white hover:bg-[#F4ECE1] border border-[#E6DCce] text-[#211510] text-xs font-semibold transition-colors shadow-2xs"
+              className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-white hover:bg-[#F4ECE1] border border-[#E6DCce] text-[#211510] text-xs font-semibold transition-colors shadow-2xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#3B5934]"
             >
-              <MessageCircle className="w-4 h-4 text-[#5F7A59]" />
+              <MessageCircle className="w-4 h-4 text-[#3B5934]" />
               <span>Inquire on WhatsApp about this Treat</span>
             </a>
           </div>
 
           {/* Kitchen Location Notice */}
           <div className="p-4 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] flex items-center gap-3 text-xs text-[#6B5B52]">
-            <MapPin className="w-4 h-4 text-[#B87D4B] shrink-0" />
+            <MapPin className="w-4 h-4 text-[#8F5323] shrink-0" />
             <span>
               <strong>Takeout Collection:</strong> House R-1932, Block 17, Gulberg Town, Karachi. Handcrafted fresh to order.
             </span>
@@ -309,7 +318,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
 
             {product.ingredients && (
               <div className="flex items-start gap-2 text-xs text-[#6B5B52]">
-                <Sparkles className="w-4 h-4 text-[#B87D4B] shrink-0 mt-0.5" />
+                <Sparkles className="w-4 h-4 text-[#8F5323] shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-[#211510]">Pure Ingredients:</strong>{" "}
                   {product.ingredients}

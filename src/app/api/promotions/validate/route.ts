@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { evaluatePromotion } from "@/lib/discounts";
+import { evaluatePromotion, PromotionRule } from "@/lib/discounts";
+import { FALLBACK_PROMO } from "@/lib/fallback-data";
 
 export async function POST(req: Request) {
   try {
@@ -16,18 +17,52 @@ export async function POST(req: Request) {
     const orderSubtotal = typeof subtotal === "number" ? subtotal : 0;
     const cleanCode = code.trim().toUpperCase();
 
-    const promo = await prisma.promotion.findUnique({
-      where: { code: cleanCode },
-    });
+    let promoCodeName = cleanCode;
+    let promoDescription: string | null = null;
+    let promoRule: PromotionRule | null = null;
 
-    if (!promo) {
+    try {
+      const dbPromo = await prisma.promotion.findUnique({
+        where: { code: cleanCode },
+      });
+
+      if (dbPromo) {
+        promoCodeName = dbPromo.code;
+        promoDescription = dbPromo.description;
+        promoRule = {
+          discountType: dbPromo.discountType,
+          discountValue: dbPromo.discountValue,
+          minOrderValue: dbPromo.minOrderValue,
+          isActive: dbPromo.isActive,
+          expiresAt: dbPromo.expiresAt,
+          maxUses: dbPromo.maxUses,
+          currentUses: dbPromo.currentUses,
+        };
+      }
+    } catch {
+      if (cleanCode === FALLBACK_PROMO.code) {
+        promoCodeName = FALLBACK_PROMO.code;
+        promoDescription = FALLBACK_PROMO.description;
+        promoRule = {
+          discountType: FALLBACK_PROMO.discountType,
+          discountValue: FALLBACK_PROMO.discountValue,
+          minOrderValue: FALLBACK_PROMO.minOrderValue,
+          isActive: FALLBACK_PROMO.isActive,
+          expiresAt: null,
+          maxUses: null,
+          currentUses: 0,
+        };
+      }
+    }
+
+    if (!promoRule) {
       return NextResponse.json(
         { error: "This promo code is invalid or has expired." },
         { status: 400 }
       );
     }
 
-    const evaluation = evaluatePromotion(orderSubtotal, promo);
+    const evaluation = evaluatePromotion(orderSubtotal, promoRule);
 
     if (!evaluation.valid) {
       return NextResponse.json(
@@ -38,13 +73,13 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       valid: true,
-      code: promo.code,
+      code: promoCodeName,
       discountAmount: evaluation.discountAmount,
       description:
-        promo.description ||
-        (promo.discountType === "PERCENTAGE"
-          ? `${promo.discountValue}% discount applied`
-          : `PKR ${promo.discountValue} discount applied`),
+        promoDescription ||
+        (promoRule.discountType === "PERCENTAGE"
+          ? `${promoRule.discountValue}% discount applied`
+          : `PKR ${promoRule.discountValue} discount applied`),
     });
   } catch (error: unknown) {
     console.error("Promo validation error:", error);

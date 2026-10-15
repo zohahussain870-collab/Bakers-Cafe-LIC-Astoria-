@@ -38,12 +38,17 @@ export async function POST(req: Request) {
       );
     }
 
-    const order = await prisma.order.findUnique({
-      where: { orderReference: cleanRef },
-      include: {
-        items: true,
-      },
-    });
+    let order = null;
+    try {
+      order = await prisma.order.findUnique({
+        where: { orderReference: cleanRef },
+        include: {
+          items: true,
+        },
+      });
+    } catch (dbErr) {
+      console.warn("[Track API] Database unavailable:", dbErr);
+    }
 
     // Uniform response to eliminate reference enumeration:
     // If order doesn't exist, OR phone doesn't strictly match, return identical 404

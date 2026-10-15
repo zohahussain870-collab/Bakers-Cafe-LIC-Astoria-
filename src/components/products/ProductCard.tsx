@@ -6,7 +6,7 @@ import Image from "next/image";
 import { ProductDTO } from "@/types";
 import { formatPKR } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
-import { Clock, Plus, Check, ShoppingBag, Eye } from "lucide-react";
+import { Clock, Plus, Check, Eye } from "lucide-react";
 
 export function ProductCard({ product }: { product: ProductDTO }) {
   const { addItem } = useCart();
@@ -51,7 +51,7 @@ export function ProductCard({ product }: { product: ProductDTO }) {
         {/* Floating Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
           {product.isFeatured && (
-            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#B87D4B] text-white shadow-xs">
+            <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#8F5323] text-white shadow-xs">
               Artisan Favorite
             </span>
           )}
@@ -65,7 +65,7 @@ export function ProductCard({ product }: { product: ProductDTO }) {
         {/* Prep Time Tag */}
         <div className="absolute bottom-3 left-3 z-10">
           <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium bg-white/90 backdrop-blur-xs text-[#211510] shadow-xs">
-            <Clock className="w-3 h-3 text-[#B87D4B]" />
+            <Clock className="w-3 h-3 text-[#8F5323]" />
             <span>{product.prepTime}</span>
           </span>
         </div>
@@ -73,7 +73,7 @@ export function ProductCard({ product }: { product: ProductDTO }) {
         {/* Quick View Overlay Button */}
         <Link
           href={`/product/${product.slug}`}
-          className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+          className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center focus-visible:opacity-100 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
           aria-label={`View details for ${product.name}`}
         >
           <span className="px-4 py-2 rounded-full bg-white/95 text-[#211510] font-medium text-xs shadow-md flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-transform">
@@ -87,12 +87,17 @@ export function ProductCard({ product }: { product: ProductDTO }) {
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
           {product.category && (
-            <span className="text-[11px] font-bold uppercase tracking-wider text-[#8E7C72]">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-[#68584F]">
               {product.category.name}
             </span>
           )}
-          <h3 className="font-serif text-lg font-bold text-[#211510] mt-1 group-hover:text-[#B87D4B] transition-colors line-clamp-1">
-            <Link href={`/product/${product.slug}`}>{product.name}</Link>
+          <h3 className="font-serif text-lg font-bold text-[#211510] mt-1 group-hover:text-[#8F5323] transition-colors line-clamp-1">
+            <Link
+              href={`/product/${product.slug}`}
+              className="focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#8F5323] rounded-xs"
+            >
+              {product.name}
+            </Link>
           </h3>
           <p className="text-xs text-[#6B5B52] mt-1.5 line-clamp-2 leading-relaxed">
             {product.shortDescription}
@@ -102,7 +107,7 @@ export function ProductCard({ product }: { product: ProductDTO }) {
         {/* Price & Action Row */}
         <div className="mt-5 pt-3 border-t border-[#F0E9DF] flex items-center justify-between">
           <div>
-            <span className="text-[11px] text-[#8E7C72] block leading-none">Starting from</span>
+            <span className="text-[11px] text-[#68584F] block leading-none font-medium">Starting from</span>
             <span className="font-serif text-lg font-bold text-[#211510]">
               {formatPKR(product.basePrice)}
             </span>
@@ -111,10 +116,11 @@ export function ProductCard({ product }: { product: ProductDTO }) {
           <button
             onClick={handleQuickAdd}
             disabled={product.availability === "UNAVAILABLE"}
-            className={`px-3.5 py-2 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs ${
+            aria-label={`Add ${product.name} to basket`}
+            className={`px-3.5 py-2 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] ${
               isAdded
-                ? "bg-[#5F7A59] text-white"
-                : "bg-[#F7EDE2] text-[#B87D4B] hover:bg-[#B87D4B] hover:text-white"
+                ? "bg-[#3B5934] text-white"
+                : "bg-[#F7EDE2] text-[#8F5323] hover:bg-[#8F5323] hover:text-white"
             }`}
           >
             {isAdded ? (

@@ -1,8 +1,7 @@
 import React from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { CartDrawer } from "@/components/cart/CartDrawer";
-import { ChatbotWidget } from "@/components/chatbot/ChatbotWidget";
+import { ClientOverlays } from "@/components/layout/ClientOverlays";
 
 export default function StorefrontLayout({
   children,
@@ -17,8 +16,7 @@ export default function StorefrontLayout({
       </div>
 
       <Footer />
-      <CartDrawer />
-      <ChatbotWidget />
+      <ClientOverlays />
     </div>
   );
 }

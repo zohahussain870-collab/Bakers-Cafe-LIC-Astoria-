@@ -10,9 +10,14 @@ export const metadata = {
 };
 
 export default async function MaintenancePage() {
-  const settings = await prisma.businessSettings.findUnique({
-    where: { id: "default" },
-  });
+  let settings = null;
+  try {
+    settings = await prisma.businessSettings.findUnique({
+      where: { id: "default" },
+    });
+  } catch (err) {
+    console.warn("Maintenance page settings lookup skipped:", err);
+  }
 
   return <MaintenanceShield message={settings?.maintenanceMessage} />;
 }

@@ -11,7 +11,7 @@ export function FeaturedProducts({ products }: { products: ProductDTO[] }) {
     <section className="py-20 bg-[#FAF7F2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#F7EDE2] text-[#B87D4B] mb-2">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#F7EDE2] text-[#8F5323] border border-[#8F5323]/25 mb-2">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Artisan Favorites</span>
           </span>
@@ -34,7 +34,7 @@ export function FeaturedProducts({ products }: { products: ProductDTO[] }) {
         <div className="mt-14 text-center">
           <Link
             href="/menu"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#211510] hover:bg-[#B87D4B] text-white font-medium text-sm transition-all duration-300 shadow-md group"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#211510] hover:bg-[#8F5323] text-white font-medium text-sm transition-all duration-300 shadow-md group focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
           >
             <span>Explore Entire Catalog</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

@@ -37,7 +37,7 @@ export function OrderingSteps() {
     <section className="py-20 bg-white border-b border-[#E6DCce]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#B87D4B]">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
             Simple & Transparent
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#211510] mt-1">
@@ -58,10 +58,10 @@ export function OrderingSteps() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-white border border-[#E6DCce] text-[#B87D4B] flex items-center justify-center shadow-2xs">
+                    <div className="w-12 h-12 rounded-xl bg-white border border-[#E6DCce] text-[#8F5323] flex items-center justify-center shadow-2xs">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="font-serif text-2xl font-bold text-[#D5C7B7]">
+                    <span className="font-serif text-2xl font-bold text-[#8A796D]">
                       {item.step}
                     </span>
                   </div>

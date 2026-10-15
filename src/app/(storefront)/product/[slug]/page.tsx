@@ -58,7 +58,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         {relatedProducts.length > 0 && (
           <div className="border-t border-[#E6DCce] pt-14 space-y-8">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#B87D4B]">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
                 More from {product.category?.name}
               </span>
               <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#211510] mt-1">

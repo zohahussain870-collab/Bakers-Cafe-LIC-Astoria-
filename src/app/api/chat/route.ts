@@ -4,6 +4,7 @@ import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { chatRequestSchema } from "@/lib/validations/chat";
 import { generateChatbotResponse } from "@/lib/ai/gemini";
 import type { CatalogProductSummary } from "@/lib/ai/gemini";
+import { FALLBACK_PRODUCTS } from "@/lib/fallback-data";
 
 export const dynamic = "force-dynamic";
 
@@ -82,7 +83,16 @@ export async function POST(req: Request) {
         variants: p.variants,
       }));
     } catch (dbErr) {
-      console.warn("[Chat API] Catalog query warning, continuing with default context:", dbErr);
+      console.warn("[Chat API] Database unavailable, using fallback catalog context:", dbErr);
+      catalogSummary = FALLBACK_PRODUCTS.map((p) => ({
+        name: p.name,
+        category: p.category?.name || "Bakery",
+        basePrice: p.basePrice,
+        prepTime: p.prepTime,
+        shortDescription: p.shortDescription,
+        allergens: p.allergens || undefined,
+        variants: p.variants?.map((v) => ({ name: v.name, priceAdjustment: v.priceAdjustment })),
+      }));
     }
 
     // 4. Generate AI response via Gemini with grounded context

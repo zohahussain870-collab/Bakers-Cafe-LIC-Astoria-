@@ -65,7 +65,7 @@ export function WhatsAppView({ initialMessage = "" }: WhatsAppViewProps) {
               htmlFor="wa-customer-name"
               className="block text-xs font-bold text-[#211510] mb-1"
             >
-              Your Name <span className="text-[#8E7C72] font-normal">(Optional)</span>
+              Your Name <span className="text-[#68584F] font-normal">(Optional)</span>
             </label>
             <input
               id="wa-customer-name"
@@ -85,7 +85,7 @@ export function WhatsAppView({ initialMessage = "" }: WhatsAppViewProps) {
               className="block text-xs font-bold text-[#211510] mb-1"
             >
               Phone / WhatsApp Number{" "}
-              <span className="text-[#8E7C72] font-normal">(Optional)</span>
+              <span className="text-[#68584F] font-normal">(Optional)</span>
             </label>
             <input
               id="wa-customer-phone"

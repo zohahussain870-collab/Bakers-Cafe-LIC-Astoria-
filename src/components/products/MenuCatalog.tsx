@@ -60,19 +60,19 @@ export function MenuCatalog({
         <div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
           {/* Search Input */}
           <div className="relative w-full sm:max-w-md">
-            <Search className="w-4 h-4 text-[#8E7C72] absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#68584F] absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search cakes, brownies, cookies..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-9 py-2.5 rounded-full border border-[#E6DCce] bg-[#FAF7F2] text-sm text-[#211510] placeholder-[#8E7C72] focus:bg-white transition-all focus:border-[#B87D4B]"
+              className="w-full pl-10 pr-9 py-2.5 rounded-full border border-[#E6DCce] bg-[#FAF7F2] text-sm text-[#211510] placeholder-[#68584F] focus:bg-white transition-all focus:border-[#8F5323]"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
                 aria-label="Clear search query"
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8E7C72] hover:text-[#211510]"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#68584F] hover:text-[#211510]"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -81,7 +81,7 @@ export function MenuCatalog({
 
           {/* Sort Dropdown */}
           <div className="w-full sm:w-auto flex items-center justify-end gap-2 text-xs">
-            <span className="text-[#8E7C72] font-medium shrink-0 flex items-center gap-1">
+            <span className="text-[#68584F] font-medium shrink-0 flex items-center gap-1">
               <SlidersHorizontal className="w-3.5 h-3.5" />
               <span>Sort by:</span>
             </span>
@@ -89,7 +89,7 @@ export function MenuCatalog({
               value={sortBy}
               aria-label="Sort products by"
               onChange={(e) => setSortBy(e.target.value as "featured" | "price-asc" | "price-desc" | "name")}
-              className="px-3.5 py-2 rounded-full border border-[#E6DCce] bg-[#FAF7F2] text-xs font-semibold text-[#211510] focus:border-[#B87D4B] transition-colors"
+              className="px-3.5 py-2 rounded-full border border-[#E6DCce] bg-[#FAF7F2] text-xs font-semibold text-[#211510] focus:border-[#8F5323] transition-colors"
             >
               <option value="featured">Artisan Favorites</option>
               <option value="price-asc">Price: Low to High</option>
@@ -122,7 +122,7 @@ export function MenuCatalog({
                 onClick={() => setSelectedCategory(cat.slug)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold shrink-0 transition-all ${
                   isSelected
-                    ? "bg-[#B87D4B] text-white shadow-xs"
+                    ? "bg-[#8F5323] text-white shadow-xs"
                     : "bg-[#FAF7F2] text-[#6B5B52] hover:bg-[#F4ECE1] border border-[#E6DCce]"
                 }`}
               >
@@ -134,7 +134,7 @@ export function MenuCatalog({
       </div>
 
       {/* Results Count & Active Filters Indicator */}
-      <div className="flex items-center justify-between text-xs text-[#8E7C72] px-2">
+      <div className="flex items-center justify-between text-xs text-[#68584F] px-2">
         <span>
           Showing <strong className="text-[#211510]">{filteredProducts.length}</strong>{" "}
           artisan creation{filteredProducts.length === 1 ? "" : "s"}
@@ -145,7 +145,7 @@ export function MenuCatalog({
               setSelectedCategory("all");
               setSearchQuery("");
             }}
-            className="text-[#B87D4B] hover:underline font-semibold"
+            className="text-[#8F5323] hover:underline font-semibold"
           >
             Reset Filters
           </button>
@@ -155,7 +155,7 @@ export function MenuCatalog({
       {/* Products Grid or Empty State */}
       {filteredProducts.length === 0 ? (
         <div className="bg-white rounded-3xl p-16 border border-[#E6DCce] text-center max-w-lg mx-auto space-y-4">
-          <div className="w-16 h-16 rounded-full bg-[#FAF7F2] text-[#8E7C72] flex items-center justify-center mx-auto">
+          <div className="w-16 h-16 rounded-full bg-[#FAF7F2] text-[#68584F] flex items-center justify-center mx-auto">
             <Cake className="w-8 h-8" />
           </div>
           <h3 className="font-serif text-xl font-bold text-[#211510]">
@@ -169,7 +169,7 @@ export function MenuCatalog({
               setSelectedCategory("all");
               setSearchQuery("");
             }}
-            className="px-6 py-2.5 rounded-full bg-[#B87D4B] text-white text-xs font-semibold hover:bg-[#9E6535] transition-colors"
+            className="px-6 py-2.5 rounded-full bg-[#8F5323] text-white text-xs font-semibold hover:bg-[#784218] transition-colors"
           >
             Show All Treats
           </button>

@@ -37,7 +37,7 @@ export function FAQSection() {
     <section className="py-20 bg-white border-b border-[#E6DCce]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#B87D4B]">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
             Frequently Asked Questions
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#211510] mt-1">
@@ -56,19 +56,30 @@ export function FAQSection() {
                 key={index}
                 className="rounded-2xl border border-[#E6DCce] bg-[#FAF7F2] overflow-hidden transition-colors"
               >
-                <button
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full py-4 px-6 flex items-center justify-between text-left font-serif font-semibold text-base sm:text-lg text-[#211510] hover:text-[#B87D4B] transition-colors"
-                >
-                  <span>{faq.q}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-[#8E7C72] shrink-0 transition-transform duration-300 ${
-                      isOpen ? "rotate-180 text-[#B87D4B]" : ""
-                    }`}
-                  />
-                </button>
+                <h3>
+                  <button
+                    type="button"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${index}`}
+                    id={`faq-question-${index}`}
+                    className="w-full py-4 px-6 flex items-center justify-between text-left font-serif font-semibold text-base sm:text-lg text-[#211510] hover:text-[#8F5323] transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
+                  >
+                    <span>{faq.q}</span>
+                    <ChevronDown
+                      className={`w-5 h-5 text-[#68584F] shrink-0 transition-transform duration-300 ${
+                        isOpen ? "rotate-180 text-[#8F5323]" : ""
+                      }`}
+                    />
+                  </button>
+                </h3>
                 {isOpen && (
-                  <div className="px-6 pb-5 text-sm text-[#6B5B52] leading-relaxed border-t border-[#E6DCce]/60 pt-3">
+                  <div
+                    id={`faq-answer-${index}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${index}`}
+                    className="px-6 pb-5 text-sm text-[#6B5B52] leading-relaxed border-t border-[#E6DCce]/60 pt-3"
+                  >
                     {faq.a}
                   </div>
                 )}

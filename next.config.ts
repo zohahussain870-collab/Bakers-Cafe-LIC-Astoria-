@@ -5,6 +5,7 @@ function getCspHeader(): string {
   const scriptSrc = isDev
     ? "'self' 'unsafe-inline' 'unsafe-eval'"
     : "'self' 'unsafe-inline'";
+  const upgradeInsecure = isDev ? "" : "upgrade-insecure-requests;";
 
   return `
     default-src 'self';
@@ -16,6 +17,8 @@ function getCspHeader(): string {
     frame-ancestors 'none';
     form-action 'self' https://wa.me mailto:;
     base-uri 'self';
+    object-src 'none';
+    ${upgradeInsecure}
   `.replace(/\s{2,}/g, " ").trim();
 }
 
@@ -24,6 +27,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
 
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
@@ -63,6 +67,14 @@ const nextConfig: NextConfig = {
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
+          },
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin-allow-popups",
+          },
+          {
+            key: "Cross-Origin-Resource-Policy",
+            value: "same-origin",
           },
         ],
       },

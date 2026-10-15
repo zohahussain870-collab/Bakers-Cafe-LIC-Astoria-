@@ -10,7 +10,7 @@ export function CategoryShowcase({ categories }: { categories: CategoryDTO[] }) 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B87D4B]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
               Handcrafted Categories
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#211510] mt-1">
@@ -19,7 +19,7 @@ export function CategoryShowcase({ categories }: { categories: CategoryDTO[] }) 
           </div>
           <Link
             href="/menu"
-            className="text-sm font-semibold text-[#B87D4B] hover:text-[#9E6535] inline-flex items-center gap-1 group transition-colors"
+            className="text-sm font-semibold text-[#8F5323] hover:text-[#784218] inline-flex items-center gap-1 group transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] rounded-sm"
           >
             <span>View Full Menu</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -32,7 +32,7 @@ export function CategoryShowcase({ categories }: { categories: CategoryDTO[] }) 
             <Link
               key={category.id}
               href={`/menu?category=${category.slug}`}
-              className="group flex flex-col items-center text-center p-4 rounded-2xl bg-[#FAF7F2] hover:bg-[#F7EDE2] border border-[#E6DCce] transition-all duration-300 hover:shadow-md"
+              className="group flex flex-col items-center text-center p-4 rounded-2xl bg-[#FAF7F2] hover:bg-[#F7EDE2] border border-[#E6DCce] transition-all duration-300 hover:shadow-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
             >
               <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden mb-3 border-2 border-white shadow-xs bg-[#F4ECE1]">
                 {category.image ? (
@@ -44,15 +44,15 @@ export function CategoryShowcase({ categories }: { categories: CategoryDTO[] }) 
                     className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 ) : (
-                  <div className="w-full h-full bg-[#E6DCce] flex items-center justify-center text-xs text-[#8E7C72]">
+                  <div className="w-full h-full bg-[#E6DCce] flex items-center justify-center text-xs text-[#68584F]">
                     Bakery
                   </div>
                 )}
               </div>
-              <h3 className="font-serif font-bold text-sm sm:text-base text-[#211510] group-hover:text-[#B87D4B] transition-colors">
+              <h3 className="font-serif font-bold text-sm sm:text-base text-[#211510] group-hover:text-[#8F5323] transition-colors">
                 {category.name}
               </h3>
-              <p className="text-[11px] text-[#8E7C72] mt-1">
+              <p className="text-[11px] text-[#68584F] mt-1 font-medium">
                 {category._count?.products ? `${category._count.products} Treats` : "Freshly Baked"}
               </p>
             </Link>

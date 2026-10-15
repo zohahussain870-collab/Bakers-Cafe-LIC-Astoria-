@@ -30,7 +30,7 @@ export function BakeryStory() {
                 />
               </div>
               <div className="p-5 rounded-2xl bg-white border border-[#E6DCce] shadow-xs">
-                <span className="font-serif text-3xl font-bold text-[#B87D4B]">100%</span>
+                <span className="font-serif text-3xl font-bold text-[#8F5323]">100%</span>
                 <p className="text-xs font-medium text-[#211510] mt-1">
                   Pure dairy butter & small-batch craftsmanship
                 </p>
@@ -40,7 +40,7 @@ export function BakeryStory() {
 
           {/* Text Story */}
           <div className="lg:col-span-6 space-y-6">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#B87D4B]">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
               Our Craft & Philosophy
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#211510] leading-tight">
@@ -56,28 +56,28 @@ export function BakeryStory() {
             {/* Quality Pillars */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-lg bg-[#EBF2EA] text-[#5F7A59] flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-lg bg-[#EBF2EA] text-[#3B5934] flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-serif font-bold text-sm text-[#211510]">
+                  <h3 className="font-serif font-bold text-sm text-[#211510]">
                     Strict Kitchen Hygiene
-                  </h4>
-                  <p className="text-xs text-[#8E7C72] mt-0.5">
+                  </h3>
+                  <p className="text-xs text-[#68584F] mt-0.5">
                     Sanitized preparation surfaces and food-grade packaging.
                   </p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-9 h-9 rounded-lg bg-[#F7EDE2] text-[#B87D4B] flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-lg bg-[#F7EDE2] text-[#8F5323] flex items-center justify-center shrink-0">
                   <Heart className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-serif font-bold text-sm text-[#211510]">
+                  <h3 className="font-serif font-bold text-sm text-[#211510]">
                     Custom Inscriptions
-                  </h4>
-                  <p className="text-xs text-[#8E7C72] mt-0.5">
+                  </h3>
+                  <p className="text-xs text-[#68584F] mt-0.5">
                     Personalized messages and tailored flavor variants.
                   </p>
                 </div>
@@ -87,7 +87,7 @@ export function BakeryStory() {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center text-sm font-semibold text-[#B87D4B] hover:text-[#9E6535] underline decoration-2 underline-offset-4 transition-colors"
+                className="inline-flex items-center text-sm font-semibold text-[#8F5323] hover:text-[#784218] underline decoration-2 underline-offset-4 transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] rounded-xs"
               >
                 Read our full baking story →
               </Link>
