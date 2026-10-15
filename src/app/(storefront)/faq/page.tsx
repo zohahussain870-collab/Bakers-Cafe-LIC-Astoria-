@@ -1,6 +1,5 @@
 import React from "react";
 import { FAQSection } from "@/components/home/FAQSection";
-import Link from "next/link";
 import { MessageCircle } from "lucide-react";
 import { BUSINESS_INFO } from "@/lib/constants";
 

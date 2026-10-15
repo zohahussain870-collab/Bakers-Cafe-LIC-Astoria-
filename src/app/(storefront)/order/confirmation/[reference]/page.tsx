@@ -1,5 +1,4 @@
 import React from "react";
-import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { formatPKR } from "@/lib/utils";
@@ -9,9 +8,6 @@ import {
   MessageCircle,
   MapPin,
   Calendar,
-  Clock,
-  ArrowRight,
-  Printer,
   ShoppingBag,
 } from "lucide-react";
 
@@ -131,8 +127,8 @@ export default async function OrderConfirmationPage({
           </p>
 
           <div className="inline-block p-4 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce]">
-            <span className="text-xs text-[#8E7C72] block">Order Reference Number</span>
-            <span className="font-mono text-2xl sm:text-3xl font-extrabold text-[#B87D4B] tracking-wider">
+            <span className="text-xs text-[#68584F] block">Order Reference Number</span>
+            <span className="font-mono text-2xl sm:text-3xl font-extrabold text-[#8F5323] tracking-wider">
               {order.orderReference}
             </span>
           </div>
@@ -143,12 +139,12 @@ export default async function OrderConfirmationPage({
               href={whatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-full bg-[#5F7A59] hover:bg-[#4B6346] text-white font-medium text-sm sm:text-base transition-all shadow-md hover:shadow-lg"
+              className="w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-full bg-[#3B5934] hover:bg-[#2F472A] text-white font-medium text-sm sm:text-base transition-all shadow-md hover:shadow-lg"
             >
               <MessageCircle className="w-5 h-5" />
               <span>Open in WhatsApp to Confirm Order</span>
             </a>
-            <p className="text-[11px] text-[#8E7C72]">
+            <p className="text-[11px] text-[#68584F]">
               * Sending your WhatsApp message notifies our head baker to confirm your time slot and accept the order.
             </p>
           </div>
@@ -162,8 +158,8 @@ export default async function OrderConfirmationPage({
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
             <div className="p-4 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] space-y-1">
-              <span className="text-[#8E7C72] flex items-center gap-1.5 font-medium">
-                <MapPin className="w-4 h-4 text-[#B87D4B]" />
+              <span className="text-[#68584F] flex items-center gap-1.5 font-medium">
+                <MapPin className="w-4 h-4 text-[#8F5323]" />
                 <span>Pickup Location:</span>
               </span>
               <p className="font-bold text-[#211510]">{BUSINESS_INFO.address}</p>
@@ -171,7 +167,7 @@ export default async function OrderConfirmationPage({
                 href={BUSINESS_INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs text-[#B87D4B] font-semibold underline block pt-1"
+                className="text-xs text-[#8F5323] font-semibold underline block pt-1"
               >
                 Directions on Google Maps →
               </a>
@@ -205,7 +201,7 @@ export default async function OrderConfirmationPage({
                       {item.quantity}x {item.productName}
                     </span>
                     {item.variantName && (
-                      <span className="text-xs text-[#B87D4B] block mt-0.5">
+                      <span className="text-xs text-[#8F5323] block mt-0.5">
                         {item.variantName}
                       </span>
                     )}
@@ -228,18 +224,18 @@ export default async function OrderConfirmationPage({
                 <span>{formatPKR(order.subtotal)}</span>
               </div>
               {order.discount > 0 && (
-                <div className="flex justify-between text-[#5F7A59]">
+                <div className="flex justify-between text-[#3B5934]">
                   <span>Discount</span>
                   <span>-{formatPKR(order.discount)}</span>
                 </div>
               )}
               <div className="flex justify-between text-[#6B5B52]">
                 <span>Takeout Pickup</span>
-                <span className="text-[#5F7A59] font-medium">Free</span>
+                <span className="text-[#3B5934] font-medium">Free</span>
               </div>
               <div className="flex justify-between items-center text-base font-serif font-bold text-[#211510] pt-2 border-t border-[#F0E9DF]">
                 <span>Total Amount</span>
-                <span className="text-2xl text-[#B87D4B]">
+                <span className="text-2xl text-[#8F5323]">
                   {formatPKR(order.total)}
                 </span>
               </div>
@@ -255,7 +251,7 @@ export default async function OrderConfirmationPage({
             </Link>
             <Link
               href="/menu"
-              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#211510] text-white hover:bg-[#B87D4B] transition-colors"
+              className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#211510] text-white hover:bg-[#8F5323] transition-colors"
             >
               <ShoppingBag className="w-3.5 h-3.5" />
               <span>Back to Menu</span>

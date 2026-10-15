@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BUSINESS_INFO } from "@/lib/constants";
-import { Heart, Sparkles, ShieldCheck, Clock, MapPin, Award } from "lucide-react";
+import { Sparkles, ShieldCheck, Clock, MapPin } from "lucide-react";
 
 export const metadata = {
   title: "About Our Artisan Bakery | Handcrafted in Gulberg Town, Karachi",
@@ -16,7 +16,7 @@ export default function AboutPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Hero Section */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#B87D4B]">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
             Our Artisan Heritage
           </span>
           <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#211510]">
@@ -51,7 +51,7 @@ export default function AboutPage() {
             </p>
 
             <div className="p-4 rounded-2xl bg-white border border-[#E6DCce] flex items-start gap-3 shadow-2xs">
-              <MapPin className="w-5 h-5 text-[#B87D4B] shrink-0 mt-0.5" />
+              <MapPin className="w-5 h-5 text-[#8F5323] shrink-0 mt-0.5" />
               <div className="text-xs">
                 <strong className="text-[#211510] block">Karachi Kitchen Location:</strong>
                 <p className="text-[#6B5B52] mt-0.5">{BUSINESS_INFO.address}</p>
@@ -63,9 +63,9 @@ export default function AboutPage() {
         {/* Quality Standards */}
         <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E6DCce] shadow-xs space-y-8">
           <div className="text-center max-w-xl mx-auto">
-            <h3 className="font-serif text-2xl font-bold text-[#211510]">
+            <h2 className="font-serif text-2xl font-bold text-[#211510]">
               Our Uncompromising Standards
-            </h3>
+            </h2>
             <p className="text-xs text-[#6B5B52] mt-1">
               What sets our treats apart in taste, texture, and trust.
             </p>
@@ -73,36 +73,36 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] space-y-2 text-center">
-              <div className="w-12 h-12 rounded-xl bg-[#F7EDE2] text-[#B87D4B] flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-12 rounded-xl bg-[#F7EDE2] text-[#8F5323] flex items-center justify-center mx-auto mb-3">
                 <Sparkles className="w-6 h-6" />
               </div>
-              <h4 className="font-serif font-bold text-base text-[#211510]">
+              <h3 className="font-serif font-bold text-base text-[#211510]">
                 100% Real Dairy Butter
-              </h4>
+              </h3>
               <p className="text-xs text-[#6B5B52] leading-relaxed">
                 We never use cheap margarine, vegetable shortening, or artificial butter substitutes. Every crust and crumb is naturally rich.
               </p>
             </div>
 
             <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] space-y-2 text-center">
-              <div className="w-12 h-12 rounded-xl bg-[#EBF2EA] text-[#5F7A59] flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-12 rounded-xl bg-[#EBF2EA] text-[#3B5934] flex items-center justify-center mx-auto mb-3">
                 <Clock className="w-6 h-6" />
               </div>
-              <h4 className="font-serif font-bold text-base text-[#211510]">
+              <h3 className="font-serif font-bold text-base text-[#211510]">
                 Freshly Baked to Order
-              </h4>
+              </h3>
               <p className="text-xs text-[#6B5B52] leading-relaxed">
                 Zero stored or frozen inventory. Your cake or brownie batch is mixed and baked only after your order is confirmed.
               </p>
             </div>
 
             <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] space-y-2 text-center">
-              <div className="w-12 h-12 rounded-xl bg-[#F7EDE2] text-[#B87D4B] flex items-center justify-center mx-auto mb-3">
+              <div className="w-12 h-12 rounded-xl bg-[#F7EDE2] text-[#8F5323] flex items-center justify-center mx-auto mb-3">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h4 className="font-serif font-bold text-base text-[#211510]">
+              <h3 className="font-serif font-bold text-base text-[#211510]">
                 Strict Hygiene & Care
-              </h4>
+              </h3>
               <p className="text-xs text-[#6B5B52] leading-relaxed">
                 Prepared in a sanitized private kitchen and packaged in premium, food-safe bakery presentation boxes.
               </p>
@@ -114,7 +114,7 @@ export default function AboutPage() {
         <div className="text-center pt-4">
           <Link
             href="/menu"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#B87D4B] hover:bg-[#9E6535] text-white font-medium text-sm transition-all shadow-md"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#8F5323] hover:bg-[#784218] text-white font-medium text-sm transition-all shadow-md"
           >
             <span>Explore Today&apos;s Menu</span>
           </Link>

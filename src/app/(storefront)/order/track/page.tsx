@@ -5,14 +5,11 @@ import { formatPKR } from "@/lib/utils";
 import { BUSINESS_INFO } from "@/lib/constants";
 import {
   Search,
-  Clock,
   CheckCircle2,
   AlertCircle,
   MapPin,
   Calendar,
   MessageCircle,
-  Sparkles,
-  Package,
 } from "lucide-react";
 
 interface OrderTrackingData {
@@ -110,7 +107,7 @@ export default function OrderTrackPage() {
     <div className="py-12 bg-[#FAF7F2] min-h-[calc(100vh-80px)]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-xl mx-auto space-y-2">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#B87D4B]">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
             Live Kitchen Tracking
           </span>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#211510]">
@@ -134,7 +131,7 @@ export default function OrderTrackPage() {
                 placeholder="e.g. HB-2026-X8K2"
                 value={orderReference}
                 onChange={(e) => setOrderReference(e.target.value.toUpperCase())}
-                className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] font-mono uppercase text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
+                className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] font-mono uppercase text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
               />
             </div>
 
@@ -148,7 +145,7 @@ export default function OrderTrackPage() {
                 placeholder="e.g. 0330 2964562"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
+                className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
               />
             </div>
 
@@ -162,7 +159,7 @@ export default function OrderTrackPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#B87D4B] hover:bg-[#9E6535] text-white font-medium text-xs sm:text-sm transition-all shadow-md hover:shadow-lg disabled:opacity-60"
+              className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#8F5323] hover:bg-[#784218] text-white font-medium text-xs sm:text-sm transition-all shadow-md hover:shadow-lg disabled:opacity-60"
             >
               {isLoading ? (
                 <span>Checking Kitchen Status...</span>
@@ -182,8 +179,8 @@ export default function OrderTrackPage() {
             {/* Header Status */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[#F0E9DF] pb-6">
               <div>
-                <span className="text-xs text-[#8E7C72] block">Order Reference</span>
-                <span className="font-mono text-2xl font-extrabold text-[#B87D4B]">
+                <span className="text-xs text-[#68584F] block">Order Reference</span>
+                <span className="font-mono text-2xl font-extrabold text-[#8F5323]">
                   {order.orderReference}
                 </span>
                 <p className="text-xs text-[#6B5B52] mt-0.5">
@@ -192,8 +189,8 @@ export default function OrderTrackPage() {
               </div>
 
               <div className="sm:text-right">
-                <span className="text-xs text-[#8E7C72] block">Current Status</span>
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#EBF2EA] text-[#5F7A59] border border-[#5F7A59]/30 mt-1">
+                <span className="text-xs text-[#68584F] block">Current Status</span>
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#EBF2EA] text-[#3B5934] border border-[#3B5934]/30 mt-1">
                   {order.status.replace(/_/g, " ")}
                 </span>
               </div>
@@ -215,9 +212,9 @@ export default function OrderTrackPage() {
                       key={step.key}
                       className={`p-3.5 rounded-2xl border transition-all ${
                         isCurrent
-                          ? "bg-[#F7EDE2] border-[#B87D4B] ring-2 ring-[#B87D4B]/20 shadow-xs"
+                          ? "bg-[#F7EDE2] border-[#8F5323] ring-2 ring-[#8F5323]/20 shadow-xs"
                           : isPassed
-                          ? "bg-[#EBF2EA] border-[#5F7A59]/30"
+                          ? "bg-[#EBF2EA] border-[#3B5934]/30"
                           : "bg-[#FAF7F2] border-[#E6DCce] opacity-50"
                       }`}
                     >
@@ -225,8 +222,8 @@ export default function OrderTrackPage() {
                         <div
                           className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
                             isPassed
-                              ? "bg-[#5F7A59] text-white"
-                              : "bg-[#E6DCce] text-[#8E7C72]"
+                              ? "bg-[#3B5934] text-white"
+                              : "bg-[#E6DCce] text-[#68584F]"
                           }`}
                         >
                           {isPassed ? <CheckCircle2 className="w-3.5 h-3.5" /> : idx + 1}
@@ -247,8 +244,8 @@ export default function OrderTrackPage() {
             {/* Collection Details */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] text-xs">
               <div className="space-y-1">
-                <span className="text-[#8E7C72] flex items-center gap-1 font-semibold">
-                  <MapPin className="w-3.5 h-3.5 text-[#B87D4B]" />
+                <span className="text-[#68584F] flex items-center gap-1 font-semibold">
+                  <MapPin className="w-3.5 h-3.5 text-[#8F5323]" />
                   <span>Takeout Pickup Address:</span>
                 </span>
                 <p className="text-[#211510] font-medium">{BUSINESS_INFO.address}</p>
@@ -256,15 +253,15 @@ export default function OrderTrackPage() {
                   href={BUSINESS_INFO.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#B87D4B] underline block pt-0.5"
+                  className="text-[#8F5323] underline block pt-0.5"
                 >
                   View on Google Maps →
                 </a>
               </div>
 
               <div className="space-y-1">
-                <span className="text-[#8E7C72] flex items-center gap-1 font-semibold">
-                  <Calendar className="w-3.5 h-3.5 text-[#5F7A59]" />
+                <span className="text-[#68584F] flex items-center gap-1 font-semibold">
+                  <Calendar className="w-3.5 h-3.5 text-[#3B5934]" />
                   <span>Scheduled Pickup Window:</span>
                 </span>
                 <p className="text-[#211510] font-medium">
@@ -286,7 +283,7 @@ export default function OrderTrackPage() {
                         {it.quantity}x {it.productName}
                       </span>
                       {it.variantName && (
-                        <span className="text-[#B87D4B] ml-2">({it.variantName})</span>
+                        <span className="text-[#8F5323] ml-2">({it.variantName})</span>
                       )}
                       {it.customizationNote && (
                         <p className="text-[#6B5B52] italic text-[11px]">
@@ -303,7 +300,7 @@ export default function OrderTrackPage() {
 
               <div className="pt-3 border-t border-[#E6DCce] flex justify-between items-center text-sm">
                 <span className="font-bold text-[#211510]">Total Paid / Payable</span>
-                <span className="font-serif text-xl font-bold text-[#B87D4B]">
+                <span className="font-serif text-xl font-bold text-[#8F5323]">
                   {formatPKR(order.total)}
                 </span>
               </div>
@@ -315,7 +312,7 @@ export default function OrderTrackPage() {
                 href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(`Hi Home Bakery! Inquiring regarding order ${order.orderReference}.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#5F7A59] text-white text-xs font-semibold hover:bg-[#4B6346] transition-colors shadow-xs"
+                className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#3B5934] text-white text-xs font-semibold hover:bg-[#2F472A] transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Contact Kitchen on WhatsApp (+92 330 2964562)</span>

@@ -11,13 +11,13 @@ export default function PrivacyPage() {
     <div className="py-16 bg-[#FAF7F2] min-h-[calc(100vh-80px)]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 bg-white rounded-3xl p-8 sm:p-12 border border-[#E6DCce] shadow-xs space-y-6 text-[#211510]">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-[#B87D4B]">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
             Legal Information
           </span>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold mt-1">
             Privacy Policy
           </h1>
-          <p className="text-xs text-[#8E7C72] mt-1">Last Updated: October 2026</p>
+          <p className="text-xs text-[#68584F] mt-1">Last Updated: October 2026</p>
         </div>
 
         <div className="space-y-4 text-xs sm:text-sm text-[#6B5B52] leading-relaxed">

@@ -3,20 +3,15 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { formatPKR } from "@/lib/utils";
 import { BUSINESS_INFO } from "@/lib/constants";
 import {
-  ShieldCheck,
   MapPin,
-  Clock,
   ArrowRight,
   AlertCircle,
   MessageCircle,
   ShoppingBag,
-  Calendar,
-  CheckCircle2,
 } from "lucide-react";
 
 export default function CheckoutPage() {
@@ -26,8 +21,8 @@ export default function CheckoutPage() {
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
-  const [serviceType, setServiceType] = useState<"TAKEOUT" | "DELIVERY">("TAKEOUT");
-  const [deliveryAddress, setDeliveryAddress] = useState("");
+  const serviceType: "TAKEOUT" | "DELIVERY" = "TAKEOUT";
+  const deliveryAddress = "";
   const [requestedDate, setRequestedDate] = useState(() => {
     // Default to tomorrow for optimal preparation
     const tomorrow = new Date();
@@ -112,7 +107,7 @@ export default function CheckoutPage() {
     return (
       <div className="py-20 bg-[#FAF7F2] min-h-[calc(100vh-80px)] flex items-center justify-center p-4">
         <div className="bg-white rounded-3xl p-10 border border-[#E6DCce] max-w-md w-full text-center space-y-4 shadow-sm">
-          <div className="w-10 h-10 border-2 border-[#B87D4B] border-t-transparent rounded-full animate-spin mx-auto" />
+          <div className="w-10 h-10 border-2 border-[#8F5323] border-t-transparent rounded-full animate-spin mx-auto" />
           <p className="text-xs text-[#6B5B52]">Loading checkout details...</p>
         </div>
       </div>
@@ -123,7 +118,7 @@ export default function CheckoutPage() {
     return (
       <div className="py-20 bg-[#FAF7F2] min-h-[calc(100vh-80px)] flex items-center justify-center p-4">
         <div className="bg-white rounded-3xl p-10 border border-[#E6DCce] max-w-md w-full text-center space-y-4 shadow-sm">
-          <div className="w-16 h-16 rounded-full bg-[#FAF7F2] text-[#8E7C72] flex items-center justify-center mx-auto">
+          <div className="w-16 h-16 rounded-full bg-[#FAF7F2] text-[#68584F] flex items-center justify-center mx-auto">
             <ShoppingBag className="w-8 h-8" />
           </div>
           <h2 className="font-serif text-2xl font-bold text-[#211510]">
@@ -134,7 +129,7 @@ export default function CheckoutPage() {
           </p>
           <Link
             href="/menu"
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#B87D4B] text-white text-xs font-semibold hover:bg-[#9E6535] transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#8F5323] text-white text-xs font-semibold hover:bg-[#784218] transition-colors"
           >
             <span>Explore Menu</span>
             <ArrowRight className="w-4 h-4" />
@@ -148,7 +143,7 @@ export default function CheckoutPage() {
     <div className="py-12 bg-[#FAF7F2] min-h-[calc(100vh-80px)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-[#B87D4B]">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
             Final Step
           </span>
           <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#211510] mt-1">
@@ -186,7 +181,7 @@ export default function CheckoutPage() {
                     placeholder="e.g. Syed Daniyal"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
                   />
                 </div>
 
@@ -200,7 +195,7 @@ export default function CheckoutPage() {
                     placeholder="e.g. 0330 2964562"
                     value={customerPhone}
                     onChange={(e) => setCustomerPhone(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
                   />
                 </div>
               </div>
@@ -214,7 +209,7 @@ export default function CheckoutPage() {
                   placeholder="e.g. yourname@example.com"
                   value={customerEmail}
                   onChange={(e) => setCustomerEmail(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
                 />
               </div>
             </div>
@@ -227,18 +222,18 @@ export default function CheckoutPage() {
 
               {/* Service Selection Pill */}
               <div className="p-4 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#B87D4B] shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-[#8F5323] shrink-0 mt-0.5" />
                 <div className="text-xs">
                   <div className="flex items-center gap-2">
                     <strong className="text-[#211510] text-sm">Takeout / Self-Pickup (Free)</strong>
-                    <span className="px-2 py-0.5 rounded bg-[#EBF2EA] text-[#5F7A59] font-bold text-[10px]">
+                    <span className="px-2 py-0.5 rounded bg-[#EBF2EA] text-[#3B5934] font-bold text-[10px]">
                       Default Service
                     </span>
                   </div>
                   <p className="text-[#6B5B52] mt-1">
                     Pickup Location: <strong>{BUSINESS_INFO.address}</strong>
                   </p>
-                  <p className="text-[11px] text-[#8E7C72] mt-0.5">
+                  <p className="text-[11px] text-[#68584F] mt-0.5">
                     * Orders are prepared specifically for your scheduled window.
                   </p>
                 </div>
@@ -255,7 +250,7 @@ export default function CheckoutPage() {
                       required
                       value={requestedDate}
                       onChange={(e) => setRequestedDate(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
+                      className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
                     />
                   </div>
                 </div>
@@ -267,7 +262,7 @@ export default function CheckoutPage() {
                   <select
                     value={requestedTime}
                     onChange={(e) => setRequestedTime(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
+                    className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
                   >
                     {timeSlots.map((slot) => (
                       <option key={slot} value={slot}>
@@ -287,7 +282,7 @@ export default function CheckoutPage() {
                   placeholder="e.g. Any dietary restrictions, birthday theme preference, or pickup instructions"
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
                 />
               </div>
             </div>
@@ -300,7 +295,7 @@ export default function CheckoutPage() {
                   required
                   checked={acknowledged}
                   onChange={(e) => setAcknowledged(e.target.checked)}
-                  className="w-4 h-4 rounded text-[#B87D4B] focus:ring-[#B87D4B] border-[#E6DCce] shrink-0 mt-0.5"
+                  className="w-4 h-4 rounded text-[#8F5323] focus:ring-[#8F5323] border-[#E6DCce] shrink-0 mt-0.5"
                 />
                 <span>
                   I understand that <strong className="text-[#211510]">Home Bakery</strong> is a home-based artisan bakery in Gulberg Town, Karachi. All treats are freshly made to order for takeout collection, and minimum prep notice applies.
@@ -325,7 +320,7 @@ export default function CheckoutPage() {
                         {item.quantity}x {item.productName}
                       </h4>
                       {item.variantName && (
-                        <p className="text-[11px] text-[#B87D4B]">{item.variantName}</p>
+                        <p className="text-[11px] text-[#8F5323]">{item.variantName}</p>
                       )}
                       {item.customizationNote && (
                         <p className="text-[11px] text-[#6B5B52] italic">
@@ -347,18 +342,18 @@ export default function CheckoutPage() {
                   <span className="font-medium text-[#211510]">{formatPKR(subtotal)}</span>
                 </div>
                 {discount > 0 && (
-                  <div className="flex justify-between text-[#5F7A59] font-medium">
+                  <div className="flex justify-between text-[#3B5934] font-medium">
                     <span>Discount ({promoCode})</span>
                     <span>-{formatPKR(discount)}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-[#6B5B52]">
                   <span>Takeout Pickup</span>
-                  <span className="text-[#5F7A59] font-semibold">Free</span>
+                  <span className="text-[#3B5934] font-semibold">Free</span>
                 </div>
                 <div className="border-t border-[#E6DCce] pt-3 flex justify-between items-center text-base">
                   <span className="font-serif font-bold text-[#211510]">Total Payable</span>
-                  <span className="font-serif text-2xl font-bold text-[#B87D4B]">
+                  <span className="font-serif text-2xl font-bold text-[#8F5323]">
                     {formatPKR(finalTotal)}
                   </span>
                 </div>
@@ -368,7 +363,7 @@ export default function CheckoutPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-[#B87D4B] hover:bg-[#9E6535] text-white font-medium text-sm sm:text-base transition-all shadow-md hover:shadow-lg disabled:opacity-60"
+                className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-full bg-[#8F5323] hover:bg-[#784218] text-white font-medium text-sm sm:text-base transition-all shadow-md hover:shadow-lg disabled:opacity-60"
               >
                 {isSubmitting ? (
                   <span>Processing Order...</span>
@@ -382,7 +377,7 @@ export default function CheckoutPage() {
 
               <div className="p-3 rounded-xl bg-[#FAF7F2] text-[11px] text-[#6B5B52] space-y-1">
                 <p className="font-semibold text-[#211510] flex items-center gap-1.5">
-                  <MessageCircle className="w-3.5 h-3.5 text-[#5F7A59]" />
+                  <MessageCircle className="w-3.5 h-3.5 text-[#3B5934]" />
                   <span>How WhatsApp Integration Works:</span>
                 </p>
                 <p>
