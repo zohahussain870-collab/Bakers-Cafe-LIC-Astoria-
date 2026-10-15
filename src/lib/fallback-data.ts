@@ -133,7 +133,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     images: [
       {
         id: "img-2-1",
-        url: "https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=1000&q=80",
+        url: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=1000&q=80",
         alt: "Lotus Biscoff layered celebration cake with cookie drip",
         isPrimary: true,
         displayOrder: 0,
