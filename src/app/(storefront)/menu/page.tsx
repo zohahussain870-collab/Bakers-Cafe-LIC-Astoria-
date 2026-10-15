@@ -1,11 +1,7 @@
 import React from "react";
-import { prisma } from "@/lib/prisma";
 import { MenuCatalog } from "@/components/products/MenuCatalog";
-import { ProductDTO, CategoryDTO } from "@/types";
 import { FALLBACK_CATEGORIES, FALLBACK_PRODUCTS } from "@/lib/fallback-data";
 import { Metadata } from "next";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Artisan Menu & Treats | Handcrafted in Karachi",
@@ -19,40 +15,8 @@ export default async function MenuPage({
   searchParams: Promise<{ category?: string }>;
 }) {
   const resolvedParams = await searchParams;
-  let categories: CategoryDTO[] = [];
-  let products: ProductDTO[] = [];
-
-  try {
-    const rawCategories = await prisma.category.findMany({
-      where: { isPublished: true },
-      orderBy: { displayOrder: "asc" },
-    });
-    if (rawCategories && rawCategories.length > 0) {
-      categories = rawCategories as unknown as CategoryDTO[];
-    }
-
-    const rawProducts = await prisma.product.findMany({
-      where: { availability: { not: "UNAVAILABLE" } },
-      include: {
-        images: { orderBy: { displayOrder: "asc" } },
-        variants: { where: { isAvailable: true } },
-        category: { select: { id: true, name: true, slug: true } },
-      },
-      orderBy: [{ isFeatured: "desc" }, { createdAt: "desc" }],
-    });
-    if (rawProducts && rawProducts.length > 0) {
-      products = rawProducts as unknown as ProductDTO[];
-    }
-  } catch (error) {
-    console.warn("Menu page database connection bypass, using fallback data:", error);
-  }
-
-  if (categories.length === 0) {
-    categories = FALLBACK_CATEGORIES;
-  }
-  if (products.length === 0) {
-    products = FALLBACK_PRODUCTS;
-  }
+  const categories = FALLBACK_CATEGORIES;
+  const products = FALLBACK_PRODUCTS;
 
   return (
     <div className="py-12 bg-[#FAF7F2] min-h-[calc(100vh-80px)]">
@@ -70,10 +34,10 @@ export default async function MenuPage({
           </p>
         </div>
 
-        {/* Interactive Catalog */}
+        {/* Catalog */}
         <MenuCatalog
-          initialProducts={products}
           categories={categories}
+          initialProducts={products}
           initialCategory={resolvedParams.category}
         />
       </div>

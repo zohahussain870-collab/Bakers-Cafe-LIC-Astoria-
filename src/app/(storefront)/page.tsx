@@ -1,5 +1,4 @@
 import React from "react";
-import { prisma } from "@/lib/prisma";
 import { Hero } from "@/components/home/Hero";
 import { CategoryShowcase } from "@/components/home/CategoryShowcase";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
@@ -9,68 +8,16 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { LocationSection } from "@/components/home/LocationSection";
 import { Tag } from "lucide-react";
 import Link from "next/link";
-import { ProductDTO, CategoryDTO } from "@/types";
 import {
   FALLBACK_CATEGORIES,
   FALLBACK_FEATURED_PRODUCTS,
   FALLBACK_PROMO,
 } from "@/lib/fallback-data";
 
-export const dynamic = "force-dynamic";
-
-export default async function HomePage() {
-  let categories: CategoryDTO[] = [];
-  let featuredProducts: ProductDTO[] = [];
-  let promo = null;
-
-  try {
-    const rawCategories = await prisma.category.findMany({
-      where: { isPublished: true },
-      orderBy: { displayOrder: "asc" },
-      include: {
-        _count: {
-          select: { products: true },
-        },
-      },
-    });
-    if (rawCategories && rawCategories.length > 0) {
-      categories = rawCategories as unknown as CategoryDTO[];
-    }
-
-    const rawFeatured = await prisma.product.findMany({
-      where: {
-        isFeatured: true,
-        availability: { not: "UNAVAILABLE" },
-      },
-      take: 8,
-      include: {
-        images: { orderBy: { displayOrder: "asc" } },
-        variants: { where: { isAvailable: true } },
-        category: { select: { id: true, name: true, slug: true } },
-      },
-      orderBy: { createdAt: "desc" },
-    });
-    if (rawFeatured && rawFeatured.length > 0) {
-      featuredProducts = rawFeatured as unknown as ProductDTO[];
-    }
-
-    promo = await prisma.promotion.findFirst({
-      where: { isActive: true },
-    });
-  } catch (error) {
-    console.warn("Home page database connection bypass, using fallback data:", error);
-  }
-
-  // Gracefully fallback for Vercel deployment without database configured
-  if (categories.length === 0) {
-    categories = FALLBACK_CATEGORIES;
-  }
-  if (featuredProducts.length === 0) {
-    featuredProducts = FALLBACK_FEATURED_PRODUCTS;
-  }
-  if (!promo) {
-    promo = FALLBACK_PROMO;
-  }
+export default function HomePage() {
+  const categories = FALLBACK_CATEGORIES;
+  const featuredProducts = FALLBACK_FEATURED_PRODUCTS;
+  const promo = FALLBACK_PROMO;
 
   return (
     <div className="space-y-0">
