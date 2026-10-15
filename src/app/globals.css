@@ -128,3 +128,68 @@ h1, h2, h3, .font-serif {
     display: block !important;
   }
 }
+
+/* ==========================================================================
+   Hero Artisan Cake Animations & Chocolate Ganache Flow
+   ========================================================================== */
+@keyframes heroCakeIdle {
+  0%, 100% {
+    transform: scale(1) translateY(0px);
+  }
+  50% {
+    transform: scale(1.018) translateY(-3px);
+  }
+}
+
+@keyframes glazeShimmer {
+  0% {
+    background-position: 200% 0%;
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    background-position: -200% 0%;
+    opacity: 0.15;
+  }
+}
+
+@keyframes ganacheWave {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  25% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(140px);
+  }
+}
+
+.animate-hero-cake-idle {
+  animation: heroCakeIdle 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-glaze-shimmer {
+  animation: glazeShimmer 9s ease-in-out infinite;
+  will-change: background-position, opacity;
+}
+
+.animate-ganache-wave {
+  animation: ganacheWave 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-cake-idle,
+  .animate-glaze-shimmer,
+  .animate-ganache-wave {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+

@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { HeroCakeVisual } from "./HeroCakeVisual";
 import { BUSINESS_INFO } from "@/lib/constants";
 import { motion } from "framer-motion";
 import {
@@ -105,29 +106,8 @@ export function Hero() {
             className="lg:col-span-5 relative"
           >
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Primary Large Image */}
-              <div className="relative aspect-4/5 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-[#F4ECE1]">
-                <Image
-                  src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85"
-                  alt="Artisan Belgian chocolate cake layered with rich ganache"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 500px"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 text-white">
-                  <span className="text-[11px] font-bold tracking-widest uppercase text-[#DDB88C]">
-                    Signature Cake
-                  </span>
-                  <h3 className="font-serif text-xl font-bold mt-0.5">
-                    Belgian Dark Chocolate Fudge
-                  </h3>
-                  <p className="text-xs text-white/80 mt-1">
-                    Layers of dark cocoa sponge with 54% Callebaut ganache
-                  </p>
-                </div>
-              </div>
+              {/* Primary Large Image with luxury idle float and interactive ganache flow */}
+              <HeroCakeVisual />
 
               {/* Floating Dessert Accent Card */}
               <motion.div
