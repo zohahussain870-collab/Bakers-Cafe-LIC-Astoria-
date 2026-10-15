@@ -33,21 +33,25 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [promoCode, setPromoCode] = useState<string | null>(null);
   const [discount, setDiscount] = useState<number>(0);
 
-  // Load cart from localStorage only after client mount to prevent SSR hydration mismatch
+  // Load cart from localStorage after mount without synchronous setState in effect body
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed)) {
-          setItems(parsed);
+    const timer = setTimeout(() => {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) {
+            setItems(parsed);
+          }
         }
+      } catch (e) {
+        console.error("Failed to restore cart from localStorage", e);
+      } finally {
+        setIsHydrated(true);
       }
-    } catch (e) {
-      console.error("Failed to restore cart from localStorage", e);
-    } finally {
-      setIsHydrated(true);
-    }
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Synchronize cart state to localStorage on state change (only after initial hydration)
