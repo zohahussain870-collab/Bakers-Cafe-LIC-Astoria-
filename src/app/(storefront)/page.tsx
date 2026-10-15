@@ -10,6 +10,11 @@ import { LocationSection } from "@/components/home/LocationSection";
 import { Tag } from "lucide-react";
 import Link from "next/link";
 import { ProductDTO, CategoryDTO } from "@/types";
+import {
+  FALLBACK_CATEGORIES,
+  FALLBACK_FEATURED_PRODUCTS,
+  FALLBACK_PROMO,
+} from "@/lib/fallback-data";
 
 export const dynamic = "force-dynamic";
 
@@ -28,7 +33,9 @@ export default async function HomePage() {
         },
       },
     });
-    categories = rawCategories as unknown as CategoryDTO[];
+    if (rawCategories && rawCategories.length > 0) {
+      categories = rawCategories as unknown as CategoryDTO[];
+    }
 
     const rawFeatured = await prisma.product.findMany({
       where: {
@@ -43,13 +50,26 @@ export default async function HomePage() {
       },
       orderBy: { createdAt: "desc" },
     });
-    featuredProducts = rawFeatured as unknown as ProductDTO[];
+    if (rawFeatured && rawFeatured.length > 0) {
+      featuredProducts = rawFeatured as unknown as ProductDTO[];
+    }
 
     promo = await prisma.promotion.findFirst({
       where: { isActive: true },
     });
   } catch (error) {
-    console.error("Home page data fetch error:", error);
+    console.warn("Home page database connection bypass, using fallback data:", error);
+  }
+
+  // Gracefully fallback for Vercel deployment without database configured
+  if (categories.length === 0) {
+    categories = FALLBACK_CATEGORIES;
+  }
+  if (featuredProducts.length === 0) {
+    featuredProducts = FALLBACK_FEATURED_PRODUCTS;
+  }
+  if (!promo) {
+    promo = FALLBACK_PROMO;
   }
 
   return (

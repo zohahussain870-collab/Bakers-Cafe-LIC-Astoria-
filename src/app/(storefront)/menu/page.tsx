@@ -2,6 +2,7 @@ import React from "react";
 import { prisma } from "@/lib/prisma";
 import { MenuCatalog } from "@/components/products/MenuCatalog";
 import { ProductDTO, CategoryDTO } from "@/types";
+import { FALLBACK_CATEGORIES, FALLBACK_PRODUCTS } from "@/lib/fallback-data";
 import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -26,7 +27,9 @@ export default async function MenuPage({
       where: { isPublished: true },
       orderBy: { displayOrder: "asc" },
     });
-    categories = rawCategories as unknown as CategoryDTO[];
+    if (rawCategories && rawCategories.length > 0) {
+      categories = rawCategories as unknown as CategoryDTO[];
+    }
 
     const rawProducts = await prisma.product.findMany({
       where: { availability: { not: "UNAVAILABLE" } },
@@ -37,9 +40,18 @@ export default async function MenuPage({
       },
       orderBy: [{ isFeatured: "desc" }, { createdAt: "desc" }],
     });
-    products = rawProducts as unknown as ProductDTO[];
+    if (rawProducts && rawProducts.length > 0) {
+      products = rawProducts as unknown as ProductDTO[];
+    }
   } catch (error) {
-    console.error("Menu page data fetch error:", error);
+    console.warn("Menu page database connection bypass, using fallback data:", error);
+  }
+
+  if (categories.length === 0) {
+    categories = FALLBACK_CATEGORIES;
+  }
+  if (products.length === 0) {
+    products = FALLBACK_PRODUCTS;
   }
 
   return (

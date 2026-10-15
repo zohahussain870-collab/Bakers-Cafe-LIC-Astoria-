@@ -29,6 +29,7 @@ export default function CartPage() {
     discount,
     applyPromo,
     removePromo,
+    isHydrated,
   } = useCart();
 
   const [inputCode, setInputCode] = useState("");
@@ -77,7 +78,7 @@ export default function CartPage() {
               Your Selection
             </span>
             <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[#211510] mt-1">
-              Treat Basket ({itemCount})
+              Treat Basket {isHydrated ? `(${itemCount})` : ""}
             </h1>
           </div>
           <Link
@@ -89,7 +90,12 @@ export default function CartPage() {
           </Link>
         </div>
 
-        {items.length === 0 ? (
+        {!isHydrated ? (
+          <div className="bg-white rounded-3xl p-16 border border-[#E6DCce] text-center max-w-md mx-auto space-y-4 shadow-sm">
+            <div className="w-10 h-10 border-2 border-[#B87D4B] border-t-transparent rounded-full animate-spin mx-auto" />
+            <p className="text-xs text-[#6B5B52]">Loading your treat basket...</p>
+          </div>
+        ) : items.length === 0 ? (
           <div className="bg-white rounded-3xl p-16 border border-[#E6DCce] text-center max-w-md mx-auto space-y-4 shadow-sm">
             <div className="w-20 h-20 rounded-full bg-[#FAF7F2] text-[#8E7C72] flex items-center justify-center mx-auto">
               <ShoppingBag className="w-10 h-10" />

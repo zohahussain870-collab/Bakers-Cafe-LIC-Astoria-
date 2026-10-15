@@ -19,6 +19,7 @@ interface CartContextType {
   discount: number;
   applyPromo: (code: string, discountAmount: number) => void;
   removePromo: () => void;
+  isHydrated: boolean;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -26,29 +27,38 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 const STORAGE_KEY = "hb_artisan_cart_v1";
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  // Lazy state initializer avoids setState inside useEffect and prevents cascading re-renders
-  const [items, setItems] = useState<CartItem[]>(() => {
-    if (typeof window === "undefined") return [];
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
-
+  const [items, setItems] = useState<CartItem[]>([]);
+  const [isHydrated, setIsHydrated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [promoCode, setPromoCode] = useState<string | null>(null);
   const [discount, setDiscount] = useState<number>(0);
 
-  // Synchronize cart state to localStorage on state change
+  // Load cart from localStorage only after client mount to prevent SSR hydration mismatch
   useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          setItems(parsed);
+        }
+      }
+    } catch (e) {
+      console.error("Failed to restore cart from localStorage", e);
+    } finally {
+      setIsHydrated(true);
+    }
+  }, []);
+
+  // Synchronize cart state to localStorage on state change (only after initial hydration)
+  useEffect(() => {
+    if (!isHydrated) return;
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     } catch (e) {
       console.error("Failed to persist cart to localStorage", e);
     }
-  }, [items]);
+  }, [items, isHydrated]);
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
@@ -125,6 +135,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         discount,
         applyPromo,
         removePromo,
+        isHydrated,
       }}
     >
       {children}

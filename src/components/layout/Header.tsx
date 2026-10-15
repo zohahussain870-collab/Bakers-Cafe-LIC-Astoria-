@@ -16,7 +16,7 @@ import {
 
 export function Header() {
   const pathname = usePathname();
-  const { itemCount, openCart } = useCart();
+  const { itemCount, openCart, isHydrated } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -125,7 +125,7 @@ export function Header() {
                 className="relative p-2.5 text-[#211510] hover:bg-[#F4ECE1] rounded-full transition-colors flex items-center justify-center"
               >
                 <ShoppingBag className="w-6 h-6 text-[#211510]" />
-                {itemCount > 0 && (
+                {isHydrated && itemCount > 0 && (
                   <span className="absolute top-1 right-1 w-5 h-5 rounded-full bg-[#B87D4B] text-white text-[11px] font-bold flex items-center justify-center animate-scale shadow-xs">
                     {itemCount}
                   </span>

@@ -21,7 +21,7 @@ import {
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { items, subtotal, discount, promoCode, clearCart } = useCart();
+  const { items, subtotal, discount, promoCode, clearCart, isHydrated } = useCart();
 
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
@@ -107,6 +107,17 @@ export default function CheckoutPage() {
       setIsSubmitting(false);
     }
   };
+
+  if (!isHydrated) {
+    return (
+      <div className="py-20 bg-[#FAF7F2] min-h-[calc(100vh-80px)] flex items-center justify-center p-4">
+        <div className="bg-white rounded-3xl p-10 border border-[#E6DCce] max-w-md w-full text-center space-y-4 shadow-sm">
+          <div className="w-10 h-10 border-2 border-[#B87D4B] border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-xs text-[#6B5B52]">Loading checkout details...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
