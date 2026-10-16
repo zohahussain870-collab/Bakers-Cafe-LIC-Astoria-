@@ -1,7 +1,13 @@
+"use client";
+
 import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { ShoppingCart, CalendarClock, Flame, PackageCheck } from "lucide-react";
+import { EASE_EDITORIAL } from "@/lib/animation";
 
 export function OrderingSteps() {
+  const shouldReduceMotion = useReducedMotion();
+
   const steps = [
     {
       step: "01",
@@ -33,10 +39,42 @@ export function OrderingSteps() {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: shouldReduceMotion ? 1 : 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.12,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      y: shouldReduceMotion ? 0 : 28,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.65,
+        ease: EASE_EDITORIAL,
+      },
+    },
+  };
+
   return (
-    <section className="py-20 bg-white border-b border-[#E6DCce]">
+    <section className="py-20 bg-white border-b border-[#E6DCce] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        {/* Section Heading */}
+        <motion.div
+          initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.65, ease: EASE_EDITORIAL }}
+          className="text-center max-w-2xl mx-auto mb-16"
+        >
           <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
             Simple & Transparent
           </span>
@@ -46,14 +84,22 @@ export function OrderingSteps() {
           <p className="text-sm sm:text-base text-[#6B5B52] mt-2">
             Because we are a dedicated home-based bakery, each order receives individualized care and fresh preparation.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Step Cards with Staggered Scroll Reveal */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {steps.map((item) => {
             const Icon = item.icon;
             return (
-              <div
+              <motion.div
                 key={item.step}
+                variants={itemVariants}
                 className="relative bg-[#FAF7F2] p-8 rounded-2xl border border-[#E6DCce] flex flex-col justify-between"
               >
                 <div>
@@ -72,10 +118,10 @@ export function OrderingSteps() {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { CinematicWelcomeIntro } from "@/components/home/CinematicWelcomeIntro";
 import { Hero } from "@/components/home/Hero";
 import { CategoryShowcase } from "@/components/home/CategoryShowcase";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
@@ -20,7 +21,10 @@ export default function HomePage() {
   const promo = FALLBACK_PROMO;
 
   return (
-    <div className="space-y-0">
+    <div className="space-y-0 relative">
+      {/* Cinematic Welcome Intro Overlay */}
+      <CinematicWelcomeIntro />
+
       {/* Promotional Banner */}
       {promo && (
         <div className="bg-[#7C4318] text-white py-2.5 px-4 text-xs font-medium text-center shadow-xs">

@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { EASE_EDITORIAL } from "@/lib/animation";
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const shouldReduceMotion = useReducedMotion();
 
   const faqs = [
     {
@@ -21,11 +24,11 @@ export function FAQSection() {
     },
     {
       q: "Do you offer eggless cakes or dietary options?",
-      a: "Yes. Many of our signature cakes, including our Belgian Dark Chocolate Fudge Cake, feature an explicit 'Eggless Option' that you can select during variant choice. If you have specific nut or dairy allergies, please mention them in your order notes.",
+      a: "Yes. Many of our signature cakes, including our Belgian Dark Chocolate Fudge Cake, feature an explicit 'Eggless Option' that you can select during variant choice. If you have specific nut or dietary requirements, please mention them in your order notes.",
     },
     {
       q: "Can I add a custom inscription or birthday message?",
-      a: "Absolutely. During checkout or on any cake detail page, you can type your custom cake inscription (e.g., 'Happy 30th Birthday Ali!') at no extra charge.",
+      a: "Absolutely. During checkout or on any cake detail page, you can type your custom cake inscription (e.g., 'Happy Birthday!') at no extra charge.",
     },
     {
       q: "What payment methods do you accept?",
@@ -33,10 +36,42 @@ export function FAQSection() {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: shouldReduceMotion ? 1 : 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.08,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      y: shouldReduceMotion ? 0 : 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.55,
+        ease: EASE_EDITORIAL,
+      },
+    },
+  };
+
   return (
-    <section className="py-20 bg-white border-b border-[#E6DCce]">
+    <section className="py-20 bg-white border-b border-[#E6DCce] overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
+        {/* Section Heading */}
+        <motion.div
+          initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.65, ease: EASE_EDITORIAL }}
+          className="text-center mb-14"
+        >
           <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
             Frequently Asked Questions
           </span>
@@ -46,14 +81,22 @@ export function FAQSection() {
           <p className="text-sm sm:text-base text-[#6B5B52] mt-2">
             Everything you need to know about our home-based kitchen, pickup procedures, and ingredients.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="space-y-4">
+        {/* FAQ Accordions with Staggered Scroll Reveal */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="space-y-4"
+        >
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div
+              <motion.div
                 key={index}
+                variants={itemVariants}
                 className="rounded-2xl border border-[#E6DCce] bg-[#FAF7F2] overflow-hidden transition-colors"
               >
                 <h3>
@@ -83,10 +126,10 @@ export function FAQSection() {
                     {faq.a}
                   </div>
                 )}
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

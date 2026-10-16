@@ -1,8 +1,12 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { ChocolateFlowCake } from "./ChocolateFlowCake";
 import { BUSINESS_INFO } from "@/lib/constants";
+import { EASE_EDITORIAL } from "@/lib/animation";
 import {
   ArrowRight,
   MessageCircle,
@@ -12,6 +16,82 @@ import {
 } from "lucide-react";
 
 export function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const leftContainerVariants = {
+    hidden: { opacity: shouldReduceMotion ? 1 : 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.12,
+        delayChildren: shouldReduceMotion ? 0 : 0.1,
+      },
+    },
+  };
+
+  const leftItemVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      x: shouldReduceMotion ? 0 : -32,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.68,
+        ease: EASE_EDITORIAL,
+      },
+    },
+  };
+
+  const rightCakeVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      x: shouldReduceMotion ? 0 : 40,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.85,
+        delay: shouldReduceMotion ? 0 : 0.18,
+        ease: EASE_EDITORIAL,
+      },
+    },
+  };
+
+  const accentCardVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      y: shouldReduceMotion ? 0 : 20,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.6,
+        delay: shouldReduceMotion ? 0 : 0.5,
+        ease: EASE_EDITORIAL,
+      },
+    },
+  };
+
+  const topBadgeVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      scale: shouldReduceMotion ? 1 : 0.9,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.5,
+        delay: shouldReduceMotion ? 0 : 0.6,
+        ease: EASE_EDITORIAL,
+      },
+    },
+  };
+
   return (
     <section className="relative overflow-hidden pt-8 pb-16 md:pt-16 md:pb-24">
       {/* Subtle Warm Background Glow */}
@@ -20,10 +100,18 @@ export function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Text Column */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left animate-hero-fade-in-up">
-            {/* Top Badges */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+          {/* Left Text Column: Staggered sequence from left */}
+          <motion.div
+            variants={leftContainerVariants}
+            initial="hidden"
+            animate="visible"
+            className="lg:col-span-7 space-y-6 text-center lg:text-left"
+          >
+            {/* 1. Location and bakery information badges */}
+            <motion.div
+              variants={leftItemVariants}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5"
+            >
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#F7EDE2] text-[#8F5323] border border-[#8F5323]/25">
                 <MapPin className="w-3.5 h-3.5" />
                 <span>Gulberg Town • Karachi</span>
@@ -39,29 +127,41 @@ export function Hero() {
                 <span>5.0 Google Rating</span>
                 <span className="text-[10px] text-[#68584F] font-medium">(1 review)</span>
               </span>
-            </div>
+            </motion.div>
 
-            {/* Main Headline */}
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#211510] tracking-tight leading-[1.12]">
+            {/* 2. Main Headline */}
+            <motion.h1
+              variants={leftItemVariants}
+              className="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#211510] tracking-tight leading-[1.12]"
+            >
               Little Moments, <br />
               <span className="text-[#8F5323] italic font-normal">Baked Beautifully.</span>
-            </h1>
+            </motion.h1>
 
-            {/* Supporting Copy */}
-            <p className="text-base sm:text-lg text-[#6B5B52] max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            {/* 3. Descriptive Paragraph */}
+            <motion.p
+              variants={leftItemVariants}
+              className="text-base sm:text-lg text-[#6B5B52] max-w-xl mx-auto lg:mx-0 leading-relaxed"
+            >
               Handcrafted sweetness for celebrations, thoughtful gifts, and everyday cravings. Made in small batches in our Karachi home kitchen using Belgian chocolate, pure butter, and honest artisan craft.
-            </p>
+            </motion.p>
 
-            {/* Service Notice */}
-            <div className="p-3.5 rounded-xl bg-white/80 border border-[#E6DCce] text-xs text-[#6B5B52] flex items-center justify-center lg:justify-start gap-2 shadow-2xs">
+            {/* 4. Service Notice / Takeout Location */}
+            <motion.div
+              variants={leftItemVariants}
+              className="p-3.5 rounded-xl bg-white/80 border border-[#E6DCce] text-xs text-[#6B5B52] flex items-center justify-center lg:justify-start gap-2 shadow-2xs"
+            >
               <MapPin className="w-4 h-4 text-[#8F5323] shrink-0" />
               <span>
                 <strong>Takeout Pickup:</strong> House R-1932, Block 17, Gulberg Town, Karachi. (Advance notice required)
               </span>
-            </div>
+            </motion.div>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            {/* 5. CTAs */}
+            <motion.div
+              variants={leftItemVariants}
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
+            >
               <Link
                 href="/menu"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-[#8F5323] hover:bg-[#784218] text-white font-medium rounded-full transition-all shadow-md hover:shadow-lg text-sm sm:text-base group focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
@@ -79,24 +179,37 @@ export function Hero() {
                 <MessageCircle className="w-4 h-4 text-[#3B5934]" />
                 <span>WhatsApp Ordering</span>
               </a>
-            </div>
+            </motion.div>
 
-            {/* Micro Details */}
-            <div className="pt-4 flex items-center justify-center lg:justify-start gap-6 text-xs text-[#68584F] font-medium">
+            {/* 6. Micro Details / Quality Statements */}
+            <motion.div
+              variants={leftItemVariants}
+              className="pt-4 flex items-center justify-center lg:justify-start gap-6 text-xs text-[#68584F] font-medium"
+            >
               <div>✓ 100% Real Dairy Butter</div>
               <div>✓ No Artificial Preservatives</div>
               <div>✓ Eggless Options Available</div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          {/* Editorial Visual Composition */}
-          <div className="lg:col-span-5 relative animate-hero-fade-in-scale">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Primary Large Image with Realistic Chocolate Flow Effect */}
+          {/* Right Column: Cake image entering from right */}
+          <div className="lg:col-span-5 relative">
+            <motion.div
+              variants={rightCakeVariants}
+              initial="hidden"
+              animate="visible"
+              className="relative mx-auto max-w-md lg:max-w-none"
+            >
+              {/* Primary Large Image with Realistic Chocolate Flow Effect preserved untouched */}
               <ChocolateFlowCake />
 
               {/* Floating Dessert Accent Card */}
-              <div className="absolute -bottom-6 -left-6 sm:-left-8 bg-white rounded-2xl p-3.5 border border-[#E6DCce] shadow-xl flex items-center gap-3.5 max-w-xs animate-hero-card-in">
+              <motion.div
+                variants={accentCardVariants}
+                initial="hidden"
+                animate="visible"
+                className="absolute -bottom-6 -left-6 sm:-left-8 bg-white rounded-2xl p-3.5 border border-[#E6DCce] shadow-xl flex items-center gap-3.5 max-w-xs"
+              >
                 <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-[#F4ECE1]">
                   <Image
                     src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=200&q=80"
@@ -115,14 +228,19 @@ export function Hero() {
                     Fresh out of the oven
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Floating Badge on Top Right */}
-              <div className="absolute -top-4 -right-4 sm:-right-6 bg-[#211510] text-[#FAF7F2] rounded-full px-4 py-2 border border-[#3A2922] shadow-lg flex items-center gap-2 text-xs font-medium">
+              <motion.div
+                variants={topBadgeVariants}
+                initial="hidden"
+                animate="visible"
+                className="absolute -top-4 -right-4 sm:-right-6 bg-[#211510] text-[#FAF7F2] rounded-full px-4 py-2 border border-[#3A2922] shadow-lg flex items-center gap-2 text-xs font-medium"
+              >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 <span>Open for Takeout Orders</span>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>

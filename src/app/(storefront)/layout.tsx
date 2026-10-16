@@ -9,10 +9,10 @@ export default function StorefrontLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col justify-between">
-      <div>
+    <div className="min-h-screen flex flex-col justify-between w-full">
+      <div className="w-full">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 w-full">{children}</main>
       </div>
 
       <Footer />

@@ -1,15 +1,58 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { Heart, ShieldCheck } from "lucide-react";
+import { EASE_EDITORIAL } from "@/lib/animation";
 
 export function BakeryStory() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const imageGridVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      x: shouldReduceMotion ? 0 : -35,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.8,
+        ease: EASE_EDITORIAL,
+      },
+    },
+  };
+
+  const textStoryVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      x: shouldReduceMotion ? 0 : 35,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.8,
+        delay: shouldReduceMotion ? 0 : 0.12,
+        ease: EASE_EDITORIAL,
+      },
+    },
+  };
+
   return (
     <section className="py-20 bg-[#FAF7F2] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Images Grid */}
-          <div className="lg:col-span-6 grid grid-cols-2 gap-4">
+          {/* Images Grid: Enters gently from left */}
+          <motion.div
+            variants={imageGridVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="lg:col-span-6 grid grid-cols-2 gap-4"
+          >
             <div className="relative aspect-4/5 rounded-2xl overflow-hidden shadow-lg border-2 border-white bg-[#F4ECE1]">
               <Image
                 src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80"
@@ -36,10 +79,16 @@ export function BakeryStory() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Text Story */}
-          <div className="lg:col-span-6 space-y-6">
+          {/* Text Story: Enters smoothly from right */}
+          <motion.div
+            variants={textStoryVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            className="lg:col-span-6 space-y-6"
+          >
             <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
               Our Craft & Philosophy
             </span>
@@ -92,7 +141,7 @@ export function BakeryStory() {
                 Read our full baking story →
               </Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

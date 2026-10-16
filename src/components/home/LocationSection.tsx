@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { BUSINESS_INFO } from "@/lib/constants";
 import {
   MapPin,
@@ -7,14 +10,54 @@ import {
   ExternalLink,
   ShieldCheck,
 } from "lucide-react";
+import { EASE_EDITORIAL } from "@/lib/animation";
 
 export function LocationSection() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const leftVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      x: shouldReduceMotion ? 0 : -35,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.75,
+        ease: EASE_EDITORIAL,
+      },
+    },
+  };
+
+  const rightVariants = {
+    hidden: {
+      opacity: shouldReduceMotion ? 1 : 0,
+      x: shouldReduceMotion ? 0 : 35,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.75,
+        delay: shouldReduceMotion ? 0 : 0.1,
+        ease: EASE_EDITORIAL,
+      },
+    },
+  };
+
   return (
-    <section className="py-20 bg-[#FAF7F2]">
+    <section className="py-20 bg-[#FAF7F2] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Information Column */}
-          <div className="lg:col-span-6 space-y-6">
+          <motion.div
+            variants={leftVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="lg:col-span-6 space-y-6"
+          >
             <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
               Kitchen & Takeout
             </span>
@@ -102,10 +145,16 @@ export function LocationSection() {
                 <span>Get Directions</span>
               </a>
             </div>
-          </div>
+          </motion.div>
 
           {/* Interactive Map Presentation Card */}
-          <div className="lg:col-span-6">
+          <motion.div
+            variants={rightVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            className="lg:col-span-6"
+          >
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E6DCce] shadow-xl space-y-6">
               <div className="relative aspect-16/10 rounded-2xl overflow-hidden bg-[#F4ECE1] border border-[#E6DCce] flex flex-col items-center justify-center p-6 text-center">
                 <div className="w-14 h-14 rounded-full bg-[#8F5323] text-white flex items-center justify-center shadow-md mb-3">
@@ -139,7 +188,7 @@ export function LocationSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
