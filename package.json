@@ -11,6 +11,13 @@
     "seed": "tsx scripts/seed.ts",
     "seed:admin": "tsx scripts/seed.ts"
   },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions",
+    "not dead"
+  ],
   "dependencies": {
     "@prisma/client": "^6.19.3",
     "bcryptjs": "^3.0.3",

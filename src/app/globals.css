@@ -107,6 +107,12 @@ h1, h2, h3, .font-serif {
   transform: translateY(-2px);
 }
 
+/* Performance Optimization: Defer off-screen style & layout computation */
+.section-defer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 650px;
+}
+
 /* Badge styling */
 .badge-sage {
   background: var(--brand-sage-light);

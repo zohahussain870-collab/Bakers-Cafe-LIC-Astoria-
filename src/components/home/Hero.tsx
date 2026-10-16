@@ -31,14 +31,14 @@ export function Hero() {
 
   const leftItemVariants = {
     hidden: {
-      opacity: shouldReduceMotion ? 1 : 0,
-      x: shouldReduceMotion ? 0 : -32,
+      opacity: 1,
+      x: shouldReduceMotion ? 0 : -24,
     },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: shouldReduceMotion ? 0 : 0.68,
+        duration: shouldReduceMotion ? 0 : 0.65,
         ease: EASE_EDITORIAL,
       },
     },
@@ -46,15 +46,14 @@ export function Hero() {
 
   const rightCakeVariants = {
     hidden: {
-      opacity: shouldReduceMotion ? 1 : 0,
-      x: shouldReduceMotion ? 0 : 40,
+      opacity: 1,
+      x: shouldReduceMotion ? 0 : 32,
     },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: shouldReduceMotion ? 0 : 0.85,
-        delay: shouldReduceMotion ? 0 : 0.18,
+        duration: shouldReduceMotion ? 0 : 0.8,
         ease: EASE_EDITORIAL,
       },
     },

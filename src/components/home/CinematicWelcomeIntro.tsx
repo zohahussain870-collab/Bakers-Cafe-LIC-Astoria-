@@ -49,10 +49,10 @@ export function CinematicWelcomeIntro() {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
-    // Adaptive timings: Fast & snappy on mobile to protect perceived performance, full sequence on desktop
+    // Adaptive timings: Instant & snappy on mobile to protect LCP & Core Web Vitals, full cinematic on desktop
     const isMobile = window.innerWidth < 768;
-    const exitDelay = isMobile ? 1300 : 2450;
-    const finishDelay = isMobile ? 1900 : 3350;
+    const exitDelay = isMobile ? 350 : 2450;
+    const finishDelay = isMobile ? 800 : 3350;
 
     const exitTimer = setTimeout(() => {
       setIsExiting(true);
@@ -102,7 +102,7 @@ export function CinematicWelcomeIntro() {
           initial={{ y: "0%" }}
           animate={{ y: isExiting ? "-100%" : "0%" }}
           transition={{
-            duration: 0.85,
+            duration: typeof window !== "undefined" && window.innerWidth < 768 ? 0.45 : 0.85,
             ease: EASE_CURTAIN,
           }}
           className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#FAF7F2] select-none shadow-2xl pointer-events-auto"

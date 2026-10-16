@@ -94,7 +94,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     images: [
       {
         id: "img-1-1",
-        url: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=80",
+        url: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=75",
         alt: "Artisan Belgian Dark Chocolate Fudge Cake with glossy ganache",
         isPrimary: true,
         displayOrder: 0,

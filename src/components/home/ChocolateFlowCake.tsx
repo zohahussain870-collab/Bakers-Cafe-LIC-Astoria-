@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 
 const HERO_CAKE_SRC =
-  "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85";
+  "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=75";
 
 const VERTEX_SHADER_SOURCE = `
 attribute vec2 a_position;
