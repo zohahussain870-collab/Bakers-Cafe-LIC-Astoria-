@@ -5,7 +5,6 @@ import {
   MessageCircle,
   Clock,
   ExternalLink,
-  Navigation,
   ShieldCheck,
 } from "lucide-react";
 
@@ -99,7 +98,7 @@ export function LocationSection() {
                 rel="noopener noreferrer"
                 className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-white hover:bg-[#F4ECE1] text-[#211510] border border-[#E6DCce] font-medium text-sm transition-colors shadow-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
               >
-                <Navigation className="w-4 h-4 text-[#8F5323]" />
+                <MapPin className="w-4 h-4 text-[#8F5323]" />
                 <span>Get Directions</span>
               </a>
             </div>

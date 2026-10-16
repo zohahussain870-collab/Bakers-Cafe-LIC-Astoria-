@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BUSINESS_INFO } from "@/lib/constants";
-import { Sparkles, ShieldCheck, Clock, MapPin } from "lucide-react";
+import { Award, ShieldCheck, Clock, MapPin } from "lucide-react";
 
 export const metadata = {
   title: "About Our Artisan Bakery | Handcrafted in Gulberg Town, Karachi",
@@ -74,7 +74,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] space-y-2 text-center">
               <div className="w-12 h-12 rounded-xl bg-[#F7EDE2] text-[#8F5323] flex items-center justify-center mx-auto mb-3">
-                <Sparkles className="w-6 h-6" />
+                <Award className="w-6 h-6" />
               </div>
               <h3 className="font-serif font-bold text-base text-[#211510]">
                 100% Real Dairy Butter

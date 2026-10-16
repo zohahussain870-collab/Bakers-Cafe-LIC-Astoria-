@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Plus, Minus, AlertTriangle, Check, Boxes, Search } from "lucide-react";
+import { Plus, Minus, AlertTriangle, Check, Search } from "lucide-react";
 
 interface InventoryItem {
   id: string;

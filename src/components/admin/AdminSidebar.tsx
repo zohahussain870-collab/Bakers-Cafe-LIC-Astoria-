@@ -17,6 +17,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { BakeryLogo } from "@/components/common/BakeryLogo";
 
 export function AdminSidebar() {
   const pathname = usePathname();
@@ -65,9 +66,7 @@ export function AdminSidebar() {
         <div className="p-6 space-y-6">
           {/* Logo Header */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#B87D4B] text-white flex items-center justify-center font-serif text-lg font-bold">
-              HB
-            </div>
+            <BakeryLogo variant="mark" size={38} inverted={true} />
             <div>
               <span className="font-serif text-lg font-bold text-white block leading-tight">
                 Home Bakery

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { ProductDTO } from "@/types";
 import { ProductCard } from "@/components/products/ProductCard";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Cake } from "lucide-react";
 
 export function FeaturedProducts({ products }: { products: ProductDTO[] }) {
   if (!products || products.length === 0) return null;
@@ -12,7 +12,7 @@ export function FeaturedProducts({ products }: { products: ProductDTO[] }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#F7EDE2] text-[#8F5323] border border-[#8F5323]/25 mb-2">
-            <Sparkles className="w-3.5 h-3.5" />
+            <Cake className="w-3.5 h-3.5" />
             <span>Artisan Favorites</span>
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#211510]">

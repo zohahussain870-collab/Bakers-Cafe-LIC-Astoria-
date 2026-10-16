@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { formatPKR, formatPakistanPhone, normalizeWhatsAppNumber } from "@/lib/utils";
-import { Users, MessageCircle, Phone, Calendar } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 

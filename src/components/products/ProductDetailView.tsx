@@ -14,7 +14,7 @@ import {
   ShoppingBag,
   MessageCircle,
   ShieldAlert,
-  Sparkles,
+  Heart,
   ChevronRight,
   Check,
   MapPin,
@@ -318,7 +318,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
 
             {product.ingredients && (
               <div className="flex items-start gap-2 text-xs text-[#6B5B52]">
-                <Sparkles className="w-4 h-4 text-[#8F5323] shrink-0 mt-0.5" />
+                <Heart className="w-4 h-4 text-[#8F5323] shrink-0 mt-0.5" />
                 <div>
                   <strong className="text-[#211510]">Pure Ingredients:</strong>{" "}
                   {product.ingredients}

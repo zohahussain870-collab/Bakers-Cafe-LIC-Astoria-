@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Sparkles, RefreshCw, AlertCircle, ShoppingBag } from "lucide-react";
+import { Send, MessageSquare, RefreshCw, AlertCircle, ShoppingBag } from "lucide-react";
 import type { ChatHistoryItem } from "@/lib/validations/chat";
 
 export interface MessageItem {
@@ -134,8 +134,8 @@ export function AiChatView({
             >
               {m.role === "assistant" && (
                 <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#8F5323] uppercase tracking-wider mb-1">
-                  <Sparkles className="w-3 h-3" />
-                  <span>Home Bakery Assistant</span>
+                  <MessageSquare className="w-3.5 h-3.5" />
+                  <span>Bakery Assistant</span>
                 </div>
               )}
               {m.text}

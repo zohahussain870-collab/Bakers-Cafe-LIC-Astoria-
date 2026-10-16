@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { X, Minus } from "lucide-react";
+import { BakeryLogo } from "@/components/common/BakeryLogo";
 import { ChannelSwitcher, type ChatChannel } from "./ChannelSwitcher";
 import { AiChatView, type MessageItem } from "./AiChatView";
 import { WhatsAppView } from "./WhatsAppView";
@@ -35,9 +36,7 @@ export function ChatWindow({ onClose }: ChatWindowProps) {
       {/* Header */}
       <div className="bg-[#211510] text-white px-4 py-3 flex items-center justify-between shrink-0 border-b border-white/10">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-full bg-[#B87D4B] text-white flex items-center justify-center font-serif font-bold text-sm shadow-xs">
-            HB
-          </div>
+          <BakeryLogo variant="mark" size={32} inverted={true} />
           <div>
             <div className="flex items-center gap-1.5">
               <h2 className="font-serif font-bold text-sm tracking-wide">Home Bakery</h2>

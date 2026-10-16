@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Plus, FolderTree, AlertCircle, Check } from "lucide-react";
+import { Plus, FolderTree, AlertCircle } from "lucide-react";
 
 interface CategoryItem {
   id: string;

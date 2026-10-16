@@ -2,7 +2,6 @@ import React from "react";
 import { prisma } from "@/lib/prisma";
 import { getCurrentAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { ShieldCheck, User, Clock, FileText } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 

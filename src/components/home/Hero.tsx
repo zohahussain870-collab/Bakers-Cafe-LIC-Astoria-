@@ -8,7 +8,6 @@ import {
   Star,
   MapPin,
   Clock,
-  Sparkles,
 } from "lucide-react";
 
 export function Hero() {
@@ -25,7 +24,7 @@ export function Hero() {
             {/* Top Badges */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#F7EDE2] text-[#8F5323] border border-[#8F5323]/25">
-                <Sparkles className="w-3.5 h-3.5" />
+                <MapPin className="w-3.5 h-3.5" />
                 <span>Gulberg Town • Karachi</span>
               </span>
 

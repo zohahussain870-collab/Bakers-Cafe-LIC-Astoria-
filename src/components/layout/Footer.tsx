@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { BUSINESS_INFO } from "@/lib/constants";
+import { BakeryLogo } from "@/components/common/BakeryLogo";
 import {
   MapPin,
   Phone,
@@ -19,14 +20,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-[#3A2922]">
           {/* Brand & Mission */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#8F5323] text-white flex items-center justify-center font-serif text-lg font-bold">
-                HB
-              </div>
-              <span className="font-serif text-2xl font-bold tracking-tight text-white">
-                {BUSINESS_INFO.name}
-              </span>
-            </div>
+            <BakeryLogo variant="full" inverted={true} />
             <p className="text-sm text-[#D5C7B7] leading-relaxed">
               Handcrafted artisan patisserie rooted in Karachi. Baked with pure butter, rich Belgian chocolate, and meticulous attention to flavor and freshness.
             </p>
@@ -69,8 +63,9 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#DDB88C] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#DDB88C] rounded-xs">
-                  Pickup Directions & Contact
+                <Link href="/contact" className="hover:text-[#DDB88C] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#DDB88C] rounded-xs inline-flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-[#DDB88C] shrink-0" />
+                  <span>Pickup Location & Directions</span>
                 </Link>
               </li>
             </ul>

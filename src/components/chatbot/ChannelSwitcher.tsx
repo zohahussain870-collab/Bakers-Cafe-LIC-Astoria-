@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sparkles, MessageCircle, Mail } from "lucide-react";
+import { MessageSquare, MessageCircle, Mail } from "lucide-react";
 
 export type ChatChannel = "chat" | "whatsapp" | "email";
 
@@ -19,7 +19,7 @@ export function ChannelSwitcher({
     label: string;
     icon: React.ComponentType<{ className?: string }>;
   }> = [
-    { id: "chat", label: "AI Chat", icon: Sparkles },
+    { id: "chat", label: "Live Chat", icon: MessageSquare },
     { id: "whatsapp", label: "WhatsApp", icon: MessageCircle },
     { id: "email", label: "Email", icon: Mail },
   ];

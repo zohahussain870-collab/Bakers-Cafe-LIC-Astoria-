@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { LogOut, User as UserIcon, Bell } from "lucide-react";
+import { LogOut, User as UserIcon } from "lucide-react";
 
 interface AdminTopbarProps {
   admin: {

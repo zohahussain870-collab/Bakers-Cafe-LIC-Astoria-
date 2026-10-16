@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { BUSINESS_INFO } from "@/lib/constants";
+import { BakeryLogo } from "@/components/common/BakeryLogo";
 import {
   ShoppingBag,
   Menu as MenuIcon,
@@ -44,7 +45,10 @@ export function Header() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#7FB378] animate-pulse"></span>
-            <span>Home-based artisan bakery in Gulberg Town, Karachi</span>
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-[#DDB88C] shrink-0" />
+              <span>Home-based artisan bakery in Gulberg Town, Karachi</span>
+            </span>
             <span className="hidden md:inline text-[#D5C7B7]">•</span>
             <span className="hidden md:inline text-[#FAF7F2]/90">Freshly baked to order (Takeout Default)</span>
           </div>
@@ -73,34 +77,26 @@ export function Header() {
               href="/"
               className="flex items-center gap-3 group focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] rounded-xl"
             >
-              <div className="w-11 h-11 rounded-full bg-[#211510] text-[#FAF7F2] flex items-center justify-center font-serif text-xl font-bold tracking-wider shadow-sm group-hover:bg-[#8F5323] transition-colors">
-                HB
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold tracking-tight text-[#211510] group-hover:text-[#8F5323] transition-colors leading-none">
-                  Home Bakery
-                </span>
-                <span className="text-[10px] tracking-widest uppercase text-[#68584F] font-semibold mt-1">
-                  Karachi • Artisan Patisserie
-                </span>
-              </div>
+              <BakeryLogo variant="full" />
             </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-8" aria-label="Main Navigation">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+                const isLocation = link.href === "/contact";
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`text-sm font-medium transition-colors relative py-1 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] rounded-xs ${
+                    className={`text-sm font-medium transition-colors relative py-1 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] rounded-xs inline-flex items-center gap-1.5 ${
                       isActive
                         ? "text-[#8F5323] font-semibold"
                         : "text-[#6B5B52] hover:text-[#211510]"
                     }`}
                   >
-                    {link.label}
+                    {isLocation && <MapPin className="w-3.5 h-3.5 text-[#8F5323] shrink-0" />}
+                    <span>{link.label}</span>
                     {isActive && (
                       <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#8F5323] rounded-full" />
                     )}
@@ -168,20 +164,24 @@ export function Header() {
             className="md:hidden bg-[#FAF7F2] border-b border-[#E6DCce] px-4 pt-3 pb-6 space-y-3 shadow-lg"
           >
             <div className="space-y-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-3 py-2.5 rounded-lg text-base font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] ${
-                    pathname === link.href
-                      ? "bg-[#F4ECE1] text-[#8F5323] font-semibold"
-                      : "text-[#211510] hover:bg-[#F4ECE1]"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isLocation = link.href === "/contact";
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-base font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] ${
+                      pathname === link.href
+                        ? "bg-[#F4ECE1] text-[#8F5323] font-semibold"
+                        : "text-[#211510] hover:bg-[#F4ECE1]"
+                    }`}
+                  >
+                    {isLocation && <MapPin className="w-4 h-4 text-[#8F5323] shrink-0" />}
+                    <span>{link.label}</span>
+                  </Link>
+                );
+              })}
             </div>
 
             <div className="pt-3 border-t border-[#E6DCce] space-y-2">

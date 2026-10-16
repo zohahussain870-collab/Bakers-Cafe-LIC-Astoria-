@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Save, AlertCircle, Sparkles } from "lucide-react";
+import { ArrowLeft, Save, AlertCircle, Star } from "lucide-react";
 
 interface CategoryOption {
   id: string;
@@ -327,7 +327,7 @@ export function ProductForm({ categories, initialData }: ProductFormProps) {
               className="w-4 h-4 rounded text-[#B87D4B] focus:ring-[#B87D4B] border-[#E6DCce]"
             />
             <span className="flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-[#B87D4B]" />
+              <Star className="w-3.5 h-3.5 text-[#B87D4B] fill-[#B87D4B]" />
               <span>Mark as Homepage Featured Artisan Favorite</span>
             </span>
           </label>

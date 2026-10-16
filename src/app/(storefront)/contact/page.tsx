@@ -7,7 +7,6 @@ import {
   Clock,
   ExternalLink,
   Star,
-  Navigation,
 } from "lucide-react";
 
 export const metadata = {
@@ -24,8 +23,9 @@ export default function ContactPage() {
           <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
             Reach Out to Our Kitchen
           </span>
-          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#211510]">
-            Location & Contact
+          <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#211510] inline-flex items-center justify-center gap-2.5">
+            <MapPin className="w-7 h-7 sm:w-10 sm:h-10 text-[#8F5323] shrink-0" />
+            <span>Location & Contact</span>
           </h1>
           <p className="text-xs sm:text-sm text-[#6B5B52]">
             We operate as a home-based artisan bakery in Gulberg Town, Karachi. Takeout orders are coordinated in advance.
@@ -128,7 +128,7 @@ export default function ContactPage() {
 
             <div className="aspect-square rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] flex flex-col items-center justify-center p-6 text-center space-y-3">
               <div className="w-14 h-14 rounded-full bg-[#8F5323] text-white flex items-center justify-center shadow-md">
-                <Navigation className="w-7 h-7" />
+                <MapPin className="w-7 h-7" />
               </div>
               <h3 className="font-serif text-lg font-bold text-[#211510]">
                 House R-1932, Block 17

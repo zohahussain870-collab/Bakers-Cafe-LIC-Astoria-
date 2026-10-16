@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { getCurrentAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { formatPKR } from "@/lib/utils";
-import { Plus, Edit, ExternalLink, Clock, Sparkles } from "lucide-react";
+import { Plus, Edit, ExternalLink, Clock, Star } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -81,7 +81,7 @@ export default async function AdminProductsPage() {
                             {prod.name}
                           </span>
                           {prod.isFeatured && (
-                            <span title="Featured"><Sparkles className="w-3.5 h-3.5 text-[#B87D4B]" /></span>
+                            <span title="Featured"><Star className="w-3.5 h-3.5 text-[#B87D4B] fill-[#B87D4B]" /></span>
                           )}
                         </div>
                         <span className="text-[11px] text-[#8E7C72] font-mono">

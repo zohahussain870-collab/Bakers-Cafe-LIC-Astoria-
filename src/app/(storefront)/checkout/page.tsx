@@ -22,7 +22,6 @@ export default function CheckoutPage() {
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
   const serviceType: "TAKEOUT" | "DELIVERY" = "TAKEOUT";
-  const deliveryAddress = "";
   const [requestedDate, setRequestedDate] = useState(() => {
     // Default to tomorrow for optimal preparation
     const tomorrow = new Date();
@@ -72,7 +71,7 @@ export default function CheckoutPage() {
           serviceType,
           requestedDate,
           requestedTime,
-          deliveryAddress: serviceType === "DELIVERY" ? deliveryAddress : undefined,
+          deliveryAddress: undefined,
           notes,
           promoCode: promoCode || undefined,
           items: items.map((i) => ({
