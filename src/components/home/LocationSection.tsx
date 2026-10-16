@@ -47,7 +47,7 @@ export function LocationSection() {
   };
 
   return (
-    <section className="py-20 bg-[#FAF7F2] overflow-hidden">
+    <section className="py-20 bg-[#FAF7F2] overflow-hidden section-defer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Information Column */}
@@ -130,6 +130,7 @@ export function LocationSection() {
                 href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Contact Home Bakery on WhatsApp for location and pickup inquiries"
                 className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-[#3B5934] hover:bg-[#30482B] text-white font-medium text-sm transition-colors shadow-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#3B5934]"
               >
                 <MessageCircle className="w-4 h-4" />

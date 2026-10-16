@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
   // Disable technology stack fingerprinting (ASVS V14.3.1)
   poweredByHeader: false,
 
+  experimental: {
+    optimizePackageImports: ["lucide-react"],
+  },
+
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [384, 640, 750, 828, 1080, 1200],

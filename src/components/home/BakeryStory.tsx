@@ -42,7 +42,7 @@ export function BakeryStory() {
   };
 
   return (
-    <section className="py-20 bg-[#FAF7F2] overflow-hidden">
+    <section className="py-20 bg-[#FAF7F2] overflow-hidden section-defer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Images Grid: Enters gently from left */}

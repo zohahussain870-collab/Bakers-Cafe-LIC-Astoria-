@@ -57,6 +57,7 @@ export function Header() {
               href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Home Bakery! I would like to inquire about placing an order.")}`}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Contact Home Bakery on WhatsApp at ${BUSINESS_INFO.phone}`}
               className="flex items-center gap-1.5 hover:text-[#DDB88C] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#DDB88C] rounded-xs"
             >
               <MessageCircle className="w-3.5 h-3.5 text-[#7FB378]" />
@@ -122,6 +123,7 @@ export function Header() {
                 href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hi Home Bakery, I'd like to check today's availability and menu.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Order freshly baked treats directly via WhatsApp"
                 className="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EBF2EA] text-[#3B5934] border border-[#3B5934]/30 text-xs font-semibold hover:bg-[#3B5934] hover:text-white transition-all shadow-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#3B5934]"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -191,6 +193,7 @@ export function Header() {
                 href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Chat with our bakery team on WhatsApp"
                 className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-[#3B5934] text-white text-sm font-semibold shadow-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#3B5934]"
               >
                 <MessageCircle className="w-4 h-4" />

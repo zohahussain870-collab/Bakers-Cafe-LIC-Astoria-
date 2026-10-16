@@ -62,34 +62,22 @@ export default function HomePage() {
         <Hero />
 
         {/* Category Showcase */}
-        <div className="section-defer">
-          <CategoryShowcase categories={categories} />
-        </div>
+        <CategoryShowcase categories={categories} />
 
         {/* Featured Products */}
-        <div className="section-defer">
-          <FeaturedProducts products={featuredProducts} />
-        </div>
+        <FeaturedProducts products={featuredProducts} />
 
         {/* Step-by-Step Ordering Guide */}
-        <div className="section-defer">
-          <OrderingSteps />
-        </div>
+        <OrderingSteps />
 
         {/* Artisan Baking Philosophy & Story */}
-        <div className="section-defer">
-          <BakeryStory />
-        </div>
+        <BakeryStory />
 
         {/* Frequently Asked Questions */}
-        <div className="section-defer">
-          <FAQSection />
-        </div>
+        <FAQSection />
 
         {/* Location, Pickup & Google Maps */}
-        <div className="section-defer">
-          <LocationSection />
-        </div>
+        <LocationSection />
       </div>
     </IntroProvider>
   );

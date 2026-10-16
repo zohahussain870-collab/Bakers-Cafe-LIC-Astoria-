@@ -62,7 +62,7 @@ export function FAQSection() {
   };
 
   return (
-    <section className="py-20 bg-white border-b border-[#E6DCce] overflow-hidden">
+    <section className="py-20 bg-white border-b border-[#E6DCce] overflow-hidden section-defer">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <motion.div

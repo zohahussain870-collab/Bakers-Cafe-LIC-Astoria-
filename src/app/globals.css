@@ -171,50 +171,5 @@ html.intro-pending #intro-prepaint-shield {
 }
 
 
-/* ==========================================================================
-   Lightweight GPU-Accelerated Entrance Reveals (Zero JS Main-Thread Cost)
-   ========================================================================== */
-@keyframes heroFadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes heroFadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-hero-fade-in-up {
-  animation: heroFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-hero-fade-in-scale {
-  animation: heroFadeInScale 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
-}
-
-.animate-hero-card-in {
-  animation: heroFadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s backwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-hero-fade-in-up,
-  .animate-hero-fade-in-scale,
-  .animate-hero-card-in {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
 

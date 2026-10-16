@@ -20,32 +20,33 @@ export function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const { phase } = useIntro();
 
-  // If already READY on initial render (returning visitor, bot, reduced-motion), skip hidden phase entirely
+  // If already READY on initial render (returning visitor, bot, reduced-motion), skip hidden phase and transition delays entirely
+  const isInstant = phase === "READY" || shouldReduceMotion;
   const isRevealed = phase === "REVEAL" || phase === "READY";
-  const initialMode = phase === "READY" || shouldReduceMotion ? "visible" : "hidden";
+  const initialMode = isInstant ? "visible" : "hidden";
   const animateMode = isRevealed ? "visible" : "hidden";
 
   const leftContainerVariants = {
-    hidden: { opacity: shouldReduceMotion ? 1 : 0 },
+    hidden: { opacity: isInstant ? 1 : 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: shouldReduceMotion ? 0 : 0.10,
-        delayChildren: shouldReduceMotion ? 0 : 0.05,
+        staggerChildren: isInstant ? 0 : 0.08,
+        delayChildren: isInstant ? 0 : 0.04,
       },
     },
   };
 
   const leftItemVariants = {
     hidden: {
-      opacity: shouldReduceMotion ? 1 : 0,
-      x: shouldReduceMotion ? 0 : -20,
+      opacity: isInstant ? 1 : 0,
+      x: isInstant ? 0 : -20,
     },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: shouldReduceMotion ? 0 : 0.65,
+        duration: isInstant ? 0 : 0.65,
         ease: EASE_EDITORIAL,
       },
     },
@@ -53,14 +54,14 @@ export function Hero() {
 
   const rightCakeVariants = {
     hidden: {
-      opacity: shouldReduceMotion ? 1 : 0,
-      x: shouldReduceMotion ? 0 : 24,
+      opacity: isInstant ? 1 : 0,
+      x: isInstant ? 0 : 24,
     },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: shouldReduceMotion ? 0 : 0.75,
+        duration: isInstant ? 0 : 0.75,
         ease: EASE_EDITORIAL,
       },
     },
@@ -181,6 +182,7 @@ export function Hero() {
                 href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Home Bakery! I'd like to place an artisan bake order.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Order freshly baked artisan treats via WhatsApp"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white hover:bg-[#FAF7F2] text-[#211510] border border-[#E6DCce] font-medium rounded-full transition-colors text-sm sm:text-base shadow-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
               >
                 <MessageCircle className="w-4 h-4 text-[#3B5934]" />

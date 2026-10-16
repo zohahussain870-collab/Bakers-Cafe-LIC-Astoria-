@@ -41,7 +41,7 @@ export function FeaturedProducts({ products }: { products: ProductDTO[] }) {
   };
 
   return (
-    <section className="py-20 bg-[#FAF7F2] overflow-hidden">
+    <section className="py-20 bg-[#FAF7F2] overflow-hidden section-defer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading Reveal */}
         <motion.div

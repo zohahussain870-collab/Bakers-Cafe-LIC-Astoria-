@@ -39,7 +39,7 @@ export function CategoryShowcase({ categories }: { categories: CategoryDTO[] }) 
   };
 
   return (
-    <section className="py-16 bg-white border-y border-[#E6DCce] overflow-hidden">
+    <section className="py-16 bg-white border-y border-[#E6DCce] overflow-hidden section-defer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Reveal */}
         <motion.div
