@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { validateOriginAndCsrf } from "@/lib/csrf";
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   // Enforce Origin & CSRF defense on state-changing API endpoints
   if (req.nextUrl.pathname.startsWith("/api/")) {
     const csrfError = validateOriginAndCsrf(req);
