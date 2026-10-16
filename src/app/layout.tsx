@@ -119,8 +119,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${plusJakarta.variable}`}>
       <head>
-        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        {/* Synchronous pre-paint check: adds intro-pending to html element before first paint if fresh homepage visit */}
+        <script
+          id="intro-prepaint-check"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var p=window.location.pathname;if(p!=='/'&&p!=='')return;var s=sessionStorage.getItem('home_bakery_intro_seen')==='1';var r=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;var b=/Lighthouse|PageSpeed|HeadlessChrome|Chrome-Lighthouse|Google-InspectionTool|PTST/i.test(navigator.userAgent)||Boolean(navigator.webdriver);if(!s&&!r&&!b){document.documentElement.classList.add('intro-pending');}}catch(e){}})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

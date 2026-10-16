@@ -147,6 +147,31 @@ h1, h2, h3, .font-serif {
 }
 
 /* ==========================================================================
+   Pre-Paint Intro Protection & Safe Fallback
+   Prevents hero flash during initial SSR paint before client JS hydrates
+   ========================================================================== */
+html.intro-pending #intro-prepaint-shield {
+  display: flex !important;
+}
+
+@keyframes prepaintShieldAutoDismiss {
+  0%, 85% {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+html.intro-pending #intro-prepaint-shield {
+  animation: prepaintShieldAutoDismiss 3.2s forwards ease-in-out;
+}
+
+
+/* ==========================================================================
    Lightweight GPU-Accelerated Entrance Reveals (Zero JS Main-Thread Cost)
    ========================================================================== */
 @keyframes heroFadeInUp {
