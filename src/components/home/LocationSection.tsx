@@ -1,7 +1,4 @@
-"use client";
-
 import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import { BUSINESS_INFO } from "@/lib/constants";
 import {
   MapPin,
@@ -10,52 +7,17 @@ import {
   ExternalLink,
   ShieldCheck,
 } from "lucide-react";
-import { EASE_EDITORIAL } from "@/lib/animation";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 export function LocationSection() {
-  const shouldReduceMotion = useReducedMotion();
-
-  const leftVariants = {
-    hidden: {
-      opacity: shouldReduceMotion ? 1 : 0,
-      x: shouldReduceMotion ? 0 : -35,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: shouldReduceMotion ? 0 : 0.75,
-        ease: EASE_EDITORIAL,
-      },
-    },
-  };
-
-  const rightVariants = {
-    hidden: {
-      opacity: shouldReduceMotion ? 1 : 0,
-      x: shouldReduceMotion ? 0 : 35,
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: shouldReduceMotion ? 0 : 0.75,
-        delay: shouldReduceMotion ? 0 : 0.1,
-        ease: EASE_EDITORIAL,
-      },
-    },
-  };
-
   return (
     <section className="py-20 bg-[#FAF7F2] overflow-hidden section-defer">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Information Column */}
-          <motion.div
-            variants={leftVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+          <ScrollReveal
+            direction="left"
+            duration={750}
             className="lg:col-span-6 space-y-6"
           >
             <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
@@ -146,14 +108,13 @@ export function LocationSection() {
                 <span>Get Directions</span>
               </a>
             </div>
-          </motion.div>
+          </ScrollReveal>
 
           {/* Interactive Map Presentation Card */}
-          <motion.div
-            variants={rightVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
+          <ScrollReveal
+            direction="right"
+            duration={750}
+            delay={100}
             className="lg:col-span-6"
           >
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E6DCce] shadow-xl space-y-6">
@@ -189,7 +150,7 @@ export function LocationSection() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </div>
     </section>
