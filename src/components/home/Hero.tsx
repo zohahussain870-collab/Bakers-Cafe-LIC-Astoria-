@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { ChocolateFlowCake } from "./ChocolateFlowCake";
 import { BUSINESS_INFO } from "@/lib/constants";
 import {
   ArrowRight,
@@ -91,30 +92,8 @@ export function Hero() {
           {/* Editorial Visual Composition */}
           <div className="lg:col-span-5 relative animate-hero-fade-in-scale">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Primary Large Image */}
-              <div className="relative aspect-4/5 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-[#F4ECE1] group select-none transition-shadow duration-500 hover:shadow-[0_25px_60px_-15px_rgba(33,21,16,0.35)]">
-                <Image
-                  src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1000&q=85"
-                  alt="Artisan Belgian chocolate cake layered with rich ganache"
-                  fill
-                  priority
-                  fetchPriority="high"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 448px, 500px"
-                  className="object-cover transform-gpu transition-transform duration-700 ease-out group-hover:scale-105 group-active:scale-105 motion-reduce:transform-none motion-reduce:transition-none"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-6 left-6 right-6 text-white pointer-events-none">
-                  <span className="text-[11px] font-bold tracking-widest uppercase text-[#F5D5B0]">
-                    Signature Cake
-                  </span>
-                  <h2 className="font-serif text-xl font-bold mt-0.5">
-                    Belgian Dark Chocolate Fudge
-                  </h2>
-                  <p className="text-xs text-white/90 mt-1">
-                    Layers of dark cocoa sponge with 54% Callebaut ganache
-                  </p>
-                </div>
-              </div>
+              {/* Primary Large Image with Realistic Chocolate Flow Effect */}
+              <ChocolateFlowCake />
 
               {/* Floating Dessert Accent Card */}
               <div className="absolute -bottom-6 -left-6 sm:-left-8 bg-white rounded-2xl p-3.5 border border-[#E6DCce] shadow-xl flex items-center gap-3.5 max-w-xs animate-hero-card-in">
