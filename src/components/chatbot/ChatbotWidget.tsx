@@ -1,8 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { MessageSquare, X } from "lucide-react";
-import { ChatWindow } from "./ChatWindow";
+
+const ChatWindow = dynamic(
+  () => import("./ChatWindow").then((mod) => mod.ChatWindow),
+  { ssr: false }
+);
 
 export function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,7 +62,7 @@ export function ChatbotWidget() {
           {/* Badge: Live help indicator */}
           {!isOpen && (
             <span
-              aria-label="Online assistant ready"
+              aria-hidden="true"
               className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5"
             >
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />

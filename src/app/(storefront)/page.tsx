@@ -38,6 +38,7 @@ export default function HomePage() {
             </span>
             <Link
               href="/menu"
+              aria-label="Explore the artisan bakery menu"
               className="underline font-bold ml-1 hover:text-amber-200 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-amber-200 rounded-sm"
             >
               Order Now →

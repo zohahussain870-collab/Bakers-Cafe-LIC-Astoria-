@@ -93,6 +93,7 @@ export function FeaturedProducts({ products }: { products: ProductDTO[] }) {
         >
           <Link
             href="/menu"
+            aria-label="Explore the artisan bakery menu"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#211510] hover:bg-[#8F5323] text-white font-medium text-sm transition-all duration-300 shadow-md group focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
           >
             <span>Explore Entire Catalog</span>

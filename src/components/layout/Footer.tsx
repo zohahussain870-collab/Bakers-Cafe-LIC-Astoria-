@@ -26,7 +26,7 @@ export function Footer() {
             </p>
             {/* Provided Google Rating Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#302019] border border-[#483329]">
-              <div className="flex text-amber-400" aria-label="5 out of 5 stars">
+              <div role="img" aria-label="5 out of 5 stars" className="flex text-amber-400">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 fill-current" />
                 ))}
@@ -43,7 +43,11 @@ export function Footer() {
             </h2>
             <ul className="space-y-2.5 text-sm text-[#D5C7B7]">
               <li>
-                <Link href="/menu" className="hover:text-[#DDB88C] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#DDB88C] rounded-xs">
+                <Link
+                  href="/menu"
+                  aria-label="Explore the artisan bakery menu"
+                  className="hover:text-[#DDB88C] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#DDB88C] rounded-xs"
+                >
                   Artisan Menu & Treats
                 </Link>
               </li>

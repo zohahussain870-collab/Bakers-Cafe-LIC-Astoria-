@@ -89,6 +89,7 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
+                    aria-label={link.href === "/menu" ? "Explore the artisan bakery menu" : undefined}
                     className={`text-sm font-medium transition-colors relative py-1 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] rounded-xs inline-flex items-center gap-1.5 ${
                       isActive
                         ? "text-[#8F5323] font-semibold"
@@ -109,7 +110,7 @@ export function Header() {
             <div className="flex items-center gap-3">
               <Link
                 href="/menu"
-                aria-label="Search artisan menu"
+                aria-label="Explore the artisan bakery menu"
                 className="p-2 text-[#6B5B52] hover:text-[#211510] hover:bg-[#F4ECE1] rounded-full transition-colors hidden sm:flex items-center justify-center focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
                 title="Search treats"
               >
@@ -170,6 +171,7 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
+                    aria-label={link.href === "/menu" ? "Explore the artisan bakery menu" : undefined}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-base font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] ${
                       pathname === link.href

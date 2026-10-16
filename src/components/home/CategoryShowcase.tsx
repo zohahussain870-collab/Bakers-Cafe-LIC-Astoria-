@@ -59,6 +59,7 @@ export function CategoryShowcase({ categories }: { categories: CategoryDTO[] }) 
           </div>
           <Link
             href="/menu"
+            aria-label="Explore the artisan bakery menu"
             className="text-sm font-semibold text-[#8F5323] hover:text-[#784218] inline-flex items-center gap-1 group transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] rounded-sm"
           >
             <span>View Full Menu</span>

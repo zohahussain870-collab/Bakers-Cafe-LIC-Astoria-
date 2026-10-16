@@ -164,6 +164,7 @@ export function Hero() {
             >
               <Link
                 href="/menu"
+                aria-label="Explore the artisan bakery menu"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3.5 bg-[#8F5323] hover:bg-[#784218] text-white font-medium rounded-full transition-all shadow-md hover:shadow-lg text-sm sm:text-base group focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323]"
               >
                 <span>Explore Our Treats</span>
@@ -220,7 +221,7 @@ export function Hero() {
                   />
                 </div>
                 <div>
-                  <div className="flex text-amber-500 text-xs" aria-label="5 out of 5 stars">★★★★★</div>
+                  <div role="img" aria-label="5 out of 5 stars" className="flex text-amber-500 text-xs">★★★★★</div>
                   <p className="font-serif text-xs font-bold text-[#211510] mt-0.5">
                     Salted Caramel Brownies
                   </p>
