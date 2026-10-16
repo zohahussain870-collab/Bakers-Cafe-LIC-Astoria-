@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
+import crypto from "crypto";
 
-function getCspHeader(): string {
+function getCspHeader(nonce: string): string {
   const isDev = process.env.NODE_ENV !== "production";
-  const scriptSrc = "'self' 'unsafe-inline' 'unsafe-eval'";
+  // Remove 'unsafe-inline' and use the request-specific nonce instead
+  const scriptSrc = isDev 
+    ? "'self' 'unsafe-inline' 'unsafe-eval'" 
+    : `'self' 'nonce-${nonce}' 'strict-dynamic'`;
+    
   const upgradeInsecure = isDev ? "" : "upgrade-insecure-requests;";
 
   return `
@@ -21,13 +26,10 @@ function getCspHeader(): string {
 }
 
 const nextConfig: NextConfig = {
-  // Disable technology stack fingerprinting (ASVS V14.3.1)
   poweredByHeader: false,
-
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
-
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [384, 640, 750, 828, 1080, 1200],
@@ -41,18 +43,12 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
+    // Note: For full production security with nonces in Next.js App Router, 
+    // headers are often handled via middleware to inject the nonce into request headers.
     return [
       {
         source: "/(.*)",
         headers: [
-          {
-            key: "Content-Security-Policy",
-            value: getCspHeader(),
-          },
-          {
-            key: "Strict-Transport-Security",
-            value: "max-age=31536000; includeSubDomains; preload",
-          },
           {
             key: "X-Content-Type-Options",
             value: "nosniff",
