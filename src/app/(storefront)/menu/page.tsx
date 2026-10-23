@@ -9,12 +9,7 @@ export const metadata: Metadata = {
     "Explore our full collection of Belgian chocolate fudge cakes, fudgy brownies, NYC cookies, gourmet cupcakes, and celebration dessert boxes in Astoria, NY.",
 };
 
-export default async function MenuPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ category?: string }>;
-}) {
-  const resolvedParams = await searchParams;
+export default function MenuPage() {
   const categories = FALLBACK_CATEGORIES;
   const products = FALLBACK_PRODUCTS;
 
@@ -38,7 +33,6 @@ export default async function MenuPage({
         <MenuCatalog
           categories={categories}
           initialProducts={products}
-          initialCategory={resolvedParams.category}
         />
       </div>
     </div>

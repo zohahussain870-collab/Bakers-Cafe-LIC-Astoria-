@@ -159,3 +159,6 @@ export async function DELETE(
     );
   }
 }
+
+export const dynamic = 'force-static'
+export async function GET() { return Response.json({ message: 'API not available in static export' }, { status: 503 }) }

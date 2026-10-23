@@ -9,6 +9,12 @@ interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateStaticParams() {
+  return FALLBACK_PRODUCTS.map((product) => ({
+    slug: product.slug,
+  }));
+}
+
 export async function generateMetadata({
   params,
 }: ProductPageProps): Promise<Metadata> {

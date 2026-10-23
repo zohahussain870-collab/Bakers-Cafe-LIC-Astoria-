@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-static";
+
 import React, { useState } from "react";
 import { formatUSD } from "@/lib/utils";
 import { BUSINESS_INFO } from "@/lib/constants";

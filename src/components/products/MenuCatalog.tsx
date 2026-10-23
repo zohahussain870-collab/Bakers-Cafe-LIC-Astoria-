@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { ProductDTO, CategoryDTO } from "@/types";
 import { ProductCard } from "@/components/products/ProductCard";
 import { Search, SlidersHorizontal, X, Cake } from "lucide-react";
@@ -21,6 +21,12 @@ export function MenuCatalog({
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "name">("featured");
+
+  useEffect(() => {
+    if (initialCategory) return;
+    const category = new URLSearchParams(window.location.search).get("category");
+    if (category) setSelectedCategory(category);
+  }, [initialCategory]);
 
   const filteredProducts = useMemo(() => {
     return initialProducts

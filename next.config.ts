@@ -1,12 +1,20 @@
 import type { NextConfig } from "next";
 
+const repoName = "Bakers-Cafe-LIC-Astoria-";
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
+  output: "export",
+  basePath: isProd ? `/${repoName}` : "",
+  assetPrefix: isProd ? `/${repoName}/` : "",
+  trailingSlash: true,
   poweredByHeader: false,
   compress: true,
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
   images: {
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     deviceSizes: [384, 640, 750, 828, 1080, 1200],
     imageSizes: [32, 48, 64, 96, 128, 256],
@@ -19,6 +27,9 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
+    if (process.env.NODE_ENV === "production") {
+      return [];
+    }
     return [
       {
         source: "/(.*)",
