@@ -185,13 +185,13 @@ export function BakeryLogo({
           className="font-serif text-2xl font-bold tracking-tight leading-none transition-colors"
           style={{ color: primaryColor }}
         >
-          Home Bakery
+          Bakers Cafe LIC
         </span>
         <span
           className="text-[10px] tracking-widest uppercase font-semibold mt-1"
           style={{ color: inverted ? "#D6C7BC" : "#68584F" }}
         >
-          Karachi • Artisan Patisserie
+          Astoria • Halal Cafe & Bakery
         </span>
       </div>
     </div>

@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import { X, Trash2, ShoppingBag, ArrowRight, Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -137,7 +137,7 @@ export function CartDrawer() {
 
                         <div className="flex items-center justify-between mt-3 pt-2 border-t border-[#F0E9DF]">
                           <span className="font-semibold text-sm text-[#211510]">
-                            {formatPKR(item.unitPrice * item.quantity)}
+                            {formatUSD(item.unitPrice * item.quantity)}
                           </span>
                           <div className="flex items-center border border-[#E6DCce] rounded-full bg-[#FAF7F2] overflow-hidden">
                             <button
@@ -173,17 +173,17 @@ export function CartDrawer() {
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-[#6B5B52]">Service Method</span>
                     <span className="font-medium text-[#3B5934] bg-[#EBF2EA] px-2 py-0.5 rounded text-xs">
-                      Takeout Pickup (Free)
+                      Pickup (Free)
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="font-serif text-base font-semibold text-[#211510]">Subtotal</span>
                     <span className="font-serif text-xl font-bold text-[#8F5323]">
-                      {formatPKR(subtotal)}
+                      {formatUSD(subtotal)}
                     </span>
                   </div>
                   <p className="text-xs text-[#68584F]">
-                    * Orders are freshly prepared upon request in Gulberg Town, Karachi.
+                    * Orders are freshly prepared upon request in Astoria, Queens, NY.
                   </p>
                   <div className="space-y-2 pt-1">
                     <Link

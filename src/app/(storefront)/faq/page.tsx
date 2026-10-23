@@ -4,9 +4,9 @@ import { MessageCircle } from "lucide-react";
 import { BUSINESS_INFO } from "@/lib/constants";
 
 export const metadata = {
-  title: "Frequently Asked Questions | Home Bakery Karachi",
+  title: "Frequently Asked Questions | Bakers Cafe LIC",
   description:
-    "Common questions regarding orders, pickup instructions in Gulberg Town, preparation times, ingredients, and custom cake options.",
+    "Common questions regarding orders, pickup instructions in Astoria, preparation times, ingredients, and custom cake options.",
 };
 
 export default function FAQPage() {
@@ -20,7 +20,7 @@ export default function FAQPage() {
             Still have a question about your order?
           </h3>
           <p className="text-xs sm:text-sm text-[#6B5B52] max-w-md mx-auto">
-            Our kitchen team in Gulberg Town is always happy to discuss custom flavors, dietary requirements, and celebration timings.
+            Our kitchen team in Astoria is always happy to discuss custom flavors, dietary requirements, and celebration timings.
           </p>
           <a
             href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}`}
@@ -29,7 +29,7 @@ export default function FAQPage() {
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#5F7A59] text-white text-xs font-semibold hover:bg-[#4B6346] transition-colors shadow-xs"
           >
             <MessageCircle className="w-4 h-4" />
-            <span>Chat Directly on WhatsApp (+92 330 2964562)</span>
+            <span>Chat Directly on WhatsApp (+1 718-489-9077)</span>
           </a>
         </div>
       </div>

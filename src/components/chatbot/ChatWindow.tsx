@@ -15,7 +15,7 @@ interface ChatWindowProps {
 const INITIAL_WELCOME_MESSAGE: MessageItem = {
   id: "welcome-1",
   role: "assistant",
-  text: "Hello! 👋 Welcome to Home Bakery Karachi. I can help you with our freshly baked artisan menu, prices, ordering steps, or custom cake inquiries. What can I bake for you today?",
+  text: "Hello! 👋 Welcome to Bakers Cafe LIC. I can help you with our freshly baked artisan menu, prices, ordering steps, or custom cake inquiries. What can I bake for you today?",
   timestamp: 0,
 };
 
@@ -29,7 +29,7 @@ export function ChatWindow({ onClose }: ChatWindowProps) {
   return (
     <div
       role="dialog"
-      aria-label="Home Bakery Customer Support"
+      aria-label="Bakers Cafe LIC Customer Support"
       aria-modal="true"
       className="fixed bottom-20 sm:bottom-24 right-3 sm:right-6 z-50 w-[calc(100vw-1.5rem)] sm:w-[400px] h-[550px] max-h-[82vh] bg-white rounded-3xl border border-[#E6DCce] shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200"
     >
@@ -39,10 +39,10 @@ export function ChatWindow({ onClose }: ChatWindowProps) {
           <BakeryLogo variant="mark" size={32} inverted={true} />
           <div>
             <div className="flex items-center gap-1.5">
-              <h2 className="font-serif font-bold text-sm tracking-wide">Home Bakery</h2>
+              <h2 className="font-serif font-bold text-sm tracking-wide">Bakers Cafe LIC</h2>
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             </div>
-            <p className="text-[10px] text-white/70">Gulberg Town, Karachi • Online Help</p>
+            <p className="text-[10px] text-white/70">Astoria, Queens, NY • Online Help</p>
           </div>
         </div>
 

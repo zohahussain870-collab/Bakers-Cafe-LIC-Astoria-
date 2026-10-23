@@ -3,7 +3,7 @@
 **Document Reference:** `docs/audit/AUDIT_FINAL_SECURITY_VERIFICATION.md`  
 **Audit Date:** October 14, 2026  
 **Auditor Roles:** Principal Application Security Engineer, Red-Team Reviewer, Database Reliability Engineer, Production Readiness Auditor  
-**Repository:** Home Bakery (`c:\Users\Syed Ghazi Ali Zaidi\Desktop\Home Bakery`)  
+**Repository:** Bakers Cafe LIC (`c:\Users\Syed Ghazi Ali Zaidi\Desktop\Bakers Cafe LIC`)  
 **Base Audit Commit:** `bae42c5` (*audit: complete independent technical audit, security remediations, and documentation artifacts*)  
 **Audit Branch:** `audit/adversarial-security-signoff`  
 **Overall Verdict:** `CONDITIONALLY READY FOR STAGING`
@@ -12,7 +12,7 @@
 
 ## 1. Executive Summary & Audit Mandate
 
-This report provides the final, independent adversarial security assessment and remediation sign-off for the Home Bakery web platform. Every claim in previous reports—regarding authentication, session management, CSRF defenses, browser security headers, rate limiting, ACID transactions, and input validation—was treated as unverified until challenged through direct adversarial testing, live exploitation attempts, and source-level verification.
+This report provides the final, independent adversarial security assessment and remediation sign-off for the Bakers Cafe LIC web platform. Every claim in previous reports—regarding authentication, session management, CSRF defenses, browser security headers, rate limiting, ACID transactions, and input validation—was treated as unverified until challenged through direct adversarial testing, live exploitation attempts, and source-level verification.
 
 During this adversarial audit, three significant security vulnerabilities were identified in the pre-existing codebase, successfully remediated, and verified with automated regression suites:
 1. **FINDING-ADV-01 (CRITICAL — Missing CSRF & Origin Validation on State-Changing API Endpoints):** Remediated via a centralized proxy middleware and strict Origin/Referer/Content-Type enforcement.
@@ -83,7 +83,7 @@ All 34 automated unit and integration tests are passing (100%), TypeScript compi
 ### FINDING-ADV-03: Database Reseed Overwriting Admin Credentials with Default Password
 - **Severity:** `HIGH` (CVSS 7.4)
 - **Root Cause:**
-  - `scripts/seed.ts` utilized `prisma.user.upsert` with `update: { passwordHash: hashedPassword }`. Running `npm run db:seed` or automated maintenance would silently overwrite an administrator's rotated password with the publicly disclosed default password (`HomeBakeryAdmin2026!`).
+  - `scripts/seed.ts` utilized `prisma.user.upsert` with `update: { passwordHash: hashedPassword }`. Running `npm run db:seed` or automated maintenance would silently overwrite an administrator's rotated password with the publicly disclosed default password (`BakersCafeAdmin2026!`).
 - **Remediation Implemented:**
   - Refactored `scripts/seed.ts` to first query `prisma.user.findUnique({ where: { email } })`.
   - If the administrator exists, the password hash is preserved untouched unless an explicit override flag (`RESET_ADMIN_PASSWORD=true`) is passed.
@@ -104,7 +104,7 @@ Verify whether the dummy bcrypt comparison implemented in `src/app/api/admin/log
 - **Methodology:** Automated benchmarking client issuing sequential HTTP requests with microsecond-precision timing (`performance.now()`).
 - **Sample Size:** $N = 15$ requests per condition.
 - **Conditions Tested:**
-  1. **Condition A:** Existing Administrator (`admin@homebakery.pk`), Incorrect Password (`IncorrectPassword123!`).
+  1. **Condition A:** Existing Administrator (`admin@bakerscafelic.com`), Incorrect Password (`IncorrectPassword123!`).
   2. **Condition B:** Nonexistent Administrator (`attacker-nonexistent@homebakery.pk`), Incorrect Password (`IncorrectPassword123!`).
 
 ### Results & Statistical Distribution
@@ -248,4 +248,4 @@ Before promoting this application to a public production URL, the following exte
 ---
 *Signed,*  
 **Independent Application Security Engineering & Production Readiness Team**  
-*Home Bakery Project Audit*
+*Bakers Cafe LIC Project Audit*

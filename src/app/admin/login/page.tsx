@@ -44,14 +44,14 @@ export default function AdminLoginPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-3">
         <Link href="/" className="inline-flex items-center gap-2 group">
           <div className="w-12 h-12 rounded-full bg-[#211510] text-[#FAF7F2] flex items-center justify-center font-serif text-2xl font-bold shadow-md group-hover:bg-[#B87D4B] transition-colors">
-            HB
+            BC
           </div>
         </Link>
         <h2 className="font-serif text-3xl font-extrabold text-[#211510]">
           Kitchen Administration
         </h2>
         <p className="text-xs text-[#6B5B52]">
-          Authorized staff & owner portal for Home Bakery Karachi
+          Authorized staff & owner portal for Bakers Cafe LIC
         </p>
       </div>
 
@@ -74,7 +74,7 @@ export default function AdminLoginPage() {
                 <input
                   type="email"
                   required
-                  placeholder="admin@homebakery.pk"
+                  placeholder="admin@bakerscafelic.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"

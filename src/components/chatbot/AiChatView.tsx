@@ -21,7 +21,7 @@ const SUGGESTED_PROMPTS = [
   "What products do you have?",
   "How can I place an order?",
   "What are your opening hours?",
-  "How can I contact Home Bakery?",
+  "How can I contact Bakers Cafe LIC?",
 ];
 
 export function AiChatView({
@@ -221,7 +221,7 @@ export function AiChatView({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            aria-label="Ask Home Bakery assistant a question"
+            aria-label="Ask Bakers Cafe LIC assistant a question"
             placeholder="Type your question... (Enter to send)"
             disabled={isLoading}
             maxLength={1000}

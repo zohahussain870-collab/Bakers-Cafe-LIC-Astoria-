@@ -1,20 +1,20 @@
-# Home Bakery — Complete Production-Ready Web Platform & Admin Console
+# Bakers Cafe LIC — Complete Production-Ready Web Platform & Admin Console
 
-> Handcrafted artisan patisserie rooted in Gulberg Town, Karachi, Pakistan. Built with Next.js 16 (App Router), TypeScript, Tailwind CSS, Prisma ORM, and SQLite / PostgreSQL.
+> Handcrafted artisan patisserie rooted in Astoria, NY, USA. Built with Next.js 16 (App Router), TypeScript, Tailwind CSS, Prisma ORM, and SQLite / PostgreSQL.
 
 ---
 
 ## 1. Business Information (Source of Truth)
 
-- **Business Name:** Home Bakery
-- **Business Type:** Dedicated home-based artisan bakery
-- **Physical Kitchen Address:** House R-1932, Block 17, Gulberg Town, Karachi, 75950, Pakistan
-- **Phone & WhatsApp:** [+92 330 2964562](https://wa.me/923302964562)
-- **Google Maps Navigation URL:** [Open in Google Maps](https://www.google.com/maps/search/?api=1&query=Home+Bakery+House+R-1932+Block+17+Gulberg+Town+Karachi)
-- **Supplied Google Rating:** 5.0 / 5.0 (from 1 review) — clearly distinguished as supplied listing data.
-- **Listed Availability:** Open 24 hours (for order placement & scheduled preparation; all bakes made to order with advance preparation notice).
-- **Service Type:** Takeout / Self-Pickup (Default). No commercial walk-in storefront. Delivery disabled by default until enabled by administrator.
-- **Default Currency & Timezone:** PKR (Pakistani Rupee), Asia/Karachi (PKT).
+- **Business Name:** Bakers Cafe LIC
+- **Business Type:** Dedicated halal cafe & bakery
+- **Cafe Address:** 34-06 9th St, Astoria, NY 11106, USA
+- **Phone & WhatsApp:** [+1 718-489-9077](https://wa.me/17184899077)
+- **Google Maps Navigation URL:** [Open in Google Maps](https://www.google.com/maps/search/?api=1&query=Bakers+Cafe+LIC+34-06+9th+St+Astoria+NY+11106)
+- **Supplied Google Rating:** 4.9 / 5.0 (from 243 reviews) — clearly distinguished as supplied listing data.
+- **Listed Availability:** Open Daily · Dine-in, Takeout & Pickup (all bakes made to order with advance preparation notice).
+- **Service Type:** Dine-in, Takeout & Pickup. Online orders are prepared for pickup. Delivery disabled by default until enabled by administrator.
+- **Default Currency & Timezone:** USD (US Dollar), America/New_York (ET).
 
 ---
 
@@ -66,8 +66,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## 4. Default Administrator Credentials
 
 - **Admin Portal URL:** [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
-- **Email:** `admin@homebakery.pk`
-- **Password:** `HomeBakeryAdmin2026!`
+- **Email:** `admin@bakerscafelic.com`
+- **Password:** `BakersCafeAdmin2026!`
 - **Role:** `ADMIN`
 
 *(Credentials can be customized in `.env` before running `npm run seed:admin`)*
@@ -95,10 +95,10 @@ npm run build
 - `/menu` — Interactive product catalog with search, category filtering, and sorting.
 - `/product/[slug]` — Product detail page with variants, quantity, custom piping notes, and WhatsApp inquiry.
 - `/cart` — Dedicated basket review with promo code validation and checkout trigger.
-- `/checkout` — Validated checkout with takeout scheduling (date/time) and Pakistan phone validation.
+- `/checkout` — Validated checkout with pickup scheduling (date/time) and US phone validation.
 - `/order/confirmation/[reference]` — Order confirmation with official reference and WhatsApp trigger.
 - `/order/track` — Privacy-preserving order status lookup (requires Order Reference + Phone Number).
-- `/about` — Bakery philosophy, ingredients, and Karachi kitchen standards.
+- `/about` — Bakery philosophy, ingredients, and Astoria kitchen standards.
 - `/contact` — Contact numbers, Google Maps navigation link, and pickup hours.
 - `/faq` — Detailed frequently asked questions.
 - `/privacy`, `/terms`, `/refund-and-cancellation` — Transparent policy pages.
@@ -109,10 +109,10 @@ npm run build
 - `/admin` — Real-time kitchen KPI dashboard (orders today, pending, in oven, total sales).
 - `/admin/orders` — Order pipeline management, status transitions, printable slips, and CSV export.
 - `/admin/orders/[id]` — Detailed order editor with customer contact, items, and internal notes.
-- `/admin/products` — Product catalog management (create, edit, archive, prices in PKR).
+- `/admin/products` — Product catalog management (create, edit, archive, prices in USD).
 - `/admin/categories` — Category creation, slugs, and display order.
 - `/admin/inventory` — Physical stock adjustments and low-stock warnings.
 - `/admin/customers` — Customer insights aggregated from verified order records.
-- `/admin/promotions` — Promo code generation (percentage or fixed PKR) and usage limits.
+- `/admin/promotions` — Promo code generation (percentage or fixed USD) and usage limits.
 - `/admin/settings` — Business information, ordering toggles, and live Maintenance Mode switch.
 - `/admin/audit-logs` — Immutable audit trail of administrative actions.

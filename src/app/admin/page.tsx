@@ -3,7 +3,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { getCurrentAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import {
   ShoppingBag,
   Clock,
@@ -23,7 +23,7 @@ export default async function AdminDashboardPage() {
     redirect("/admin/login");
   }
 
-  // Calculate today's date boundary in Asia/Karachi
+  // Calculate today's date boundary in America/New_York
   const startOfToday = new Date();
   startOfToday.setHours(0, 0, 0, 0);
 
@@ -79,7 +79,7 @@ export default async function AdminDashboardPage() {
             Kitchen Overview
           </h1>
           <p className="text-xs sm:text-sm text-[#6B5B52] mt-0.5">
-            Real-time status of orders, baking pipeline, and inventory in Karachi.
+            Real-time status of orders, baking pipeline, and inventory in Astoria.
           </p>
         </div>
 
@@ -114,7 +114,7 @@ export default async function AdminDashboardPage() {
             {ordersToday}
           </div>
           <p className="text-[11px] text-[#6B5B52]">
-            Registered since 00:00 PKT
+            Registered since 00:00 ET
           </p>
         </div>
 
@@ -159,7 +159,7 @@ export default async function AdminDashboardPage() {
             </div>
           </div>
           <div className="font-serif text-2xl sm:text-3xl font-extrabold text-[#5F7A59]">
-            {formatPKR(totalRevenue)}
+            {formatUSD(totalRevenue)}
           </div>
           <p className="text-[11px] text-[#6B5B52]">
             From confirmed & completed orders
@@ -198,7 +198,7 @@ export default async function AdminDashboardPage() {
               Recent Orders
             </h2>
             <p className="text-xs text-[#6B5B52]">
-              Latest takeout and delivery orders placed by customers.
+              Latest pickup and delivery orders placed by customers.
             </p>
           </div>
           <Link
@@ -223,7 +223,7 @@ export default async function AdminDashboardPage() {
                   <th className="py-3 px-6">Customer</th>
                   <th className="py-3 px-6">Items</th>
                   <th className="py-3 px-6">Scheduled Window</th>
-                  <th className="py-3 px-6">Total (PKR)</th>
+                  <th className="py-3 px-6">Total (USD)</th>
                   <th className="py-3 px-6">Status</th>
                   <th className="py-3 px-6 text-right">Action</th>
                 </tr>
@@ -248,7 +248,7 @@ export default async function AdminDashboardPage() {
                       <span className="block text-[11px] text-[#8E7C72]">{ord.requestedTime}</span>
                     </td>
                     <td className="py-3.5 px-6 font-bold text-[#211510]">
-                      {formatPKR(ord.total)}
+                      {formatUSD(ord.total)}
                     </td>
                     <td className="py-3.5 px-6">
                       <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FAF7F2] border border-[#E6DCce] text-[#211510]">

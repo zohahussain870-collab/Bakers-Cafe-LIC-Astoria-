@@ -2,7 +2,7 @@ import React from "react";
 import { prisma } from "@/lib/prisma";
 import { getCurrentAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { formatPKR, formatPakistanPhone, normalizeWhatsAppNumber } from "@/lib/utils";
+import { formatUSD, formatUSPhone, normalizeWhatsAppNumber } from "@/lib/utils";
 import { MessageCircle } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -93,7 +93,7 @@ export default async function AdminCustomersPage() {
               <tbody className="divide-y divide-[#F0E9DF]">
                 {customers.map((c) => {
                   const waUrl = `https://wa.me/${normalizeWhatsAppNumber(c.phone)}?text=${encodeURIComponent(
-                    `Hello ${c.name}! This is Home Bakery in Gulberg Town, Karachi.`
+                    `Hello ${c.name}! This is Bakers Cafe LIC in Astoria, Queens, NY.`
                   )}`;
 
                   return (
@@ -108,7 +108,7 @@ export default async function AdminCustomersPage() {
                       </td>
 
                       <td className="py-4 px-6 font-mono text-[#6B5B52]">
-                        {formatPakistanPhone(c.phone)}
+                        {formatUSPhone(c.phone)}
                       </td>
 
                       <td className="py-4 px-6">
@@ -118,12 +118,12 @@ export default async function AdminCustomersPage() {
                       </td>
 
                       <td className="py-4 px-6 font-serif font-bold text-[#B87D4B]">
-                        {formatPKR(c.totalSpend)}
+                        {formatUSD(c.totalSpend)}
                       </td>
 
                       <td className="py-4 px-6 text-xs text-[#8E7C72]">
-                        {c.lastOrderDate.toLocaleDateString("en-PK", {
-                          timeZone: "Asia/Karachi",
+                        {c.lastOrderDate.toLocaleDateString("en-US", {
+                          timeZone: "America/New_York",
                           year: "numeric",
                           month: "short",
                           day: "numeric",

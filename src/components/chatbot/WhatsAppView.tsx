@@ -18,14 +18,14 @@ export function WhatsAppView({ initialMessage = "" }: WhatsAppViewProps) {
     e.preventDefault();
 
     if (!message.trim()) {
-      setError("Please write a message to send to Home Bakery.");
+      setError("Please write a message to send to Bakers Cafe LIC.");
       return;
     }
 
     setError(null);
 
     // Format greeting & inquiry
-    let formattedText = `Hello Home Bakery!\n\n`;
+    let formattedText = `Hello Bakers Cafe LIC!\n\n`;
     if (customerName.trim()) {
       formattedText += `Customer Name: ${customerName.trim()}\n`;
     }

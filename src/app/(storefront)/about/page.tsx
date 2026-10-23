@@ -5,9 +5,9 @@ import { BUSINESS_INFO } from "@/lib/constants";
 import { Award, ShieldCheck, Clock, MapPin } from "lucide-react";
 
 export const metadata = {
-  title: "About Our Artisan Bakery | Handcrafted in Gulberg Town, Karachi",
+  title: "About Our Artisan Bakery | Handcrafted in Astoria, Queens, NY",
   description:
-    "Learn about Home Bakery's commitment to pure butter, Belgian chocolate, small-batch craftsmanship, and authentic home-based baking in Karachi.",
+    "Learn about Bakers Cafe LIC's commitment to pure butter, Belgian chocolate, small-batch craftsmanship, and authentic halal cafe baking in Astoria.",
 };
 
 export default function AboutPage() {
@@ -23,7 +23,7 @@ export default function AboutPage() {
             Baking with Heart & Honest Craft
           </h1>
           <p className="text-sm sm:text-base text-[#6B5B52] leading-relaxed">
-            From our home kitchen in Gulberg Town, Karachi, we handcraft decadent celebration cakes, fudgy brownies, and sweet delicacies with zero shortcuts.
+            From our cafe kitchen in Astoria, Queens, NY, we handcraft decadent celebration cakes, fudgy brownies, and sweet delicacies with zero shortcuts.
           </p>
         </div>
 
@@ -41,19 +41,19 @@ export default function AboutPage() {
 
           <div className="lg:col-span-6 space-y-5">
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#211510]">
-              The Home Bakery Philosophy
+              The Bakers Cafe LIC Philosophy
             </h2>
             <p className="text-xs sm:text-sm text-[#6B5B52] leading-relaxed">
-              In a commercial world dominated by pre-mixed flour, artificial preservatives, and days-old display cases, Home Bakery was born out of a desire for something genuine.
+              In a commercial world dominated by pre-mixed flour, artificial preservatives, and days-old display cases, Bakers Cafe LIC was born out of a desire for something genuine.
             </p>
             <p className="text-xs sm:text-sm text-[#6B5B52] leading-relaxed">
-              We operate exclusively as a home-based artisan patisserie. Every single bake is created specifically for the customer who ordered it. We crack fresh farm eggs, melt real 54% and 70% Belgian chocolate, whip pure dairy butter, and bake in measured small batches.
+              We operate exclusively as a halal cafe and bakery. Every single bake is created specifically for the customer who ordered it. We crack fresh farm eggs, melt real 54% and 70% Belgian chocolate, whip pure dairy butter, and bake in measured small batches.
             </p>
 
             <div className="p-4 rounded-2xl bg-white border border-[#E6DCce] flex items-start gap-3 shadow-2xs">
               <MapPin className="w-5 h-5 text-[#8F5323] shrink-0 mt-0.5" />
               <div className="text-xs">
-                <strong className="text-[#211510] block">Karachi Kitchen Location:</strong>
+                <strong className="text-[#211510] block">Cafe Location:</strong>
                 <p className="text-[#6B5B52] mt-0.5">{BUSINESS_INFO.address}</p>
               </div>
             </div>

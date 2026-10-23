@@ -1,7 +1,7 @@
-# Home Bakery — Independent Technical Audit, Security Remediation & Production Readiness Verification Report
+# Bakers Cafe LIC — Independent Technical Audit, Security Remediation & Production Readiness Verification Report
 
-**Project:** Home Bakery Platform (Karachi, Pakistan)  
-**Repository Location:** `c:\Users\Syed Ghazi Ali Zaidi\Desktop\Home Bakery`  
+**Project:** Bakers Cafe LIC Platform (Astoria, NY, USA)  
+**Repository Location:** `c:\Users\Syed Ghazi Ali Zaidi\Desktop\Bakers Cafe LIC`  
 **Audit Branch:** `audit/technical-security-remediation`  
 **Base Commit:** `e5c6d6c`  
 **Audit Completion Date:** October 14, 2026  
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-An independent, rigorous technical audit and security remediation of the Home Bakery repository was conducted. Rather than accepting prior milestone completion claims or passing marks at face value, every subsystem was inspected directly against source code, configuration files, schema definitions, and reproducible terminal commands.
+An independent, rigorous technical audit and security remediation of the Bakers Cafe LIC repository was conducted. Rather than accepting prior milestone completion claims or passing marks at face value, every subsystem was inspected directly against source code, configuration files, schema definitions, and reproducible terminal commands.
 
 ### Key Audit Findings at Baseline:
 1. **ESLint Baseline Failure:** `npm run lint` failed with **6 errors and 53 warnings** (React 19 `set-state-in-effect` in `CartContext.tsx`, unescaped entities, and `any` types).
@@ -39,10 +39,10 @@ An independent, rigorous technical audit and security remediation of the Home Ba
 | **CLM-03** | **M3: Database** | Prisma ORM, 11 models, seed data | `prisma/schema.prisma`, `dev.db` | `npx prisma migrate status` | Exit code 0; 1 migration found; schema up to date | **VERIFIED** |
 | **CLM-04** | **M4: Storefront** | Product catalog, dynamic variant pricing, persistent cart | `src/components/products/*`, `CartContext.tsx` | Code review & live HTTP tests | Category filters, variant adjustments, and cart persist | **VERIFIED** |
 | **CLM-05** | **M5: Auth & Sessions**| Secure bcrypt password hashing, HTTP-only cookies | `src/lib/auth.ts`, `api/admin/login` | Vitest `auth.test.ts` & live HTTP | Bcrypt work factor 12; HTTP-only SameSite=Lax cookie | **VERIFIED** |
-| **CLM-06** | **M6: Admin Platform**| Real-time KPIs, order status updates, CSV export | `src/app/admin/*`, `api/admin/*` | Live API testing & DB assertions | KPIs use Asia/Karachi date; CSV exports valid records | **VERIFIED** |
+| **CLM-06** | **M6: Admin Platform**| Real-time KPIs, order status updates, CSV export | `src/app/admin/*`, `api/admin/*` | Live API testing & DB assertions | KPIs use America/New_York date; CSV exports valid records | **VERIFIED** |
 | **CLM-07** | **M7: Maintenance** | Maintenance mode with admin bypass | `layout.tsx`, `SettingsManager.tsx` | Live multi-step HTTP test | Public visits blocked; admin bypasses with warning | **VERIFIED** |
 | **CLM-08** | **M8: Animations** | Framer motion, smooth reveals, reduced motion | `BakeryStory.tsx`, `CartDrawer.tsx` | Source code & media queries | Prefers-reduced-motion media query supported | **VERIFIED** |
-| **CLM-09** | **M9: WhatsApp & SEO**| Normalized WhatsApp links, Schema.org Bakery | `layout.tsx`, `utils.ts`, `sitemap.ts` | Regex validation & live order | wa.me/923302964562 generated; valid JSON-LD | **VERIFIED** |
+| **CLM-09** | **M9: WhatsApp & SEO**| Normalized WhatsApp links, Schema.org Bakery | `layout.tsx`, `utils.ts`, `sitemap.ts` | Regex validation & live order | wa.me/17184899077 generated; valid JSON-LD | **VERIFIED** |
 | **CLM-10** | **M10: Security** | ASVS compliance, rate limiting, IDOR prevention | `src/lib/rate-limit.ts`, `track/route.ts` | Live security attack probes | Substring phone bypass fixed; rate limiting enforced | **VERIFIED** |
 | **CLM-11** | **M11: Accessibility**| WCAG 2.2 AA contrast, keyboard accessibility | Component markup & styles | Color contrast audit | Contrast ratio > 5.4:1; keyboard focus rings present | **VERIFIED** |
 | **CLM-12** | **M12: Testing** | Automated tests pass | `tests/unit/*`, `tests/integration/*` | `npm test` | 29/29 tests pass in Vitest across 6 test suites | **VERIFIED** |
@@ -103,7 +103,7 @@ The application code, database schema, security layer, and automated tests are f
 
 ### Explicit Production Blockers:
 1. **Cloud PostgreSQL Provisioning:** The application is running on local SQLite. Because standard serverless hosting platforms (e.g. Vercel) have ephemeral filesystems, a cloud PostgreSQL database (Neon, Supabase, or AWS RDS) must be provisioned and configured in `DATABASE_URL`.
-2. **Administrative Credential Rotation:** The default development password (`HomeBakeryAdmin2026!`) must be rotated in production using `ADMIN_PASSWORD` in the cloud environment before opening the admin portal.
+2. **Administrative Credential Rotation:** The default development password (`BakersCafeAdmin2026!`) must be rotated in production using `ADMIN_PASSWORD` in the cloud environment before opening the admin portal.
 3. **Domain & SSL Binding:** The canonical domain (`homebakery.pk`) and SSL certificates must be mapped in the hosting platform DNS settings.
 
 ---

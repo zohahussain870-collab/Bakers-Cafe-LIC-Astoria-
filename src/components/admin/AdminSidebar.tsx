@@ -69,7 +69,7 @@ export function AdminSidebar() {
             <BakeryLogo variant="mark" size={38} inverted={true} />
             <div>
               <span className="font-serif text-lg font-bold text-white block leading-tight">
-                Home Bakery
+                Bakers Cafe LIC
               </span>
               <span className="text-[10px] tracking-widest uppercase text-[#A69588]">
                 Admin Console

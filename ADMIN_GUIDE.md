@@ -1,14 +1,14 @@
-# Home Bakery — Administrator User Handbook
+# Bakers Cafe LIC — Administrator User Handbook
 
-Welcome to the Home Bakery administration console. This handbook guides bakery staff on daily operations, kitchen workflow, order acceptance, and catalog adjustments.
+Welcome to the Bakers Cafe LIC administration console. This handbook guides bakery staff on daily operations, kitchen workflow, order acceptance, and catalog adjustments.
 
 ---
 
 ## 1. Accessing the Admin Console
 
 - **URL:** `/admin/login`
-- **Default Login:** `admin@homebakery.pk`
-- **Default Password:** `HomeBakeryAdmin2026!`
+- **Default Login:** `admin@bakerscafelic.com`
+- **Default Password:** `BakersCafeAdmin2026!`
 
 After signing in, you will be taken to the **Kitchen Overview** dashboard.
 
@@ -34,7 +34,7 @@ Orders follow a 5-stage lifecycle designed for made-to-order baking:
    - The sponge, brownies, or cookies are actively being mixed, baked, or hand-decorated.
 4. **Ready for Pickup (`READY_FOR_PICKUP`):**
    - The order is boxed in food-grade packaging with ribbon/stickers and stored at optimal temperature.
-   - The customer tracking screen shows the item is ready for collection at House R-1932, Block 17, Gulberg Town, Karachi.
+   - The customer tracking screen shows the item is ready for collection at 34-06 9th St, Astoria, NY.
 5. **Completed (`COMPLETED`):**
    - The customer has collected their treats and payment is received.
 
@@ -51,7 +51,7 @@ On `/admin/orders`, click **Export CSV** to download a spreadsheet of all orders
 ### Adding a New Treat
 1. Go to **Products** (`/admin/products`) and click **Add New Treat**.
 2. Enter the treat title, URL slug, and category.
-3. Set the base price in integer PKR (e.g. `2800`).
+3. Set the base price in integer USD (e.g. `2800`).
 4. Specify the required preparation notice (e.g. `24 hours notice` for celebration cakes, `4-6 hours notice` for brownies).
 5. Provide a high-resolution image URL (Unsplash or direct CDN link).
 6. List key ingredients and allergens for transparency.
@@ -76,8 +76,8 @@ On `/admin/orders`, click **Export CSV** to download a spreadsheet of all orders
 
 1. Go to **Promotions** (`/admin/promotions`) and click **Create Promo Code**.
 2. Enter the code in capital letters (e.g. `EIDSPECIAL`).
-3. Select **Percentage (%)** or **Fixed (PKR)** discount.
-4. Set the minimum order requirement (e.g. `1500` PKR).
+3. Select **Percentage (%)** or **Fixed (USD)** discount.
+4. Set the minimum order requirement (e.g. `1500` USD).
 5. Optionally set maximum usage limits.
 6. The discount will automatically validate on the storefront during customer checkout.
 

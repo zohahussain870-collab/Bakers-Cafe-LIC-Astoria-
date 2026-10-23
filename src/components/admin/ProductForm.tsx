@@ -39,7 +39,7 @@ export function ProductForm({ categories, initialData }: ProductFormProps) {
   const [name, setName] = useState(initialData?.name || "");
   const [slug, setSlug] = useState(initialData?.slug || "");
   const [categoryId, setCategoryId] = useState(initialData?.categoryId || categories[0]?.id || "");
-  const [basePrice, setBasePrice] = useState(initialData?.basePrice?.toString() || "2000");
+  const [basePrice, setBasePrice] = useState(initialData?.basePrice?.toString() || "18");
   const [prepTime, setPrepTime] = useState(initialData?.prepTime || "4-6 hours notice");
   const [shortDescription, setShortDescription] = useState(initialData?.shortDescription || "");
   const [description, setDescription] = useState(initialData?.description || "");
@@ -132,7 +132,7 @@ export function ProductForm({ categories, initialData }: ProductFormProps) {
               {isEditing ? `Edit: ${initialData?.name}` : "Create New Artisan Treat"}
             </h1>
             <p className="text-xs text-[#8E7C72]">
-              Configure pricing in PKR, preparation times, stock, and descriptions.
+              Configure pricing in USD, preparation times, stock, and descriptions.
             </p>
           </div>
         </div>
@@ -210,13 +210,13 @@ export function ProductForm({ categories, initialData }: ProductFormProps) {
 
           <div className="space-y-1.5">
             <label className="block text-xs font-bold text-[#211510]">
-              Base Price (PKR) <span className="text-red-500">*</span>
+              Base Price (USD) <span className="text-red-500">*</span>
             </label>
             <input
               type="number"
               required
               min="0"
-              placeholder="2800"
+              placeholder="34"
               value={basePrice}
               onChange={(e) => setBasePrice(e.target.value)}
               className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"

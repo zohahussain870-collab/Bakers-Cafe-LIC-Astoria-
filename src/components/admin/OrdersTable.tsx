@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import { Search, Download, Eye, X } from "lucide-react";
 
 interface OrderItemData {
@@ -166,7 +166,7 @@ export function OrdersTable({ initialOrders }: { initialOrders: OrderData[] }) {
                       {ord.items.map((i) => `${i.quantity}x ${i.productName}`).join(", ")}
                     </td>
                     <td className="py-4 px-6 font-bold text-[#211510]">
-                      {formatPKR(ord.total)}
+                      {formatUSD(ord.total)}
                     </td>
                     <td className="py-4 px-6">
                       <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-[#FAF7F2] border border-[#E6DCce] text-[#211510]">

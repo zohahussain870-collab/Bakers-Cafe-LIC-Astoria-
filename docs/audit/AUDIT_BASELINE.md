@@ -1,7 +1,7 @@
 # Independent Technical Audit: Baseline Verification Report
 
-**Project:** Home Bakery (Karachi, Pakistan)  
-**Repository Path:** `c:\Users\Syed Ghazi Ali Zaidi\Desktop\Home Bakery`  
+**Project:** Bakers Cafe LIC (Astoria, NY, USA)  
+**Repository Path:** `c:\Users\Syed Ghazi Ali Zaidi\Desktop\Bakers Cafe LIC`  
 **Audit Branch:** `audit/technical-security-remediation`  
 **Base Commit:** `e5c6d6c`  
 **Date of Audit:** October 14, 2026  

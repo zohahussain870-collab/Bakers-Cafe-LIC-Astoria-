@@ -20,7 +20,7 @@ export function MaintenanceShield({
             Scheduled Kitchen Maintenance
           </span>
           <h1 className="font-serif text-3xl font-bold text-[#211510]">
-            Home Bakery Karachi
+            Bakers Cafe LIC
           </h1>
         </div>
 
@@ -38,20 +38,20 @@ export function MaintenanceShield({
             Reach out directly to our head baker on WhatsApp:
           </p>
           <a
-            href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Home Bakery! Inquiring regarding an urgent order during maintenance.")}`}
+            href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Bakers Cafe LIC! Inquiring regarding an urgent order during maintenance.")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-[#5F7A59] font-bold hover:underline"
           >
             <MessageCircle className="w-4 h-4" />
-            <span>+92 330 2964562 (WhatsApp)</span>
+            <span>+1 718-489-9077 (WhatsApp)</span>
           </a>
         </div>
 
         <div className="pt-4 border-t border-[#F0E9DF] flex items-center justify-between text-xs text-[#8E7C72]">
           <div className="flex items-center gap-1">
             <MapPin className="w-3 h-3 text-[#B87D4B]" />
-            <span>Gulberg Town, Karachi</span>
+            <span>Astoria, Queens, NY</span>
           </div>
           <Link
             href="/admin/login"

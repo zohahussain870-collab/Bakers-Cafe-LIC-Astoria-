@@ -21,13 +21,13 @@ export function LocationSection() {
             className="lg:col-span-6 space-y-6"
           >
             <span className="text-xs font-bold uppercase tracking-widest text-[#8F5323]">
-              Kitchen & Takeout
+              Cafe & Pickup
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#211510]">
-              Gulberg Town Kitchen & Takeout Pickup
+              Visit Our Astoria Cafe
             </h2>
             <p className="text-sm sm:text-base text-[#6B5B52] leading-relaxed">
-              We operate from our private home kitchen in Block 17, Gulberg Town, Karachi. All orders are safely packaged for takeout collection to ensure maximum freshness.
+              We operate from our cafe in Astoria, NY 11106. Enjoy dine-in service or collect your order safely packaged for takeout and pickup to ensure maximum freshness.
             </p>
 
             <div className="space-y-4 pt-2">
@@ -80,7 +80,7 @@ export function LocationSection() {
                     Service Type
                   </h3>
                   <p className="text-xs sm:text-sm text-[#6B5B52] mt-0.5">
-                    Takeout & Self-Collection (No commercial walk-in storefront)
+                    Dine-in, Takeout & Pickup
                   </p>
                 </div>
               </div>
@@ -92,7 +92,7 @@ export function LocationSection() {
                 href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Contact Home Bakery on WhatsApp for location and pickup inquiries"
+                aria-label="Contact Bakers Cafe LIC on WhatsApp for location and pickup inquiries"
                 className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-6 rounded-full bg-[#3B5934] hover:bg-[#30482B] text-white font-medium text-sm transition-colors shadow-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#3B5934]"
               >
                 <MessageCircle className="w-4 h-4" />
@@ -123,10 +123,10 @@ export function LocationSection() {
                   <MapPin className="w-7 h-7" />
                 </div>
                 <h3 className="font-serif text-lg font-bold text-[#211510]">
-                  Gulberg Town, Karachi
+                  Astoria, Queens, NY
                 </h3>
                 <p className="text-xs text-[#6B5B52] max-w-sm mt-1">
-                  House R-1932, Block 17, Gulberg Town, Karachi, 75950, Pakistan
+                  34-06 9th St, Astoria, NY 11106, USA
                 </p>
                 <a
                   href={BUSINESS_INFO.mapsUrl}
@@ -145,8 +145,8 @@ export function LocationSection() {
                   <span className="text-[#6B5B52]">Coordinated upon order scheduling</span>
                 </div>
                 <div className="text-right">
-                  <span className="font-bold text-[#211510] block">Karachi Timezone:</span>
-                  <span className="text-[#6B5B52]">PKT (UTC+5)</span>
+                  <span className="font-bold text-[#211510] block">New York Timezone:</span>
+                  <span className="text-[#6B5B52]">EST (UTC-5)</span>
                 </div>
               </div>
             </div>

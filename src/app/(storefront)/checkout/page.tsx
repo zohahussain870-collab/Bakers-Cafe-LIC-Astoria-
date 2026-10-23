@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import { BUSINESS_INFO } from "@/lib/constants";
 import {
   MapPin,
@@ -49,7 +49,7 @@ export default function CheckoutPage() {
     setErrorMessage("");
 
     if (!acknowledged) {
-      setErrorMessage("Please acknowledge the home-based bakery order conditions to proceed.");
+      setErrorMessage("Please acknowledge the halal cafe & bakery order conditions to proceed.");
       return;
     }
 
@@ -149,7 +149,7 @@ export default function CheckoutPage() {
             Complete Your Order
           </h1>
           <p className="text-xs sm:text-sm text-[#6B5B52]">
-            Orders are handcrafted fresh for takeout collection at our Gulberg Town, Karachi kitchen.
+            Orders are handcrafted fresh for pickup at our Astoria, Queens, NY cafe.
           </p>
         </div>
 
@@ -177,7 +177,7 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Syed Daniyal"
+                    placeholder="e.g. Alex Morgan"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
@@ -191,7 +191,7 @@ export default function CheckoutPage() {
                   <input
                     type="tel"
                     required
-                    placeholder="e.g. 0330 2964562"
+                    placeholder="e.g. (718) 489-9077"
                     value={customerPhone}
                     onChange={(e) => setCustomerPhone(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
@@ -216,7 +216,7 @@ export default function CheckoutPage() {
             {/* Service & Pickup Scheduling */}
             <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#E6DCce] shadow-xs space-y-4">
               <h3 className="font-serif text-lg font-bold text-[#211510]">
-                2. Takeout Collection & Scheduling
+                2. Pickup & Scheduling
               </h3>
 
               {/* Service Selection Pill */}
@@ -224,7 +224,7 @@ export default function CheckoutPage() {
                 <MapPin className="w-5 h-5 text-[#8F5323] shrink-0 mt-0.5" />
                 <div className="text-xs">
                   <div className="flex items-center gap-2">
-                    <strong className="text-[#211510] text-sm">Takeout / Self-Pickup (Free)</strong>
+                    <strong className="text-[#211510] text-sm">Pickup (Free) · Dine-in Available</strong>
                     <span className="px-2 py-0.5 rounded bg-[#EBF2EA] text-[#3B5934] font-bold text-[10px]">
                       Default Service
                     </span>
@@ -297,7 +297,7 @@ export default function CheckoutPage() {
                   className="w-4 h-4 rounded text-[#8F5323] focus:ring-[#8F5323] border-[#E6DCce] shrink-0 mt-0.5"
                 />
                 <span>
-                  I understand that <strong className="text-[#211510]">Home Bakery</strong> is a home-based artisan bakery in Gulberg Town, Karachi. All treats are freshly made to order for takeout collection, and minimum prep notice applies.
+                  I understand that <strong className="text-[#211510]">Bakers Cafe LIC</strong> is a halal cafe & bakery in Astoria, Queens, NY. All treats are freshly made to order for pickup or dine-in, and minimum prep notice applies.
                 </span>
               </label>
             </div>
@@ -328,7 +328,7 @@ export default function CheckoutPage() {
                       )}
                     </div>
                     <span className="font-bold text-[#211510] shrink-0">
-                      {formatPKR(item.unitPrice * item.quantity)}
+                      {formatUSD(item.unitPrice * item.quantity)}
                     </span>
                   </div>
                 ))}
@@ -338,22 +338,22 @@ export default function CheckoutPage() {
               <div className="space-y-2.5 text-xs sm:text-sm border-t border-[#F0E9DF] pt-4">
                 <div className="flex justify-between text-[#6B5B52]">
                   <span>Subtotal</span>
-                  <span className="font-medium text-[#211510]">{formatPKR(subtotal)}</span>
+                  <span className="font-medium text-[#211510]">{formatUSD(subtotal)}</span>
                 </div>
                 {discount > 0 && (
                   <div className="flex justify-between text-[#3B5934] font-medium">
                     <span>Discount ({promoCode})</span>
-                    <span>-{formatPKR(discount)}</span>
+                    <span>-{formatUSD(discount)}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-[#6B5B52]">
-                  <span>Takeout Pickup</span>
+                  <span>Pickup</span>
                   <span className="text-[#3B5934] font-semibold">Free</span>
                 </div>
                 <div className="border-t border-[#E6DCce] pt-3 flex justify-between items-center text-base">
                   <span className="font-serif font-bold text-[#211510]">Total Payable</span>
                   <span className="font-serif text-2xl font-bold text-[#8F5323]">
-                    {formatPKR(finalTotal)}
+                    {formatUSD(finalTotal)}
                   </span>
                 </div>
               </div>
@@ -380,7 +380,7 @@ export default function CheckoutPage() {
                   <span>How WhatsApp Integration Works:</span>
                 </p>
                 <p>
-                  Placing your order generates an official order reference code in our system and automatically prepares your itemized summary for sending to our kitchen on WhatsApp (+92 330 2964562).
+                  Placing your order generates an official order reference code in our system and automatically prepares your itemized summary for sending to our kitchen on WhatsApp (+1 718-489-9077).
                 </p>
               </div>
             </div>

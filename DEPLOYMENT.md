@@ -1,6 +1,6 @@
 # Deployment & Production Runbook
 
-This guide describes how to configure, deploy, and operate the Home Bakery platform in production.
+This guide describes how to configure, deploy, and operate the Bakers Cafe LIC platform in production.
 
 ---
 
@@ -10,25 +10,25 @@ Ensure the following environment variables are set in your production hosting pl
 
 ```ini
 # Production Database Connection (e.g. Neon, Supabase, Railway PostgreSQL)
-DATABASE_URL="postgresql://user:password@host:5432/homebakery?schema=public"
+DATABASE_URL="postgresql://user:password@host:5432/bakerscafelic?schema=public"
 
 # Session & Cryptographic Secret (32+ characters)
 SESSION_SECRET="generate-a-strong-random-secret-key-32-chars-minimum"
 
 # Production Canonical Application URL
-NEXT_PUBLIC_APP_URL="https://homebakery.pk"
+NEXT_PUBLIC_APP_URL="https://bakerscafelic.com"
 
 # Initial Administrator Provisioning Credentials
-ADMIN_EMAIL="admin@homebakery.pk"
+ADMIN_EMAIL="admin@bakerscafelic.com"
 ADMIN_PASSWORD="StrongProductionAdminPassword2026!"
 ADMIN_NAME="Head Baker"
 
 # Business Information Defaults (Source of Truth)
-NEXT_PUBLIC_BUSINESS_NAME="Home Bakery"
-NEXT_PUBLIC_BUSINESS_PHONE="+92 330 2964562"
-NEXT_PUBLIC_BUSINESS_WHATSAPP="923302964562"
-NEXT_PUBLIC_BUSINESS_ADDRESS="House R-1932, Block 17, Gulberg Town, Karachi, 75950, Pakistan"
-NEXT_PUBLIC_MAPS_URL="https://www.google.com/maps/search/?api=1&query=Home+Bakery+House+R-1932+Block+17+Gulberg+Town+Karachi"
+NEXT_PUBLIC_BUSINESS_NAME="Bakers Cafe LIC"
+NEXT_PUBLIC_BUSINESS_PHONE="+1 718-489-9077"
+NEXT_PUBLIC_BUSINESS_WHATSAPP="17184899077"
+NEXT_PUBLIC_BUSINESS_ADDRESS="34-06 9th St, Astoria, NY 11106, USA"
+NEXT_PUBLIC_MAPS_URL="https://www.google.com/maps/search/?api=1&query=Bakers+Cafe+LIC+34-06+9th+St+Astoria+NY+11106"
 ```
 
 ---

@@ -2,8 +2,8 @@ import React from "react";
 import { BUSINESS_INFO } from "@/lib/constants";
 
 export const metadata = {
-  title: "Terms of Service | Home Bakery Karachi",
-  description: "Terms and conditions for ordering artisanal baked goods from Home Bakery in Karachi.",
+  title: "Terms of Service | Bakers Cafe LIC",
+  description: "Terms and conditions for ordering artisanal baked goods from Bakers Cafe LIC in Astoria, NY.",
 };
 
 export default function TermsPage() {
@@ -25,14 +25,14 @@ export default function TermsPage() {
             1. Nature of Business
           </h2>
           <p>
-            <strong>{BUSINESS_INFO.name}</strong> is an artisan home-based bakery located in Gulberg Town, Karachi, Pakistan. We prepare baked goods fresh upon request and do not maintain an open commercial walk-in storefront with ready counter stock.
+            <strong>{BUSINESS_INFO.name}</strong> is a halal cafe & bakery located in Astoria, NY, USA. We prepare baked goods fresh upon request and offer dine-in, takeout, and pickup.
           </p>
 
           <h2 className="font-serif text-lg font-bold text-[#211510] pt-2">
             2. Availability & Preparation Times
           </h2>
           <p>
-            Our availability is listed as &ldquo;{BUSINESS_INFO.listedAvailability}&rdquo;. This reflects our capability to accept orders around the clock. However, every bake requires honest preparation time:
+            Our availability is listed as &ldquo;{BUSINESS_INFO.listedAvailability}&rdquo;. This reflects our regular service availability. Every bake requires honest preparation time:
           </p>
           <ul className="list-disc pl-5 space-y-1">
             <li>Standard treats (brownies, cookies, cupcakes): Minimum 4 to 6 hours notice.</li>
@@ -47,10 +47,10 @@ export default function TermsPage() {
           </p>
 
           <h2 className="font-serif text-lg font-bold text-[#211510] pt-2">
-            4. Takeout & Collection
+            4. Pickup & Collection
           </h2>
           <p>
-            All orders default to self-pickup/takeout from our official kitchen address: <strong>{BUSINESS_INFO.address}</strong>. Customers are responsible for collecting their bakes within their scheduled time window to ensure maximum freshness and temperature stability.
+            Online orders are prepared for pickup at our cafe address: <strong>{BUSINESS_INFO.address}</strong>. Customers are responsible for collecting their bakes within their scheduled time window to ensure maximum freshness and temperature stability.
           </p>
         </div>
       </div>

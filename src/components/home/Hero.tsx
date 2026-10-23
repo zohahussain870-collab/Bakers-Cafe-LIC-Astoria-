@@ -54,7 +54,7 @@ export function Hero() {
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#F7EDE2] text-[#8F5323] border border-[#8F5323]/25">
                 <MapPin className="w-3.5 h-3.5" />
-                <span>Gulberg Town • Karachi</span>
+                <span>Astoria, Queens • NY</span>
               </span>
 
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#EBF2EA] text-[#3B5934] border border-[#3B5934]/25">
@@ -64,8 +64,8 @@ export function Hero() {
 
               <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#E6DCce] text-[#211510] shadow-2xs">
                 <Star className="w-3.5 h-3.5 text-amber-600 fill-amber-500" />
-                <span>5.0 Google Rating</span>
-                <span className="text-[10px] text-[#68584F] font-medium">(1 review)</span>
+                <span>4.9 Google Rating</span>
+                <span className="text-[10px] text-[#68584F] font-medium">(243 reviews)</span>
               </span>
             </div>
 
@@ -77,14 +77,14 @@ export function Hero() {
 
             {/* 3. Descriptive Paragraph */}
             <p className="text-base sm:text-lg text-[#6B5B52] max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Handcrafted sweetness for celebrations, thoughtful gifts, and everyday cravings. Made in small batches in our Karachi home kitchen using Belgian chocolate, pure butter, and honest artisan craft.
+              Handcrafted sweetness for celebrations, thoughtful gifts, and everyday cravings. Made in small batches in our Astoria cafe kitchen using Belgian chocolate, pure butter, and honest artisan craft.
             </p>
 
-            {/* 4. Service Notice / Takeout Location */}
+            {/* 4. Service Notice / Pickup Location */}
             <div className="p-3.5 rounded-xl bg-white/80 border border-[#E6DCce] text-xs text-[#6B5B52] flex items-center justify-center lg:justify-start gap-2 shadow-2xs">
               <MapPin className="w-4 h-4 text-[#8F5323] shrink-0" />
               <span>
-                <strong>Takeout Pickup:</strong> House R-1932, Block 17, Gulberg Town, Karachi. (Advance notice required)
+                <strong>Pickup & Dine-in:</strong> 34-06 9th St, Astoria, NY. (Advance notice required)
               </span>
             </div>
 
@@ -100,7 +100,7 @@ export function Hero() {
               </Link>
 
               <a
-                href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Home Bakery! I'd like to place an artisan bake order.")}`}
+                href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Bakers Cafe LIC! I'd like to place an artisan bake order.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Order freshly baked artisan treats via WhatsApp"
@@ -160,7 +160,7 @@ export function Hero() {
                   />
                 </div>
                 <div>
-                  <div role="img" aria-label="5 out of 5 stars" className="flex text-amber-500 text-xs">★★★★★</div>
+                  <div role="img" aria-label="4.9 out of 5 stars" className="flex text-amber-500 text-xs">★★★★★</div>
                   <p className="font-serif text-xs font-bold text-[#211510] mt-0.5">
                     Salted Caramel Brownies
                   </p>
@@ -184,7 +184,7 @@ export function Hero() {
                 className="absolute -top-3 -right-2 sm:-top-4 sm:-right-6 bg-[#211510] text-[#FAF7F2] rounded-full px-3 sm:px-4 py-1.5 sm:py-2 border border-[#3A2922] shadow-lg flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-medium"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Open for Takeout Orders</span>
+                <span>Open for Dine-in & Takeout</span>
               </div>
             </div>
           </div>

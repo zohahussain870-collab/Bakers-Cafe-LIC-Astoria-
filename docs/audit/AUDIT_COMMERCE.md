@@ -1,6 +1,6 @@
 # Technical Audit: Storefront & Commerce Workflow Report
 
-**Project:** Home Bakery (Karachi, Pakistan)  
+**Project:** Bakers Cafe LIC (Astoria, NY, USA)  
 **Modules Audited:** Catalog (`/menu`, `/product/[slug]`), Cart (`/cart`), Checkout (`/checkout`), Tracking (`/order/track`), WhatsApp Integration  
 **Audit Date:** October 14, 2026  
 
@@ -17,7 +17,7 @@
 
 ### 1.2 Detail Page & Variant Dynamic Pricing
 - **Route:** `/product/[slug]`
-- **Price Calculation:** Displays base price in PKR, adjusting dynamically as variant sizes (e.g. `1 Lb` vs `2 Lbs` or `Box of 6`) are selected.
+- **Price Calculation:** Displays base price in USD, adjusting dynamically as variant sizes (e.g. `1 Lb` vs `2 Lbs` or `Box of 6`) are selected.
 - **Preparation Notice:** Prominently communicates mandatory baking notice (e.g. `24 hours notice for artisan celebration cakes; 4-6 hours notice for brownies`).
 - **Allergens & Ingredients:** Explicitly itemized for consumer safety.
 
@@ -39,19 +39,19 @@ Tested against `/api/promotions/validate` and `src/lib/discounts.ts`:
 
 | Test Scenario | Subtotal | Input Code | Expected Outcome | Observed Result | Status |
 | :--- | :---: | :--- | :--- | :--- | :---: |
-| **Valid Min Order** | PKR 2,800 | `SWEETWELCOME` | 10% discount (PKR 280) | HTTP 200, PKR 280 discount | **PASSED** |
-| **Below Min Order** | PKR 1,000 | `SWEETWELCOME` | Rejected (min PKR 1,500) | HTTP 400: *"Minimum order value for this promo is PKR 1500."* | **PASSED** |
-| **Non-Existent Code**| PKR 2,800 | `INVALIDCODE` | Rejected | HTTP 400: *"This promo code is invalid or has expired."* | **PASSED** |
-| **Inactive Code** | PKR 2,800 | Inactive Promo | Rejected | HTTP 400: *"This promotion code is inactive."* | **PASSED** |
-| **Expired Code** | PKR 2,800 | Expired Promo | Rejected | HTTP 400: *"This promotion has expired."* | **PASSED** |
-| **Max Uses Reached**| PKR 2,800 | Exhausted Promo | Rejected | HTTP 400: *"This promo code has reached its maximum usage limit."* | **PASSED** |
+| **Valid Min Order** | USD 2,800 | `SWEETWELCOME` | 10% discount (USD 280) | HTTP 200, USD 280 discount | **PASSED** |
+| **Below Min Order** | USD 1,000 | `SWEETWELCOME` | Rejected (min USD 1,500) | HTTP 400: *"Minimum order value for this promo is USD 1500."* | **PASSED** |
+| **Non-Existent Code**| USD 2,800 | `INVALIDCODE` | Rejected | HTTP 400: *"This promo code is invalid or has expired."* | **PASSED** |
+| **Inactive Code** | USD 2,800 | Inactive Promo | Rejected | HTTP 400: *"This promotion code is inactive."* | **PASSED** |
+| **Expired Code** | USD 2,800 | Expired Promo | Rejected | HTTP 400: *"This promotion has expired."* | **PASSED** |
+| **Max Uses Reached**| USD 2,800 | Exhausted Promo | Rejected | HTTP 400: *"This promo code has reached its maximum usage limit."* | **PASSED** |
 
 ---
 
 ## 4. Checkout Validation & Business Rules
 
 ### 4.1 Business Rules Verification
-- **Default Service Method:** Takeout / Self-Pickup at `House R-1932, Block 17, Gulberg Town, Karachi, 75950`.
+- **Default Service Method:** Takeout / Self-Pickup at `34-06 9th St, Astoria, NY 11106`.
 - **Delivery Guard:** Delivery is disabled by default in business settings. When an order payload specifies `serviceType: "DELIVERY"` while delivery is disabled, the API strictly rejects the request with HTTP 400: *"Delivery is currently disabled. Please select Takeout pickup."*.
 - **Phone Validation:** Requires a complete 11-digit Pakistani phone number. Short prefixes (`92` or `033`) are rejected by Zod and validation guards.
 - **Scheduling:** Pickup date and time slot are required for all made-to-order bakes.
@@ -60,44 +60,44 @@ Tested against `/api/promotions/validate` and `src/lib/discounts.ts`:
 
 ## 5. WhatsApp Integration Verification
 
-Tested generated URL and decoded message output for order `HB-2026-FBVM`:
+Tested generated URL and decoded message output for order `BC-2026-FBVM`:
 
-- **Target Phone Number:** `923302964562` (normalized international format for `+92 330 2964562`).
-- **Generated Link Scheme:** `https://wa.me/923302964562?text=...`
+- **Target Phone Number:** `17184899077` (normalized international format for `+1 718-489-9077`).
+- **Generated Link Scheme:** `https://wa.me/17184899077?text=...`
 - **Decoded Message Content:**
   ```text
-  *NEW HOME BAKERY ORDER — #HB-2026-FBVM*
+  *NEW HOME BAKERY ORDER — #BC-2026-FBVM*
   ---------------------------------
   *Customer:* Audit Verification Customer
   *Phone:* 0330 2964562
-  *Service:* Takeout Pickup (Gulberg Town)
+  *Service:* Takeout Pickup (Astoria)
   *Scheduled For:* 2026-10-16 (14:00 - 16:00)
   *Special Notes:* Auditor test order - do not bake
   ---------------------------------
   *ITEMS ORDERED:*
-  • 1x Salted Caramel Fudgy Brownie Box [Note: Live Verification] — PKR 1650
+  • 1x Salted Caramel Fudgy Brownie Box [Note: Live Verification] — USD 1650
   ---------------------------------
-  *Subtotal:* PKR 1650
-  *Discount:* -PKR 165
-  *TOTAL:* PKR 1485
+  *Subtotal:* USD 1650
+  *Discount:* -USD 165
+  *TOTAL:* USD 1485
   ---------------------------------
-  _This order has been registered in the Home Bakery system. Please reply to confirm availability and accept._
+  _This order has been registered in the Bakers Cafe LIC system. Please reply to confirm availability and accept._
   ```
 - **Privacy & Safety Review:**
   - URL encoding is RFC-3986 compliant (`encodeURIComponent`).
   - Contains no customer credit card or payment data.
-  - Transparently states: *"This order has been registered in the Home Bakery system. Please reply to confirm availability and accept."* (Avoids false claims of immediate acceptance before the baker confirms).
+  - Transparently states: *"This order has been registered in the Bakers Cafe LIC system. Please reply to confirm availability and accept."* (Avoids false claims of immediate acceptance before the baker confirms).
 
 ---
 
 ## 6. Order Tracking & Privacy Verification
 
-Tested against `/api/orders/track` with order `HB-2026-V6UD` (Customer: `Syed Daniyal`, Phone: `0330 2964562`):
+Tested against `/api/orders/track` with order `BC-2026-V6UD` (Customer: `Syed Daniyal`, Phone: `0330 2964562`):
 
 | Test Request | Parameter | Observed HTTP Status | Payload Returned | Evaluation |
 | :--- | :--- | :---: | :--- | :---: |
-| **Correct Ref + Correct Phone** | `ref: HB-2026-V6UD`, `phone: 0330 2964562` | **200 OK** | Full order details | **PASSED** |
-| **Substring Phone Bypass Probe** | `ref: HB-2026-V6UD`, `phone: 92` | **400 Bad Request** | *"Please enter a valid, complete Pakistani telephone number."* | **REMEDIATED** |
-| **Correct Ref + Incorrect Phone**| `ref: HB-2026-V6UD`, `phone: 0312 9999999` | **404 Not Found** | *"No order found matching the provided reference and telephone number."* | **REMEDIATED** |
-| **Non-Existent Order Ref** | `ref: HB-2026-999999`, `phone: 0330 2964562`| **404 Not Found** | *"No order found matching the provided reference and telephone number."* | **REMEDIATED** |
+| **Correct Ref + Correct Phone** | `ref: BC-2026-V6UD`, `phone: 0330 2964562` | **200 OK** | Full order details | **PASSED** |
+| **Substring Phone Bypass Probe** | `ref: BC-2026-V6UD`, `phone: 92` | **400 Bad Request** | *"Please enter a valid, complete Pakistani telephone number."* | **REMEDIATED** |
+| **Correct Ref + Incorrect Phone**| `ref: BC-2026-V6UD`, `phone: 0312 9999999` | **404 Not Found** | *"No order found matching the provided reference and telephone number."* | **REMEDIATED** |
+| **Non-Existent Order Ref** | `ref: BC-2026-999999`, `phone: 0330 2964562`| **404 Not Found** | *"No order found matching the provided reference and telephone number."* | **REMEDIATED** |
 | **Throttling Probe** | 16 rapid requests | **429 Too Many Requests**| Rate limit active | **PASSED** |

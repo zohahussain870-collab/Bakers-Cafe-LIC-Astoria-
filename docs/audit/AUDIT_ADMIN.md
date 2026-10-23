@@ -10,7 +10,7 @@
 ## 1. Kitchen KPI Dashboard (`/admin`)
 
 ### 1.1 Real Database Metrics Verification
-- **Orders Today:** Queries `prisma.order.count({ where: { createdAt: { gte: startOfToday } } })` using Asia/Karachi midnight boundary.
+- **Orders Today:** Queries `prisma.order.count({ where: { createdAt: { gte: startOfToday } } })` using America/New_York midnight boundary.
 - **Awaiting Confirmation:** Queries `prisma.order.count({ where: { status: 'PENDING' } })`.
 - **In Oven / Preparing:** Queries `prisma.order.count({ where: { status: 'PREPARING' } })`.
 - **Total Sales Revenue:** Computed via `prisma.order.aggregate({ where: { status: { in: ['CONFIRMED', 'PREPARING', 'READY_FOR_PICKUP', 'COMPLETED'] } }, _sum: { total: true } })`.
@@ -28,7 +28,7 @@ The 5-stage lifecycle was verified through direct API manipulation:
       │
       └──► [ CANCELLED ]
 ```
-- **Observed Test:** Order `HB-2026-FBVM` was transitioned from `PENDING` to `CONFIRMED` via `PATCH /api/admin/orders/[id]/status`.
+- **Observed Test:** Order `BC-2026-FBVM` was transitioned from `PENDING` to `CONFIRMED` via `PATCH /api/admin/orders/[id]/status`.
 - **Audit Logging:** Verified that `AuditLog` row was created with action `ORDER_STATUS_CHANGED`, recording previous status, new status, timestamp, and administrator identity.
 - **Internal Kitchen Notes:** Verified that internal staff notes persist in the database without being exposed to public tracking APIs.
 - **Order Slips & Printing:** `/admin/orders/[id]` provides clean, printable slips formatted for thermal receipt printers.

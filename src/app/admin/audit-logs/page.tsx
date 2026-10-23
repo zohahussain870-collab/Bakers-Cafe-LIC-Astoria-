@@ -35,7 +35,7 @@ export default async function AdminAuditLogsPage() {
             <table className="w-full text-left text-xs sm:text-sm">
               <thead className="bg-[#FAF7F2] text-[#8E7C72] font-semibold border-b border-[#E6DCce]">
                 <tr>
-                  <th className="py-3.5 px-6">Timestamp (PKT)</th>
+                  <th className="py-3.5 px-6">Timestamp (ET)</th>
                   <th className="py-3.5 px-6">Action</th>
                   <th className="py-3.5 px-6">Administrator</th>
                   <th className="py-3.5 px-6">Event Details</th>
@@ -45,8 +45,8 @@ export default async function AdminAuditLogsPage() {
                 {logs.map((log) => (
                   <tr key={log.id} className="hover:bg-[#FAF7F2]/50 transition-colors">
                     <td className="py-3.5 px-6 font-mono text-xs text-[#8E7C72] shrink-0">
-                      {log.createdAt.toLocaleString("en-PK", {
-                        timeZone: "Asia/Karachi",
+                      {log.createdAt.toLocaleString("en-US", {
+                        timeZone: "America/New_York",
                       })}
                     </td>
 

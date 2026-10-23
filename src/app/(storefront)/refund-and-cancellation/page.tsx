@@ -2,7 +2,7 @@ import React from "react";
 import { BUSINESS_INFO } from "@/lib/constants";
 
 export const metadata = {
-  title: "Refund & Cancellation Policy | Home Bakery Karachi",
+  title: "Refund & Cancellation Policy | Bakers Cafe LIC",
   description: "Cancellation notice requirements and refund policies for custom bakery orders.",
 };
 

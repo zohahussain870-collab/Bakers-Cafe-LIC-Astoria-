@@ -10,9 +10,9 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Contact & Takeout Pickup Location | Home Bakery Karachi",
+  title: "Contact & Cafe Location | Bakers Cafe LIC",
   description:
-    "Official location, contact phone, WhatsApp link, and directions for Home Bakery in House R-1932, Block 17, Gulberg Town, Karachi.",
+    "Official location, contact phone, WhatsApp link, and directions for Bakers Cafe LIC in 34-06 9th St, Astoria, NY.",
 };
 
 export default function ContactPage() {
@@ -28,7 +28,7 @@ export default function ContactPage() {
             <span>Location & Contact</span>
           </h1>
           <p className="text-xs sm:text-sm text-[#6B5B52]">
-            We operate as a home-based artisan bakery in Gulberg Town, Karachi. Takeout orders are coordinated in advance.
+            We operate as a halal cafe & bakery in Astoria, Queens, NY. Pickup orders are coordinated in advance, and walk-ins are welcome for dine-in.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ export default function ContactPage() {
                     {BUSINESS_INFO.address}
                   </p>
                   <p className="text-xs text-[#6B5B52] mt-0.5">
-                    Service: <strong>Takeout / Self-Pickup</strong> (No walk-in storefront)
+                    Service: <strong>Dine-in, Takeout & Pickup</strong>
                   </p>
                   <a
                     href={BUSINESS_INFO.mapsUrl}
@@ -82,7 +82,7 @@ export default function ContactPage() {
                   </p>
                   <div className="flex gap-3 pt-2">
                     <a
-                      href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Home Bakery! I'd like to place an inquiry.")}`}
+                      href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Bakers Cafe LIC! I'd like to place an inquiry.")}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#3B5934] text-white text-xs font-semibold hover:bg-[#2F472A] transition-colors"
@@ -123,7 +123,7 @@ export default function ContactPage() {
           {/* Location Map Presentation */}
           <div className="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-[#E6DCce] shadow-xs space-y-6">
             <h2 className="font-serif text-xl font-bold text-[#211510] border-b border-[#F0E9DF] pb-4">
-              Gulberg Town Map
+              Astoria Map
             </h2>
 
             <div className="aspect-square rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] flex flex-col items-center justify-center p-6 text-center space-y-3">
@@ -131,10 +131,10 @@ export default function ContactPage() {
                 <MapPin className="w-7 h-7" />
               </div>
               <h3 className="font-serif text-lg font-bold text-[#211510]">
-                House R-1932, Block 17
+                34-06 9th St
               </h3>
               <p className="text-xs text-[#6B5B52]">
-                Gulberg Town, Karachi, 75950, Pakistan
+                Astoria, NY 11106, USA
               </p>
               <a
                 href={BUSINESS_INFO.mapsUrl}
@@ -150,8 +150,8 @@ export default function ContactPage() {
             <div className="p-4 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] flex items-center gap-3">
               <Star className="w-5 h-5 text-amber-500 fill-amber-500 shrink-0" />
               <div className="text-xs">
-                <strong className="text-[#211510] block">Google Rating: 5.0 / 5.0</strong>
-                <span className="text-[#8E7C72]">Based on supplied Google listing (1 review)</span>
+                <strong className="text-[#211510] block">Google Rating: 4.9 / 5.0</strong>
+                <span className="text-[#8E7C72]">Based on 243 Google reviews</span>
               </div>
             </div>
           </div>

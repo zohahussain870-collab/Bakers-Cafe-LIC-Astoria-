@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { formatPKR, formatPakistanPhone, normalizeWhatsAppNumber } from "@/lib/utils";
+import { formatUSD, formatUSPhone, normalizeWhatsAppNumber } from "@/lib/utils";
 import {
   ArrowLeft,
   Printer,
@@ -80,7 +80,7 @@ export function OrderDetailEditor({ order }: OrderDetailEditorProps) {
   };
 
   const customerWaUrl = `https://wa.me/${normalizeWhatsAppNumber(order.customerPhone)}?text=${encodeURIComponent(
-    `Hello ${order.customerName}! This is Home Bakery Karachi regarding your order #${order.orderReference}.`
+    `Hello ${order.customerName}! This is Bakers Cafe LIC regarding your order #${order.orderReference}.`
   )}`;
 
   return (
@@ -104,7 +104,7 @@ export function OrderDetailEditor({ order }: OrderDetailEditorProps) {
               </span>
             </div>
             <p className="text-xs text-[#8E7C72]">
-              Placed on {new Date(order.createdAt).toLocaleString("en-PK", { timeZone: "Asia/Karachi" })} PKT
+              Placed on {new Date(order.createdAt).toLocaleString("en-US", { timeZone: "America/New_York" })} ET
             </p>
           </div>
         </div>
@@ -158,7 +158,7 @@ export function OrderDetailEditor({ order }: OrderDetailEditorProps) {
                 <span className="text-[#8E7C72] block font-medium">Customer:</span>
                 <p className="font-bold text-[#211510]">{order.customerName}</p>
                 <p className="text-xs text-[#6B5B52]">
-                  Phone: <strong>{formatPakistanPhone(order.customerPhone)}</strong>
+                  Phone: <strong>{formatUSPhone(order.customerPhone)}</strong>
                 </p>
                 {order.customerEmail && (
                   <p className="text-xs text-[#6B5B52]">Email: {order.customerEmail}</p>
@@ -174,7 +174,7 @@ export function OrderDetailEditor({ order }: OrderDetailEditorProps) {
                   Window: <strong>{order.requestedTime || "Standard"}</strong>
                 </p>
                 <p className="text-xs text-[#5F7A59] font-semibold mt-1">
-                  Service: {order.serviceType === "TAKEOUT" ? "Takeout Pickup (Gulberg Town)" : "Delivery"}
+                  Service: {order.serviceType === "TAKEOUT" ? "Pickup (Astoria)" : "Delivery"}
                 </p>
               </div>
             </div>
@@ -213,11 +213,11 @@ export function OrderDetailEditor({ order }: OrderDetailEditorProps) {
                       </p>
                     )}
                     <span className="text-[11px] text-[#8E7C72] block mt-0.5">
-                      Rate: {formatPKR(it.unitPrice)} each
+                      Rate: {formatUSD(it.unitPrice)} each
                     </span>
                   </div>
                   <span className="font-bold text-[#211510]">
-                    {formatPKR(it.subtotal)}
+                    {formatUSD(it.subtotal)}
                   </span>
                 </div>
               ))}
@@ -227,22 +227,22 @@ export function OrderDetailEditor({ order }: OrderDetailEditorProps) {
             <div className="border-t border-[#E6DCce] pt-3 space-y-1.5 text-xs sm:text-sm">
               <div className="flex justify-between text-[#6B5B52]">
                 <span>Subtotal</span>
-                <span>{formatPKR(order.subtotal)}</span>
+                <span>{formatUSD(order.subtotal)}</span>
               </div>
               {order.discount > 0 && (
                 <div className="flex justify-between text-[#5F7A59]">
                   <span>Discount</span>
-                  <span>-{formatPKR(order.discount)}</span>
+                  <span>-{formatUSD(order.discount)}</span>
                 </div>
               )}
               <div className="flex justify-between text-[#6B5B52]">
-                <span>Delivery / Takeout Fee</span>
-                <span>{order.deliveryFee > 0 ? formatPKR(order.deliveryFee) : "Free"}</span>
+                <span>Delivery / Service Fee</span>
+                <span>{order.deliveryFee > 0 ? formatUSD(order.deliveryFee) : "Free"}</span>
               </div>
               <div className="flex justify-between items-center text-base font-serif font-bold text-[#211510] pt-2 border-t border-[#F0E9DF]">
                 <span>Total Amount Payable</span>
                 <span className="text-xl text-[#B87D4B]">
-                  {formatPKR(order.total)}
+                  {formatUSD(order.total)}
                 </span>
               </div>
             </div>
@@ -269,7 +269,7 @@ export function OrderDetailEditor({ order }: OrderDetailEditorProps) {
                 <option value="PENDING">PENDING (Awaiting Review)</option>
                 <option value="CONFIRMED">CONFIRMED (Accepted)</option>
                 <option value="PREPARING">PREPARING (In Oven/Baking)</option>
-                <option value="READY_FOR_PICKUP">READY FOR PICKUP (Takeout)</option>
+                <option value="READY_FOR_PICKUP">READY FOR PICKUP</option>
                 <option value="COMPLETED">COMPLETED (Collected)</option>
                 <option value="CANCELLED">CANCELLED</option>
               </select>
@@ -281,7 +281,7 @@ export function OrderDetailEditor({ order }: OrderDetailEditorProps) {
               </label>
               <textarea
                 rows={3}
-                placeholder="e.g. Paid via Raast; Customer picking up at 5:30 PM"
+                placeholder="e.g. Paid by card; Customer picking up at 5:30 PM"
                 value={internalNotes}
                 onChange={(e) => setInternalNotes(e.target.value)}
                 className="w-full px-3.5 py-2 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs text-[#211510] focus:border-[#B87D4B]"

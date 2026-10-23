@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import { Plus, Tag, AlertCircle } from "lucide-react";
 
 interface PromoItem {
@@ -23,7 +23,7 @@ export function PromotionsManager({ initialPromos }: { initialPromos: PromoItem[
   const [description, setDescription] = useState("");
   const [discountType, setDiscountType] = useState<"PERCENTAGE" | "FIXED">("PERCENTAGE");
   const [discountValue, setDiscountValue] = useState("10");
-  const [minOrderValue, setMinOrderValue] = useState("1500");
+  const [minOrderValue, setMinOrderValue] = useState("15");
   const [maxUses, setMaxUses] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -125,7 +125,7 @@ export function PromotionsManager({ initialPromos }: { initialPromos: PromoItem[
                 className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
               >
                 <option value="PERCENTAGE">Percentage (%) Off</option>
-                <option value="FIXED">Fixed Amount (PKR) Off</option>
+                <option value="FIXED">Fixed Amount (USD) Off</option>
               </select>
             </div>
           </div>
@@ -148,12 +148,12 @@ export function PromotionsManager({ initialPromos }: { initialPromos: PromoItem[
 
             <div className="space-y-1.5">
               <label className="block text-xs font-bold text-[#211510]">
-                Minimum Order (PKR)
+                Minimum Order (USD)
               </label>
               <input
                 type="number"
                 min="0"
-                placeholder="1500"
+                placeholder="15"
                 value={minOrderValue}
                 onChange={(e) => setMinOrderValue(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
@@ -181,7 +181,7 @@ export function PromotionsManager({ initialPromos }: { initialPromos: PromoItem[
             </label>
             <input
               type="text"
-              placeholder="e.g. 10% off celebration orders over PKR 1,500"
+              placeholder="e.g. 10% off celebration orders over USD 15"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#B87D4B]"
@@ -223,11 +223,11 @@ export function PromotionsManager({ initialPromos }: { initialPromos: PromoItem[
                   <td className="py-4 px-6 font-bold text-[#211510]">
                     {p.discountType === "PERCENTAGE"
                       ? `${p.discountValue}% Off`
-                      : `PKR ${p.discountValue} Off`}
+                      : `USD ${p.discountValue} Off`}
                   </td>
 
                   <td className="py-4 px-6 text-[#6B5B52]">
-                    {p.minOrderValue > 0 ? formatPKR(p.minOrderValue) : "No minimum"}
+                    {p.minOrderValue > 0 ? formatUSD(p.minOrderValue) : "No minimum"}
                   </td>
 
                   <td className="py-4 px-6 text-xs text-[#6B5B52]">

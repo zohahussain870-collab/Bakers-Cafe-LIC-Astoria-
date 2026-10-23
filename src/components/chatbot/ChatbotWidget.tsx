@@ -43,8 +43,8 @@ export function ChatbotWidget() {
           aria-expanded={isOpen}
           aria-label={
             isOpen
-              ? "Close Home Bakery customer support chat"
-              : "Open Home Bakery customer support chat"
+              ? "Close Bakers Cafe LIC customer support chat"
+              : "Open Bakers Cafe LIC customer support chat"
           }
           className="group relative flex items-center justify-center w-14 h-14 sm:w-15 sm:h-15 rounded-full bg-gradient-to-tr from-[#784218] via-[#8F5323] to-[#A3632E] text-white shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#8F5323]/40"
         >

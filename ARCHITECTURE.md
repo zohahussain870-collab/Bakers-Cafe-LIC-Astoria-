@@ -2,7 +2,7 @@
 
 ## 1. System Architecture Overview
 
-Home Bakery is designed as an App Router Next.js full-stack application with strict separation between public customer storefront interactions and privileged administrative workflows:
+Bakers Cafe LIC is designed as an App Router Next.js full-stack application with strict separation between public customer storefront interactions and privileged administrative workflows:
 
 ```
 [ Client Browser ]
@@ -45,7 +45,7 @@ Home Bakery is designed as an App Router Next.js full-stack application with str
 - **Audit Logging:** Every login success and failure is logged in the `AuditLog` table with timestamp and username.
 
 ### 2.2 Insecure Direct Object Reference (IDOR) Protection
-- Customer orders are referenced via high-entropy, non-guessable alphanumeric references (e.g. `HB-2026-V6UD`).
+- Customer orders are referenced via high-entropy, non-guessable alphanumeric references (e.g. `BC-2026-V6UD`).
 - Order tracking requires **both** the Order Reference AND the customer's matching phone number.
 - Sequential numeric order IDs are never exposed in public URLs or APIs.
 
@@ -68,11 +68,11 @@ Home Bakery is designed as an App Router Next.js full-stack application with str
 1. **User:** Staff and administrator accounts (`ADMIN`, `STAFF`).
 2. **Session:** Active admin sessions with expiration timestamps.
 3. **Category:** Bakery collections with slug, image, and display order.
-4. **Product:** Artisan treats with integer base prices (PKR), prep time, stock, and allergen notes.
+4. **Product:** Artisan treats with integer base prices (USD), prep time, stock, and allergen notes.
 5. **ProductVariant:** Size, weight, and flavor options with price adjustments.
 6. **ProductImage:** High-resolution photography with alt text and display ordering.
 7. **Order:** Master order record with reference, customer details, schedule, and financial totals.
 8. **OrderItem:** Snapshot of items, prices, and custom piping notes at purchase time.
-9. **Promotion:** Coupon codes with percentage or fixed PKR discounts and usage counters.
+9. **Promotion:** Coupon codes with percentage or fixed USD discounts and usage counters.
 10. **BusinessSettings:** Singleton record storing business truth, ordering toggles, and maintenance state.
 11. **AuditLog:** Immutable audit trail for security and operational actions.

@@ -65,7 +65,7 @@ export function CinematicWelcomeIntro() {
           })}
         </div>
 
-        {/* Main welcome heading: "Welcome to Home Bakery" */}
+        {/* Main welcome heading: "Welcome to Bakers Cafe LIC" */}
         <h1
           style={{
             opacity: isActive ? 1 : 0,
@@ -74,7 +74,7 @@ export function CinematicWelcomeIntro() {
           }}
           className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#211510] tracking-tight leading-tight"
         >
-          Welcome to Home Bakery
+          Welcome to Bakers Cafe LIC
         </h1>
       </div>
 

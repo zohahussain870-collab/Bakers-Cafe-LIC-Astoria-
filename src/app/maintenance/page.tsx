@@ -5,7 +5,7 @@ import { MaintenanceShield } from "@/components/common/MaintenanceShield";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Kitchen Maintenance | Home Bakery Karachi",
+  title: "Kitchen Maintenance | Bakers Cafe LIC",
   robots: { index: false, follow: false },
 };
 

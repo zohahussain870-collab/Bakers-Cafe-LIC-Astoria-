@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductDTO } from "@/types";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import { BUSINESS_INFO } from "@/lib/constants";
 import {
@@ -57,7 +57,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
   };
 
   const whatsappInquiryUrl = `https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(
-    `Hello Home Bakery! I am inquiring about the ${product.name} (${selectedVariant?.name || "Standard size"}). Is this available for my desired date?`
+    `Hello Bakers Cafe LIC! I am inquiring about the ${product.name} (${selectedVariant?.name || "Standard size"}). Is this available for my desired date?`
   )}`;
 
   return (
@@ -158,7 +158,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
             <div>
               <span className="text-xs text-[#68584F] block font-medium">Current Selection</span>
               <span className="font-serif text-3xl font-extrabold text-[#211510]">
-                {formatPKR(unitPrice)}
+                {formatUSD(unitPrice)}
               </span>
             </div>
 
@@ -195,7 +195,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
                           {v.name}
                         </span>
                         <span className="text-xs text-[#68584F] font-medium">
-                          {formatPKR(vPrice)}
+                          {formatUSD(vPrice)}
                         </span>
                       </div>
                       {isSelected && (
@@ -263,7 +263,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
                 type="button"
                 onClick={handleAddToCart}
                 disabled={product.availability === "UNAVAILABLE"}
-                aria-label={`Add ${quantity} ${product.name} to basket for ${formatPKR(totalPrice)}`}
+                aria-label={`Add ${quantity} ${product.name} to basket for ${formatUSD(totalPrice)}`}
                 className={`flex-1 w-full flex items-center justify-center gap-2.5 py-3.5 px-6 rounded-full font-medium text-sm sm:text-base transition-all shadow-md hover:shadow-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#8F5323] ${
                   isAdded
                     ? "bg-[#3B5934] text-white"
@@ -278,7 +278,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
                 ) : (
                   <>
                     <ShoppingBag className="w-5 h-5" />
-                    <span>Add to Basket • {formatPKR(totalPrice)}</span>
+                    <span>Add to Basket • {formatUSD(totalPrice)}</span>
                   </>
                 )}
               </button>
@@ -300,7 +300,7 @@ export function ProductDetailView({ product }: { product: ProductDTO }) {
           <div className="p-4 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] flex items-center gap-3 text-xs text-[#6B5B52]">
             <MapPin className="w-4 h-4 text-[#8F5323] shrink-0" />
             <span>
-              <strong>Takeout Collection:</strong> House R-1932, Block 17, Gulberg Town, Karachi. Handcrafted fresh to order.
+              <strong>Pickup & Dine-in:</strong> 34-06 9th St, Astoria, NY. Handcrafted fresh to order.
             </span>
           </div>
 

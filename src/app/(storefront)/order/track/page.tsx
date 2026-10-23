@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import { BUSINESS_INFO } from "@/lib/constants";
 import {
   Search,
@@ -37,7 +37,7 @@ const STATUS_STEPS = [
   { key: "PENDING", label: "Order Received", desc: "Awaiting Kitchen Confirmation" },
   { key: "CONFIRMED", label: "Confirmed", desc: "Bespoke Ingredients Prepared" },
   { key: "PREPARING", label: "Baking Fresh", desc: "In Oven & Hand-Decorating" },
-  { key: "READY_FOR_PICKUP", label: "Ready for Pickup", desc: "Packaged for Takeout in Gulberg Town" },
+  { key: "READY_FOR_PICKUP", label: "Ready for Pickup", desc: "Packaged for Pickup in Astoria" },
   { key: "COMPLETED", label: "Completed", desc: "Enjoy your artisan treats!" },
 ];
 
@@ -114,7 +114,7 @@ export default function OrderTrackPage() {
             Track Your Order
           </h1>
           <p className="text-xs sm:text-sm text-[#6B5B52]">
-            Enter your order reference (e.g. HB-2026-XXXX) and registered phone number to check baking progress and pickup readiness.
+            Enter your order reference (e.g. BC-2026-XXXX) and registered phone number to check baking progress and pickup readiness.
           </p>
         </div>
 
@@ -128,7 +128,7 @@ export default function OrderTrackPage() {
               <input
                 type="text"
                 required
-                placeholder="e.g. HB-2026-X8K2"
+                placeholder="e.g. BC-2026-X8K2"
                 value={orderReference}
                 onChange={(e) => setOrderReference(e.target.value.toUpperCase())}
                 className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] font-mono uppercase text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
@@ -142,7 +142,7 @@ export default function OrderTrackPage() {
               <input
                 type="tel"
                 required
-                placeholder="e.g. 0330 2964562"
+                placeholder="e.g. (718) 489-9077"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl border border-[#E6DCce] bg-[#FAF7F2] text-xs sm:text-sm text-[#211510] focus:bg-white focus:border-[#8F5323]"
@@ -246,7 +246,7 @@ export default function OrderTrackPage() {
               <div className="space-y-1">
                 <span className="text-[#68584F] flex items-center gap-1 font-semibold">
                   <MapPin className="w-3.5 h-3.5 text-[#8F5323]" />
-                  <span>Takeout Pickup Address:</span>
+                  <span>Pickup Address:</span>
                 </span>
                 <p className="text-[#211510] font-medium">{BUSINESS_INFO.address}</p>
                 <a
@@ -292,7 +292,7 @@ export default function OrderTrackPage() {
                       )}
                     </div>
                     <span className="font-bold text-[#211510]">
-                      {formatPKR(it.subtotal)}
+                      {formatUSD(it.subtotal)}
                     </span>
                   </div>
                 ))}
@@ -301,7 +301,7 @@ export default function OrderTrackPage() {
               <div className="pt-3 border-t border-[#E6DCce] flex justify-between items-center text-sm">
                 <span className="font-bold text-[#211510]">Total Paid / Payable</span>
                 <span className="font-serif text-xl font-bold text-[#8F5323]">
-                  {formatPKR(order.total)}
+                  {formatUSD(order.total)}
                 </span>
               </div>
             </div>
@@ -309,13 +309,13 @@ export default function OrderTrackPage() {
             {/* Direct WhatsApp Assistance */}
             <div className="pt-2 text-center">
               <a
-                href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(`Hi Home Bakery! Inquiring regarding order ${order.orderReference}.`)}`}
+                href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent(`Hi Bakers Cafe LIC! Inquiring regarding order ${order.orderReference}.`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#3B5934] text-white text-xs font-semibold hover:bg-[#2F472A] transition-colors shadow-xs"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Contact Kitchen on WhatsApp (+92 330 2964562)</span>
+                <span>Contact Kitchen on WhatsApp (+1 718-489-9077)</span>
               </a>
             </div>
           </div>

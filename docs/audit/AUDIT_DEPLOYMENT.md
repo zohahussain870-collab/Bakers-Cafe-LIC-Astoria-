@@ -1,6 +1,6 @@
 # Production Deployment & Operational Readiness Runbook
 
-**Project:** Home Bakery (Karachi, Pakistan)  
+**Project:** Bakers Cafe LIC (Astoria, NY, USA)  
 **Framework:** Next.js 16.4.0 (App Router, Turbopack)  
 **Runtime:** Node.js v20+ / v24+  
 **Audit Date:** October 14, 2026  
@@ -16,7 +16,7 @@
 > Standard serverless platforms (e.g., standard Vercel serverless functions, AWS Lambda, Google Cloud Run) utilize **ephemeral filesystems**. Any database file written to disk on an ephemeral host will be wiped upon instance cold-start or redeployment.
 
 ### 1.2 Approved Production Hosting Topologies
-To operate Home Bakery reliably in production, the bakery must adopt one of two verified topologies:
+To operate Bakers Cafe LIC reliably in production, the bakery must adopt one of two verified topologies:
 
 #### Topology A: Vercel / Cloudflare + Cloud PostgreSQL (Recommended)
 - **Web Layer:** Next.js deployed to Vercel or Render.
@@ -42,10 +42,10 @@ All production environment variables must be configured in your hosting platform
 | `ADMIN_EMAIL` | **YES** | Primary staff administrator email | `headbaker@homebakery.pk` |
 | `ADMIN_PASSWORD` | **YES** | Initial administrator password | Minimum 16 high-entropy characters |
 | `ADMIN_NAME` | **YES** | Administrator display name | `Head Baker` |
-| `NEXT_PUBLIC_BUSINESS_NAME` | Optional | Storefront brand name fallback | `Home Bakery` |
-| `NEXT_PUBLIC_BUSINESS_PHONE`| Optional | Telephone display number | `+92 330 2964562` |
-| `NEXT_PUBLIC_BUSINESS_WHATSAPP`| Optional| International format WhatsApp | `923302964562` |
-| `NEXT_PUBLIC_BUSINESS_ADDRESS`| Optional| Physical kitchen address | `House R-1932, Block 17, Gulberg Town, Karachi, 75950, Pakistan` |
+| `NEXT_PUBLIC_BUSINESS_NAME` | Optional | Storefront brand name fallback | `Bakers Cafe LIC` |
+| `NEXT_PUBLIC_BUSINESS_PHONE`| Optional | Telephone display number | `+1 718-489-9077` |
+| `NEXT_PUBLIC_BUSINESS_WHATSAPP`| Optional| International format WhatsApp | `17184899077` |
+| `NEXT_PUBLIC_BUSINESS_ADDRESS`| Optional| Physical kitchen address | `34-06 9th St, Astoria, NY 11106, USA` |
 
 ---
 

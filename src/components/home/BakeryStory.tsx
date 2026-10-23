@@ -57,10 +57,10 @@ export function BakeryStory() {
               Honest Ingredients, Patient Hands & Passion in Every Crumb
             </h2>
             <p className="text-sm sm:text-base text-[#6B5B52] leading-relaxed">
-              Home Bakery began as a celebration of authentic flavors in Gulberg Town, Karachi. We believe that true luxury in baking comes from uncompromising simplicity: real creamy butter, rich Belgian chocolate, unbleached flour, and time-honored techniques.
+              Bakers Cafe LIC began as a celebration of authentic flavors in Astoria, Queens, NY. We believe that true luxury in baking comes from uncompromising simplicity: real creamy butter, rich Belgian chocolate, unbleached flour, and time-honored techniques.
             </p>
             <p className="text-sm sm:text-base text-[#6B5B52] leading-relaxed">
-              Because we bake from a private home kitchen, we don&apos;t hold days-old inventory on display counters. When you place an order, our oven is heated specifically for your batch.
+              Because we bake in small batches at our cafe, we don&apos;t hold days-old inventory on display counters. When you place an order, our oven is heated specifically for your batch.
             </p>
 
             {/* Quality Pillars */}

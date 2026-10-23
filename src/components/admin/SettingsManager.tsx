@@ -197,10 +197,10 @@ export function SettingsManager({ initialSettings }: { initialSettings: Settings
           <label className="flex items-center justify-between p-4 rounded-2xl bg-[#FAF7F2] border border-[#E6DCce] cursor-pointer">
             <div>
               <span className="font-bold text-xs sm:text-sm text-[#211510] block">
-                Takeout / Self-Pickup
+                Pickup / Takeout
               </span>
               <span className="text-xs text-[#8E7C72]">
-                Gulberg Town kitchen collection (Free)
+                Astoria kitchen collection (Free)
               </span>
             </div>
             <input
@@ -236,7 +236,7 @@ export function SettingsManager({ initialSettings }: { initialSettings: Settings
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
           <div className="space-y-1.5">
             <label className="block text-xs font-bold text-[#211510]">
-              Delivery Fee (PKR)
+              Delivery Fee (USD)
             </label>
             <input
               type="number"
@@ -251,7 +251,7 @@ export function SettingsManager({ initialSettings }: { initialSettings: Settings
 
           <div className="space-y-1.5">
             <label className="block text-xs font-bold text-[#211510]">
-              Minimum Order Value (PKR)
+              Minimum Order Value (USD)
             </label>
             <input
               type="number"

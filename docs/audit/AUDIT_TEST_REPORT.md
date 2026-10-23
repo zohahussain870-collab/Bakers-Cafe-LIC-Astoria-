@@ -1,6 +1,6 @@
 # Automated Testing & Live Workflow Verification Report
 
-**Project:** Home Bakery (Karachi, Pakistan)  
+**Project:** Bakers Cafe LIC (Astoria, NY, USA)  
 **Test Runner:** Vitest v5.0.4  
 **Audit Date:** October 14, 2026  
 **Auditor Role:** QA Automation & Security Verification Engineer  
@@ -23,7 +23,7 @@
 - Verifies:
   - 10% percentage discount calculation on qualifying order.
   - Rejection of discounts when subtotal is below minimum threshold.
-  - Fixed PKR amount discount calculation without exceeding subtotal.
+  - Fixed USD amount discount calculation without exceeding subtotal.
   - Subtotal discount capping.
   - Inactive promotion rejection.
   - Expired promotion rejection.
@@ -41,20 +41,20 @@
 - Verifies:
   - Short prefix `"92"` never matches a customer phone number.
   - Minimum phone length requirement (10 digits).
-  - Normalization of equivalent authentic phone inputs (`03302964562` vs `+92 330 2964562` vs `923302964562`).
+  - Normalization of equivalent authentic phone inputs (`03302964562` vs `+1 718-489-9077` vs `17184899077`).
   - Strict rejection of differing phone numbers.
-  - Cryptographic 6-character entropy (`HB-2026-XXXXXX`, 14 chars total).
+  - Cryptographic 6-character entropy (`BC-2026-XXXXXX`, 14 chars total).
   - Uniqueness of 500 consecutive generated order references without collision.
 
 ### 2.4 `tests/unit/utils.test.ts` (6 Tests — PASSED)
-- Verifies `formatPKR()`, `normalizeWhatsAppNumber()`, and `formatPakistanPhone()`.
+- Verifies `formatUSD()`, `normalizeWhatsAppNumber()`, and `formatUSPhone()`.
 - Validates phone normalization for official WhatsApp links.
 
 ### 2.5 `tests/unit/business-rules.test.ts` (5 Tests — PASSED)
 - Validates official business truth:
-  - Business name: Home Bakery.
-  - Address: House R-1932, Block 17, Gulberg Town, Karachi, 75950.
-  - Phone: `+92 330 2964562` (WhatsApp: `923302964562`).
+  - Business name: Bakers Cafe LIC.
+  - Address: 34-06 9th St, Astoria, NY 11106.
+  - Phone: `+1 718-489-9077` (WhatsApp: `17184899077`).
   - Supplied Google Rating: 5.0/5 from 1 review (distinguished from live reviews).
   - Takeout default service method.
 
@@ -78,10 +78,10 @@
 
 | Workflow Scenario | Target Route | Method | Inputs Used | Observed Result | Evidence Location |
 | :--- | :--- | :---: | :--- | :--- | :--- |
-| **Admin Login** | `/api/admin/login` | POST | `admin@homebakery.pk` | HTTP 200, sets HTTP-only `hb_admin_session` cookie | Live terminal step 1 |
+| **Admin Login** | `/api/admin/login` | POST | `admin@bakerscafelic.com` | HTTP 200, sets HTTP-only `hb_admin_session` cookie | Live terminal step 1 |
 | **Update Settings** | `/api/admin/settings` | PUT | `{ isOnlineOrderingEnabled: true }` | HTTP 200, persisted in database | Live terminal step 2 |
-| **Place Takeout Order**| `/api/orders/create` | POST | Customer: Audit Verification, Promo: `SWEETWELCOME` | HTTP 200, Order `HB-2026-FBVM` created, subtotal PKR 1650, discount -PKR 165, total PKR 1485 | Live terminal step 3 |
-| **WhatsApp URL** | `/api/orders/create` | Output | Order `HB-2026-FBVM` | `https://wa.me/923302964562?text=*NEW...` with line items & total | Live terminal step 3 |
+| **Place Takeout Order**| `/api/orders/create` | POST | Customer: Audit Verification, Promo: `SWEETWELCOME` | HTTP 200, Order `BC-2026-FBVM` created, subtotal USD 1650, discount -USD 165, total USD 1485 | Live terminal step 3 |
+| **WhatsApp URL** | `/api/orders/create` | Output | Order `BC-2026-FBVM` | `https://wa.me/17184899077?text=*NEW...` with line items & total | Live terminal step 3 |
 | **Order Status Update**| `/api/admin/orders/[id]/status`| PATCH| Status: `CONFIRMED` | HTTP 200, order status updated, `AuditLog` row created | Live terminal step 4 |
 | **Maintenance Mode On**| `/api/admin/settings` | PUT | `{ isMaintenanceMode: true }` | HTTP 200, DB updated | Live terminal step 5 |
 | **Public Storefront Block**| `/` | GET | Unauthenticated visitor | Renders `MaintenanceShield` view with sanitization message | Live terminal step 6 |

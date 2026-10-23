@@ -23,14 +23,14 @@ export function OrderingSteps() {
       icon: Flame,
       title: "Handcrafted Fresh",
       description:
-        "We never freeze or pre-make. Your order is baked fresh from scratch in our home kitchen using 100% real dairy butter.",
+        "We never freeze or pre-make. Your order is baked fresh from scratch in our cafe kitchen using 100% real dairy butter.",
     },
     {
       step: "04",
       icon: PackageCheck,
-      title: "Gulberg Town Takeout",
+      title: "Astoria Pickup",
       description:
-        "Collect your bakery box fresh and securely packaged from House R-1932, Block 17, Gulberg Town, Karachi.",
+        "Collect your bakery box fresh and securely packaged from our cafe at 34-06 9th St, Astoria, NY.",
     },
   ];
 
@@ -47,10 +47,10 @@ export function OrderingSteps() {
             Simple & Transparent
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#211510] mt-1">
-            How Takeout Ordering Works
+            How Online Ordering Works
           </h2>
           <p className="text-sm sm:text-base text-[#6B5B52] mt-2">
-            Because we are a dedicated home-based bakery, each order receives individualized care and fresh preparation.
+            Because we are a dedicated halal cafe & bakery, each order receives individualized care and fresh preparation.
           </p>
         </ScrollReveal>
 

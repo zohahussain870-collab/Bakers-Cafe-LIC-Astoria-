@@ -1,6 +1,6 @@
 # Application Security & OWASP ASVS Audit Report
 
-**Project:** Home Bakery Platform  
+**Project:** Bakers Cafe LIC Platform  
 **Target:** Next.js Full-Stack Application, Server Endpoints & Client Surface  
 **Audit Date:** October 14, 2026  
 **Reference Frameworks:** OWASP Top 10 (2021), OWASP ASVS v4.0.3, OWASP File Upload Cheat Sheet  
@@ -19,7 +19,7 @@
 - **Promotion Creation (`/api/admin/promotions`):**
   - Enforces uppercase alphanumeric code, positive discount value, and integer minimum order threshold.
 - **Product Creation (`/api/admin/products`):**
-  - Sanitizes title and slug, ensures base price is positive integer PKR, and strictly verifies image URL protocol (`https://` or `http://`).
+  - Sanitizes title and slug, ensures base price is positive integer USD, and strictly verifies image URL protocol (`https://` or `http://`).
 
 ### 1.2 Phone Number Normalization
 - All Pakistani phone numbers are passed through `normalizeWhatsAppNumber()` in `src/lib/utils.ts`.

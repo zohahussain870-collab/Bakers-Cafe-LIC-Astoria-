@@ -6,7 +6,7 @@ export const FALLBACK_PROMO = {
   description: "10% off your celebration order",
   discountType: "PERCENTAGE",
   discountValue: 10,
-  minOrderValue: 1500,
+  minOrderValue: 15,
   isActive: true,
 };
 
@@ -82,8 +82,8 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     category: { id: "cat-1", name: "Artisan Cakes", slug: "artisan-cakes" },
     shortDescription: "Ultra-moist chocolate sponge layered with 54% dark Belgian chocolate ganache.",
     description:
-      "Our signature creation. Layers of intensely rich, moist chocolate sponge embraced by a velvety smooth Belgian dark chocolate ganache. Perfect for true chocolate lovers seeking deep cocoa notes without overwhelming sweetness. Handcrafted fresh to order in our Gulberg Town home kitchen.",
-    basePrice: 2800,
+      "Our signature creation. Layers of intensely rich, moist chocolate sponge embraced by a velvety smooth Belgian dark chocolate ganache. Perfect for true chocolate lovers seeking deep cocoa notes without overwhelming sweetness. Handcrafted fresh to order in our Astoria cafe kitchen.",
+    basePrice: 34,
     prepTime: "24 hours notice",
     availability: "MADE_TO_ORDER",
     stock: 10,
@@ -109,8 +109,8 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     ],
     variants: [
       { id: "var-1-1", name: "1.5 Lbs (Serves 6-8)", priceAdjustment: 0, isAvailable: true },
-      { id: "var-1-2", name: "2.5 Lbs (Serves 10-14)", priceAdjustment: 1600, isAvailable: true },
-      { id: "var-1-3", name: "Eggless 1.5 Lbs", priceAdjustment: 200, isAvailable: true },
+      { id: "var-1-2", name: "2.5 Lbs (Serves 10-14)", priceAdjustment: 20, isAvailable: true },
+      { id: "var-1-3", name: "Eggless 1.5 Lbs", priceAdjustment: 3, isAvailable: true },
     ],
   },
   {
@@ -122,7 +122,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     shortDescription: "Spiced sponge infused with crunchy Biscoff spread and caramelized biscuit crumb.",
     description:
       "Delicate vanilla sponge subtly spiced with cinnamon and nutmeg, layered with authentic European Biscoff cookie butter buttercream and finished with a drip of warm speculoos and crushed crunchy biscuits.",
-    basePrice: 3200,
+    basePrice: 38,
     prepTime: "24 hours notice",
     availability: "MADE_TO_ORDER",
     stock: 8,
@@ -141,7 +141,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     ],
     variants: [
       { id: "var-2-1", name: "1.5 Lbs (Serves 6-8)", priceAdjustment: 0, isAvailable: true },
-      { id: "var-2-2", name: "2.5 Lbs (Serves 10-14)", priceAdjustment: 1800, isAvailable: true },
+      { id: "var-2-2", name: "2.5 Lbs (Serves 10-14)", priceAdjustment: 22, isAvailable: true },
     ],
   },
   {
@@ -152,8 +152,8 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     category: { id: "cat-1", name: "Artisan Cakes", slug: "artisan-cakes" },
     shortDescription: "Traditional buttermilk cocoa sponge paired with tangy Philadelphia-style cream cheese frosting.",
     description:
-      "A timeless southern classic perfected in Karachi. Velvety buttermilk and cocoa crumb tinted a deep ruby, layered with rich, lightly sweetened cream cheese frosting with a hint of fresh lemon zest.",
-    basePrice: 3000,
+      "A timeless southern classic perfected in Astoria. Velvety buttermilk and cocoa crumb tinted a deep ruby, layered with rich, lightly sweetened cream cheese frosting with a hint of fresh lemon zest.",
+    basePrice: 36,
     prepTime: "24 hours notice",
     availability: "MADE_TO_ORDER",
     stock: 8,
@@ -172,7 +172,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     ],
     variants: [
       { id: "var-3-1", name: "1.5 Lbs (Serves 6-8)", priceAdjustment: 0, isAvailable: true },
-      { id: "var-3-2", name: "2.5 Lbs (Serves 10-14)", priceAdjustment: 1700, isAvailable: true },
+      { id: "var-3-2", name: "2.5 Lbs (Serves 10-14)", priceAdjustment: 20, isAvailable: true },
     ],
   },
   {
@@ -184,7 +184,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     shortDescription: "Box of 6 intensely fudgy brownies swirled with homemade amber sea salt caramel.",
     description:
       "Crafted with melted 70% dark chocolate and slow-simmered homemade caramel. The crackly crust yields to a dense, gooey center balanced with flaky sea salt crystals.",
-    basePrice: 1650,
+    basePrice: 18,
     prepTime: "4-6 hours notice",
     availability: "AVAILABLE",
     stock: 15,
@@ -203,7 +203,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     ],
     variants: [
       { id: "var-4-1", name: "Box of 6 Squares", priceAdjustment: 0, isAvailable: true },
-      { id: "var-4-2", name: "Box of 12 Squares", priceAdjustment: 1400, isAvailable: true },
+      { id: "var-4-2", name: "Box of 12 Squares", priceAdjustment: 16, isAvailable: true },
     ],
   },
   {
@@ -215,7 +215,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     shortDescription: "Assortment of 6 handcrafted cupcakes: Belgian Chocolate, Vanilla Bean, and Pistachio Rose.",
     description:
       "Each cupcake is baked in small batches to maintain a tender crumb. Topped with light-as-air buttercream swirls and delicate edible garnishes. A favorite for gift-giving and high-tea gatherings.",
-    basePrice: 1950,
+    basePrice: 21,
     prepTime: "6 hours notice",
     availability: "AVAILABLE",
     stock: 10,
@@ -234,7 +234,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     ],
     variants: [
       { id: "var-5-1", name: "Box of 6 Assorted", priceAdjustment: 0, isAvailable: true },
-      { id: "var-5-2", name: "Box of 12 Assorted", priceAdjustment: 1700, isAvailable: true },
+      { id: "var-5-2", name: "Box of 12 Assorted", priceAdjustment: 18, isAvailable: true },
     ],
   },
   {
@@ -246,7 +246,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     shortDescription: "Extra thick cookies with golden crisp rims and a warm gooey chocolate center.",
     description:
       "Weighed at 120 grams per cookie, these NYC-style treats are chilled for 24 hours to develop deep butterscotch flavor before being baked to golden perfection. Box of 4 jumbo cookies.",
-    basePrice: 1400,
+    basePrice: 15,
     prepTime: "4-6 hours notice",
     availability: "AVAILABLE",
     stock: 20,
@@ -265,7 +265,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     ],
     variants: [
       { id: "var-6-1", name: "Box of 4 Jumbo Cookies", priceAdjustment: 0, isAvailable: true },
-      { id: "var-6-2", name: "Box of 8 Jumbo Cookies", priceAdjustment: 1300, isAvailable: true },
+      { id: "var-6-2", name: "Box of 8 Jumbo Cookies", priceAdjustment: 14, isAvailable: true },
     ],
   },
   {
@@ -277,7 +277,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     shortDescription: "Curated gift box featuring 4 fudgy brownies, 4 artisan cupcakes, and 4 chunky cookies.",
     description:
       "The ultimate luxury tasting experience. Beautifully packaged in an artisan presentation box tied with a satin ribbon. Ideal for birthdays, anniversaries, Eid celebrations, and hostess gifts.",
-    basePrice: 4200,
+    basePrice: 48,
     prepTime: "24 hours notice",
     availability: "MADE_TO_ORDER",
     stock: 5,
@@ -296,7 +296,7 @@ export const FALLBACK_PRODUCTS: ProductDTO[] = [
     ],
     variants: [
       { id: "var-7-1", name: "Standard Sampler (12 Treats)", priceAdjustment: 0, isAvailable: true },
-      { id: "var-7-2", name: "Grand Deluxe (18 Treats)", priceAdjustment: 1800, isAvailable: true },
+      { id: "var-7-2", name: "Grand Deluxe (18 Treats)", priceAdjustment: 22, isAvailable: true },
     ],
   },
 ];

@@ -26,14 +26,14 @@ The schema establishes appropriate foreign key relationships and delete constrai
 In `OrderItem`, the schema does not merely link to `productId`. It takes an immutable snapshot of:
 - `productName` (string)
 - `variantName` (string, nullable)
-- `unitPrice` (integer PKR at the exact millisecond of purchase)
-- `subtotal` (integer PKR)
+- `unitPrice` (integer USD at the exact millisecond of purchase)
+- `subtotal` (integer USD)
 - `customizationNote` (custom piping instructions)
 
 This ensures that future price changes or product renames never corrupt historical order totals or kitchen receipts.
 
 ### 1.3 Currency Representation
-All monetary values (`basePrice`, `priceAdjustment`, `subtotal`, `discount`, `deliveryFee`, `total`, `unitPrice`) are modeled as `Int` representing Pakistani Rupees (PKR). Because PKR retail transactions operate in whole rupee denominations (1 PKR = Rs 1) without decimal subdivision, integer arithmetic completely eliminates floating-point rounding errors.
+All monetary values (`basePrice`, `priceAdjustment`, `subtotal`, `discount`, `deliveryFee`, `total`, `unitPrice`) are modeled as `Int` representing Pakistani Rupees (USD). Because USD retail transactions operate in whole rupee denominations (1 USD = Rs 1) without decimal subdivision, integer arithmetic completely eliminates floating-point rounding errors.
 
 ---
 

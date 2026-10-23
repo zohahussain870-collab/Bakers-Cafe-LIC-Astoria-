@@ -44,7 +44,7 @@ export default function HomePage() {
               <span>
                 Special Celebration Offer: Use code{" "}
                 <strong className="underline tracking-wider font-bold">{promo.code}</strong> for{" "}
-                {promo.discountType === "PERCENTAGE" ? `${promo.discountValue}% off` : `PKR ${promo.discountValue} off`}{" "}
+                {promo.discountType === "PERCENTAGE" ? `${promo.discountValue}% off` : `$${promo.discountValue} off`}{" "}
                 your order!
               </span>
               <Link

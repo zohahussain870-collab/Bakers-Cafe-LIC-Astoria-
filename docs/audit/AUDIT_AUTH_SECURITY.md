@@ -1,6 +1,6 @@
 # Technical Audit: Authentication & Authorization Security Report
 
-**Target System:** Home Bakery (Karachi, Pakistan)  
+**Target System:** Bakers Cafe LIC (Astoria, NY, USA)  
 **Audit Path:** `src/lib/auth.ts`, `src/app/api/admin/*`, `src/app/admin/*`  
 **Audit Date:** October 14, 2026  
 **Standards Applied:** OWASP ASVS v4.0.3 (V2 Authentication, V3 Session Management, V4 Access Control)  
@@ -86,7 +86,7 @@ Every admin endpoint was tested unauthenticated using direct HTTP requests.
 ## 5. Compromised Credential Handling & Rotation Runbook
 
 ### 5.1 Disclosure Notice
-The default development credential `HomeBakeryAdmin2026!` was documented in repository documentation and must be treated as **publicly known and compromised for production deployments**.
+The default development credential `BakersCafeAdmin2026!` was documented in repository documentation and must be treated as **publicly known and compromised for production deployments**.
 
 ### 5.2 Mandatory Production Remediation Procedure
 1. Never commit `.env` containing production passwords to source control.
@@ -101,4 +101,4 @@ The default development credential `HomeBakeryAdmin2026!` was documented in repo
    ```bash
    npm run seed:admin
    ```
-5. Log in at `/admin/login` and verify that the previous default password (`HomeBakeryAdmin2026!`) fails with HTTP 401.
+5. Log in at `/admin/login` and verify that the previous default password (`BakersCafeAdmin2026!`) fails with HTTP 401.

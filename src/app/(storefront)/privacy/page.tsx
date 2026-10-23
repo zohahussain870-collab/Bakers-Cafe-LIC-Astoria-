@@ -2,8 +2,8 @@ import React from "react";
 import { BUSINESS_INFO } from "@/lib/constants";
 
 export const metadata = {
-  title: "Privacy Policy | Home Bakery Karachi",
-  description: "Privacy policy and customer data handling practices for Home Bakery in Karachi, Pakistan.",
+  title: "Privacy Policy | Bakers Cafe LIC",
+  description: "Privacy policy and customer data handling practices for Bakers Cafe LIC in Astoria, NY, USA.",
 };
 
 export default function PrivacyPage() {
@@ -46,7 +46,7 @@ export default function PrivacyPage() {
           </p>
           <ul className="list-disc pl-5 space-y-1">
             <li>Process, prepare, and package your fresh bakery orders.</li>
-            <li>Communicate order status updates and takeout readiness via WhatsApp or telephone.</li>
+            <li>Communicate order status updates and pickup readiness via WhatsApp or telephone.</li>
             <li>Enable you to track your order progress securely using your reference code.</li>
           </ul>
           <p>
@@ -57,7 +57,7 @@ export default function PrivacyPage() {
             3. Payment Information
           </h2>
           <p>
-            We do not store or process debit/credit card numbers on our servers. All transactions are settled via offline takeout collection (Cash on Pickup) or direct bank transfer/Raast to our business account.
+            We do not store or process debit/credit card numbers on our servers. All transactions are settled in person at the cafe or on pickup by cash or major card, with bank transfer available on request.
           </p>
 
           <h2 className="font-serif text-lg font-bold text-[#211510] pt-2">

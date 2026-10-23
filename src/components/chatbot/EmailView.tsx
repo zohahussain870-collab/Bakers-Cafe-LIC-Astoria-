@@ -10,7 +10,7 @@ interface EmailViewProps {
 export function EmailView({ initialMessage = "" }: EmailViewProps) {
   const [customerName, setCustomerName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
-  const [subject, setSubject] = useState("Home Bakery Inquiry");
+  const [subject, setSubject] = useState("Bakers Cafe LIC Inquiry");
   const [message, setMessage] = useState(initialMessage);
 
   const [isLoading, setIsLoading] = useState(false);

@@ -15,7 +15,7 @@ This deliverable provides the complete technical implementation, architecture, a
 2. **Customer-Support Floating Chatbot (`ChatbotWidget`):** Implemented a responsive, accessible, bakery-themed floating assistant mounted strictly within storefront layouts (respecting maintenance mode and omitted from `/admin`).
 3. **Contact Channel Switcher:** Built an active 3-way tabbed interface (**AI Chat \| WhatsApp \| Email**) preserving customer drafts and context across channel transitions.
 4. **Google Gemini AI Integration:** Implemented a secure, server-side REST integration with grounded system instructions, active catalog injection, prompt injection guardrails, timeout abort controls, and smart offline fallbacks.
-5. **Direct WhatsApp & Resend Email Delivery:** Built structured contact workflows utilizing verified business contact details (`+92 330 2964562`), safe mailto fallbacks, and anti-abuse rate limits.
+5. **Direct WhatsApp & Resend Email Delivery:** Built structured contact workflows utilizing verified business contact details (`+1 718-489-9077`), safe mailto fallbacks, and anti-abuse rate limits.
 6. **Automated Verification:** Added 24 new unit and integration tests (bringing test suite total to 58/58 passing tests, 100%), with zero TypeScript compiler errors and zero ESLint errors.
 
 ---
@@ -87,20 +87,20 @@ A tabbed navigation switcher fixed at the top of the chat panel allowing instant
 ## 4. Contact Modes Implementation
 
 ### 1. AI Chat Mode (`src/components/chatbot/AiChatView.tsx`)
-- **Welcome Message:** Automatically greets the visitor with Home Bakery's specializations and ordering guidance.
+- **Welcome Message:** Automatically greets the visitor with Bakers Cafe LIC's specializations and ordering guidance.
 - **Suggested Question Chips:** 4 one-click starter pills:
   - *“What products do you have?”*
   - *“How can I place an order?”*
   - *“What are your opening hours?”*
-  - *“How can I contact Home Bakery?”*
+  - *“How can I contact Bakers Cafe LIC?”*
 - **Typing Indicator:** Smooth 3-dot bouncing animation while the request is processed.
 - **Input Controls:** Multiline auto-expanding textarea, Enter to send, Shift+Enter for new line, character counter (0/1000), send button, and inline retry button on errors.
 
 ### 2. WhatsApp Mode (`src/components/chatbot/WhatsAppView.tsx`)
 - **Inputs:** Customer Name (optional), Phone Number (optional), Message (required).
 - **Auto-Prefill:** Carries over user queries or drafts from the AI chat tab.
-- **Verified Destination:** Pre-configured with official business contact number `+92 330 2964562` (`923302964562`).
-- **Target URL:** Opens `https://wa.me/923302964562?text=${encodeURIComponent(...)}` in a new tab (`_blank`, `noopener,noreferrer`).
+- **Verified Destination:** Pre-configured with official business contact number `+1 718-489-9077` (`17184899077`).
+- **Target URL:** Opens `https://wa.me/17184899077?text=${encodeURIComponent(...)}` in a new tab (`_blank`, `noopener,noreferrer`).
 - **Transparency Notice:** Features an explicit notice informing the customer that clicking the button opens WhatsApp for them to review and dispatch the message directly with the kitchen.
 
 ### 3. Email Mode (`src/components/chatbot/EmailView.tsx`)
@@ -118,7 +118,7 @@ A tabbed navigation switcher fixed at the top of the chat panel allowing instant
 - **Model Support:** Defaults to `gemini-1.5-flash` (configurable via `GEMINI_MODEL`).
 - **System Instruction & Context Injection:**
   - Queries active database products (`availability != "UNAVAILABLE"`) selecting only public storefront fields (`name`, `category`, `basePrice`, `prepTime`, `shortDescription`, `allergens`, `variants`).
-  - Embeds official business constants (House R-1932 Block 17 Gulberg Town Karachi, takeout/pickup default, minimum 4-6h notice for standard bakes, 24h for artisan cakes).
+  - Embeds official business constants (House R-1932 Block 17 Astoria Karachi, takeout/pickup default, minimum 4-6h notice for standard bakes, 24h for artisan cakes).
 - **Security & Integrity Guardrails:**
   - `GEMINI_API_KEY` is strictly server-only; never prefixed with `NEXT_PUBLIC_` and never included in API responses or client bundles.
   - Strict system prompt instructs the assistant to never fabricate unlisted menu items or prices.
@@ -223,16 +223,16 @@ To enable live Google Gemini AI and Resend email delivery in staging/production 
    - Set in environment:
      ```env
      RESEND_API_KEY="re_..."
-     EMAIL_FROM="Home Bakery <orders@homebakery.pk>"
-     HOME_BAKERY_CONTACT_EMAIL="contact@homebakery.pk"
+     EMAIL_FROM="Bakers Cafe LIC <orders@homebakery.pk>"
+     HOME_BAKERY_CONTACT_EMAIL="contact@bakerscafelic.com"
      ```
 3. **Graceful Zero-Configuration Default:**
    - If keys are not set, the platform operates seamlessly without errors:
-     - The AI Chat provides intelligent offline responses grounded in Home Bakery's catalog and hours.
-     - The WhatsApp channel directs users directly to the kitchen on `+92 330 2964562`.
+     - The AI Chat provides intelligent offline responses grounded in Bakers Cafe LIC's catalog and hours.
+     - The WhatsApp channel directs users directly to the kitchen on `+1 718-489-9077`.
      - The Email channel provides a 1-click `mailto:` fallback.
 
 ---
 *Verified and Signed,*  
 **Application Engineering & Security Review Team**  
-*Home Bakery Web Platform*
+*Bakers Cafe LIC Web Platform*

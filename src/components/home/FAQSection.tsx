@@ -13,12 +13,12 @@ export function FAQSection() {
       a: "Because all items are handcrafted fresh to order, we recommend at least 4 to 6 hours notice for brownies, cupcakes, and cookies. For multi-tiered or custom celebration cakes, a 24-hour advance booking is recommended to ensure proper chilling and decoration.",
     },
     {
-      q: "Where do I collect my takeout order?",
-      a: "Orders are prepared for pickup at our home kitchen located at House R-1932, Block 17, Gulberg Town, Karachi, 75950. Once your order status reaches 'Ready for Pickup', you will receive our exact arrival instructions.",
+      q: "Where do I collect my order?",
+      a: "Orders are prepared for pickup at our cafe kitchen located at 34-06 9th St, Astoria, NY 11106. Once your order status reaches 'Ready for Pickup', you will receive our exact arrival instructions.",
     },
     {
       q: "Can I place an order directly on WhatsApp?",
-      a: "Yes! You can complete your checkout directly on our website, and click 'Send to WhatsApp' to forward your exact itemized summary and order reference to our WhatsApp number (+92 330 2964562).",
+      a: "Yes! You can complete your checkout directly on our website, and click 'Send to WhatsApp' to forward your exact itemized summary and order reference to our WhatsApp number (+1 718-489-9077).",
     },
     {
       q: "Do you offer eggless cakes or dietary options?",
@@ -30,7 +30,7 @@ export function FAQSection() {
     },
     {
       q: "What payment methods do you accept?",
-      a: "We currently accept cash on takeout pickup, as well as direct bank transfer or Raast payment prior to collection. Details are provided upon order confirmation.",
+      a: "We accept cash and major cards at the cafe, with bank transfer available on request. Payment details are confirmed with your order.",
     },
   ];
 
@@ -50,7 +50,7 @@ export function FAQSection() {
             Good to Know Before Ordering
           </h2>
           <p className="text-sm sm:text-base text-[#6B5B52] mt-2">
-            Everything you need to know about our home-based kitchen, pickup procedures, and ingredients.
+            Everything you need to know about our halal cafe kitchen, pickup procedures, and ingredients.
           </p>
         </ScrollReveal>
 

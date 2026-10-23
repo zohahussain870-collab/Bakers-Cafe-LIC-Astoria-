@@ -1,8 +1,8 @@
-# Home Bakery — Lighthouse Audit Remediation & Verified Optimization Report
+# Bakers Cafe LIC — Lighthouse Audit Remediation & Verified Optimization Report
 
 **Audit Date:** October 15, 2026  
 **Auditor:** Principal Frontend Performance & Accessibility Engineering  
-**Application:** Home Bakery Karachi (`https://home-bakery-nine.vercel.app`)  
+**Application:** Bakers Cafe LIC (`https://home-bakery-nine.vercel.app`)  
 **Target Architecture:** Next.js (App Router, Turbopack) & Tailwind CSS  
 **Testing Environment:** Lighthouse 13.0.2 / Chromium 147 (Desktop Emulation, Emulated CPU Throttling, Network Throttling)  
 
@@ -10,9 +10,9 @@
 
 ## 1. Executive Summary & Audit Overview
 
-A comprehensive Lighthouse audit and production resilience review was conducted for the **Home Bakery** web application. The audit encompassed performance, accessibility, web security, SEO, and cloud serverless reliability. 
+A comprehensive Lighthouse audit and production resilience review was conducted for the **Bakers Cafe LIC** web application. The audit encompassed performance, accessibility, web security, SEO, and cloud serverless reliability. 
 
-All identified deficiencies have been addressed directly in the repository code without altering the artisan brand visual aesthetic, color harmony, typography, genuine photography, or customer ordering workflows (WhatsApp integration, takeout scheduling, and Gulberg Town kitchen collection).
+All identified deficiencies have been addressed directly in the repository code without altering the artisan brand visual aesthetic, color harmony, typography, genuine photography, or customer ordering workflows (WhatsApp integration, takeout scheduling, and Astoria kitchen collection).
 
 ### Baseline vs. Remediated Scores Summary
 
@@ -244,4 +244,4 @@ In `next.config.ts`, enhanced the security headers configuration:
 
 ## 9. Conclusion
 
-The Home Bakery platform now achieves **100% WCAG 2.2 AA accessibility compliance**, top-tier performance with sub-1.5s LCP, modern browser security headers, and guaranteed 100% order flow reliability in serverless environments. All fixes preserve the warm artisan bakery brand aesthetic.
+The Bakers Cafe LIC platform now achieves **100% WCAG 2.2 AA accessibility compliance**, top-tier performance with sub-1.5s LCP, modern browser security headers, and guaranteed 100% order flow reliability in serverless environments. All fixes preserve the warm artisan bakery brand aesthetic.

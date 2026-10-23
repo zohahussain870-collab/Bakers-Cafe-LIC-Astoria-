@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import {
   ShoppingBag,
   Trash2,
@@ -103,7 +103,7 @@ export default function CartPage() {
               Your basket is currently empty
             </h2>
             <p className="text-xs sm:text-sm text-[#6B5B52]">
-              Explore our fresh Belgian chocolate cakes, brownies, and cookies baked to order in Gulberg Town, Karachi.
+              Explore our fresh Belgian chocolate cakes, brownies, and cookies baked to order in Astoria, Queens, NY.
             </p>
             <Link
               href="/menu"
@@ -155,7 +155,7 @@ export default function CartPage() {
                           </p>
                         )}
                         <span className="text-xs text-[#68584F] block mt-1">
-                          Unit price: {formatPKR(item.unitPrice)}
+                          Unit price: {formatUSD(item.unitPrice)}
                         </span>
                       </div>
                     </div>
@@ -184,7 +184,7 @@ export default function CartPage() {
 
                       {/* Line Item Total */}
                       <span className="font-serif font-bold text-base text-[#211510] min-w-[90px] text-right">
-                        {formatPKR(item.unitPrice * item.quantity)}
+                        {formatUSD(item.unitPrice * item.quantity)}
                       </span>
 
                       {/* Remove Button */}
@@ -208,7 +208,7 @@ export default function CartPage() {
                   Empty Entire Basket
                 </button>
                 <span className="text-[#8E7C72]">
-                  Freshly prepared in Gulberg Town, Karachi
+                  Freshly prepared in Astoria, Queens, NY
                 </span>
               </div>
             </div>
@@ -269,21 +269,21 @@ export default function CartPage() {
                   <div className="flex justify-between text-[#6B5B52]">
                     <span>Items Subtotal</span>
                     <span className="font-medium text-[#211510]">
-                      {formatPKR(subtotal)}
+                      {formatUSD(subtotal)}
                     </span>
                   </div>
 
                   {discount > 0 && (
                     <div className="flex justify-between text-[#3B5934] font-medium">
                       <span>Discount</span>
-                      <span>-{formatPKR(discount)}</span>
+                      <span>-{formatUSD(discount)}</span>
                     </div>
                   )}
 
                   <div className="flex justify-between text-[#6B5B52]">
-                    <span>Takeout / Pickup</span>
+                    <span>Pickup / Dine-in</span>
                     <span className="text-[#3B5934] font-semibold bg-[#EBF2EA] px-2 py-0.5 rounded text-xs">
-                      Free (Gulberg Town)
+                      Free (Astoria)
                     </span>
                   </div>
 
@@ -292,7 +292,7 @@ export default function CartPage() {
                       Total Amount
                     </span>
                     <span className="font-serif text-2xl font-bold text-[#8F5323]">
-                      {formatPKR(finalTotal)}
+                      {formatUSD(finalTotal)}
                     </span>
                   </div>
                 </div>
@@ -307,7 +307,7 @@ export default function CartPage() {
 
                 <div className="flex items-center justify-center gap-2 text-xs text-[#68584F] pt-2">
                   <ShieldCheck className="w-4 h-4 text-[#3B5934]" />
-                  <span>Verified Safe Kitchen & Takeout Packaging</span>
+                  <span>Verified Safe Kitchen & Pickup Packaging</span>
                 </div>
               </div>
             </div>

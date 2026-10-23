@@ -1,5 +1,5 @@
 /**
- * Premium Animation Constants & Curves for Home Bakery
+ * Premium Animation Constants & Curves for Bakers Cafe LIC
  * Custom bezier curves tuned for editorial, artisan patisserie motion.
  */
 

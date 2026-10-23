@@ -1,7 +1,7 @@
 # Prioritized Audit Defect & Security Findings Register
 
-**Project:** Home Bakery (Karachi, Pakistan)  
-**Repository Path:** `c:\Users\Syed Ghazi Ali Zaidi\Desktop\Home Bakery`  
+**Project:** Bakers Cafe LIC (Astoria, NY, USA)  
+**Repository Path:** `c:\Users\Syed Ghazi Ali Zaidi\Desktop\Bakers Cafe LIC`  
 **Audit Branch:** `audit/technical-security-remediation`  
 **Audit Date:** October 14, 2026  
 **Auditor Role:** Independent Principal Software Auditor, Application Security & Reliability Reviewer  
@@ -30,7 +30,7 @@
 | **FINDING-CODE-01**| **MEDIUM** | Code Quality / Lint | **RESOLVED** | `npm run lint` failed with 6 fatal errors and 53 warnings (React 19 `set-state-in-effect`, unescaped entities, `any` casts). |
 | **FINDING-TEST-01**| **MEDIUM** | QA Verification | **RESOLVED** | `discounts.test.ts` tested a disconnected local mock function rather than application code. |
 | **FINDING-SEC-05** | **MEDIUM** | Network Security | **RESOLVED** | Missing Content-Security-Policy (CSP) and Strict-Transport-Security (HSTS) headers in `next.config.ts`. |
-| **FINDING-AUTH-01**| **LOW** | Credential Hygiene | **RESOLVED** | Publicly disclosed bootstrap password (`HomeBakeryAdmin2026!`) documented; rotation procedures established. |
+| **FINDING-AUTH-01**| **LOW** | Credential Hygiene | **RESOLVED** | Publicly disclosed bootstrap password (`BakersCafeAdmin2026!`) documented; rotation procedures established. |
 | **FINDING-DOC-01** | **LOW** | Documentation | **RESOLVED** | Discrepancy between completion report (all 13 milestones complete) and plan artifact (Milestone 1 current). |
 
 ---
@@ -49,7 +49,7 @@
   ```
   Because all Pakistani telephone numbers normalized for WhatsApp start with `92...`, passing `phone: "92"` or `"923"` caused `orderPhoneClean.includes(cleanPhone)` to evaluate to `true`. Negating this resulted in `false`, bypassing the check entirely and rendering the full order details.
 - **Exploitation Evidence:**
-  Direct curl/PowerShell request with reference `HB-2026-V6UD` and `phone: "92"` returned HTTP 200 with complete customer name (`Syed Daniyal`), items, customization notes, and totals.
+  Direct curl/PowerShell request with reference `BC-2026-V6UD` and `phone: "92"` returned HTTP 200 with complete customer name (`Syed Daniyal`), items, customization notes, and totals.
 - **Correction Performed:**
   1. Enforced minimum phone length validation (`cleanPhone.length >= 10`).
   2. Replaced substring matching with strict normalized equality: `if (orderPhoneClean !== cleanPhone)`.
@@ -107,7 +107,7 @@
 - **Correction Performed:**
   Upgraded to Node.js `crypto.randomBytes(6)` producing a 6-character code ($32^6 = 1,073,741,824$ combinations). Added collision retry loop in `orders/create/route.ts` (up to 3 retries).
 - **Regression Test:** `tests/integration/security-regression.test.ts` (generates 500 consecutive references verifying format and zero collisions).
-- **Retest Result:** Format matches `HB-2026-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{6}` with 100% uniqueness.
+- **Retest Result:** Format matches `BC-2026-[23456789ABCDEFGHJKLMNPQRSTUVWXYZ]{6}` with 100% uniqueness.
 - **Residual Risk:** None.
 
 ---

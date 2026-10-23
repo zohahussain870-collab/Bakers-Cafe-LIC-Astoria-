@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import { BUSINESS_INFO } from "@/lib/constants";
 import {
   CheckCircle,
@@ -46,8 +46,8 @@ export default async function OrderConfirmationPage({
       deliveryAddress: null,
       requestedDate: new Date().toISOString().split("T")[0],
       requestedTime: "04:00 PM - 06:00 PM",
-      total: 2800,
-      subtotal: 2800,
+      total: 34,
+      subtotal: 34,
       discount: 0,
       status: "CONFIRMED",
       paymentMethod: "CASH_ON_TAKEOUT",
@@ -64,9 +64,9 @@ export default async function OrderConfirmationPage({
           variantId: "var-1-1",
           productName: "Belgian Dark Chocolate Fudge Cake",
           variantName: "1.5 Lbs (Serves 6-8)",
-          unitPrice: 2800,
+          unitPrice: 34,
           quantity: 1,
-          subtotal: 2800,
+          subtotal: 34,
           customizationNote: "Advance Artisan Bake",
           createdAt: new Date(),
         },
@@ -82,7 +82,7 @@ export default async function OrderConfirmationPage({
         (it) =>
           `• ${it.quantity}x ${it.productName}${it.variantName ? ` (${it.variantName})` : ""}${
             it.customizationNote ? ` [Note: ${it.customizationNote}]` : ""
-          } — PKR ${it.subtotal}`
+          } — USD ${it.subtotal}`
       )
       .join("\n");
 
@@ -90,14 +90,14 @@ export default async function OrderConfirmationPage({
       `*ORDER #${order.orderReference} CONFIRMATION*`,
       `Customer: ${order.customerName}`,
       `Phone: ${order.customerPhone}`,
-      `Service: ${order.serviceType === "TAKEOUT" ? "Takeout Pickup (Gulberg Town)" : "Delivery"}`,
+      `Service: ${order.serviceType === "TAKEOUT" ? "Pickup (Astoria)" : "Delivery"}`,
       `Scheduled: ${order.requestedDate} (${order.requestedTime})`,
       order.notes ? `Notes: ${order.notes}` : null,
       `---------------------------------`,
       `Items:`,
       itemLines,
       `---------------------------------`,
-      `TOTAL: PKR ${order.total}`,
+      `TOTAL: USD ${order.total}`,
     ]
       .filter(Boolean)
       .join("\n");
@@ -212,7 +212,7 @@ export default async function OrderConfirmationPage({
                     )}
                   </div>
                   <span className="font-bold text-[#211510]">
-                    {formatPKR(item.subtotal)}
+                    {formatUSD(item.subtotal)}
                   </span>
                 </div>
               ))}
@@ -221,22 +221,22 @@ export default async function OrderConfirmationPage({
             <div className="space-y-2 pt-4 border-t border-[#E6DCce] text-xs sm:text-sm">
               <div className="flex justify-between text-[#6B5B52]">
                 <span>Subtotal</span>
-                <span>{formatPKR(order.subtotal)}</span>
+                <span>{formatUSD(order.subtotal)}</span>
               </div>
               {order.discount > 0 && (
                 <div className="flex justify-between text-[#3B5934]">
                   <span>Discount</span>
-                  <span>-{formatPKR(order.discount)}</span>
+                  <span>-{formatUSD(order.discount)}</span>
                 </div>
               )}
               <div className="flex justify-between text-[#6B5B52]">
-                <span>Takeout Pickup</span>
+                <span>Pickup</span>
                 <span className="text-[#3B5934] font-medium">Free</span>
               </div>
               <div className="flex justify-between items-center text-base font-serif font-bold text-[#211510] pt-2 border-t border-[#F0E9DF]">
                 <span>Total Amount</span>
                 <span className="text-2xl text-[#8F5323]">
-                  {formatPKR(order.total)}
+                  {formatUSD(order.total)}
                 </span>
               </div>
             </div>

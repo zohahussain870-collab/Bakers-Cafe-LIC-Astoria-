@@ -26,10 +26,10 @@ export async function generateMetadata({
     "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&h=630&q=80";
 
   return {
-    title: `${product.name} | Home Bakery Karachi`,
+    title: `${product.name} | Bakers Cafe LIC`,
     description: product.shortDescription,
     openGraph: {
-      title: `${product.name} | Home Bakery`,
+      title: `${product.name} | Bakers Cafe LIC`,
       description: product.shortDescription,
       images: [{ url: imageUrl, width: 1200, height: 630, alt: product.name }],
     },

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ProductDTO } from "@/types";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import { Clock, Plus, Check, Eye } from "lucide-react";
 
@@ -110,7 +110,7 @@ export function ProductCard({ product }: { product: ProductDTO }) {
           <div>
             <span className="text-[11px] text-[#68584F] block leading-none font-medium">Starting from</span>
             <span className="font-serif text-lg font-bold text-[#211510]">
-              {formatPKR(product.basePrice)}
+              {formatUSD(product.basePrice)}
             </span>
           </div>
 

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 import { getCurrentAdmin } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { formatPKR } from "@/lib/utils";
+import { formatUSD } from "@/lib/utils";
 import { Plus, Edit, ExternalLink, Clock, Star } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -97,7 +97,7 @@ export default async function AdminProductsPage() {
                     </td>
 
                     <td className="py-4 px-6 font-bold text-[#211510]">
-                      {formatPKR(prod.basePrice)}
+                      {formatUSD(prod.basePrice)}
                       {prod.variants.length > 0 && (
                         <span className="text-[11px] text-[#8E7C72] block font-normal">
                           +{prod.variants.length} variant(s)

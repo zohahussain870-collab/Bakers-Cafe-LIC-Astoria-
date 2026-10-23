@@ -22,17 +22,17 @@ export function Footer() {
           <div className="space-y-4">
             <BakeryLogo variant="full" inverted={true} />
             <p className="text-sm text-[#D5C7B7] leading-relaxed">
-              Handcrafted artisan patisserie rooted in Karachi. Baked with pure butter, rich Belgian chocolate, and meticulous attention to flavor and freshness.
+              Handcrafted artisan patisserie rooted in Astoria. Baked with pure butter, rich Belgian chocolate, and meticulous attention to flavor and freshness.
             </p>
             {/* Provided Google Rating Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#302019] border border-[#483329]">
-              <div role="img" aria-label="5 out of 5 stars" className="flex text-amber-400">
+              <div role="img" aria-label="4.9 out of 5 stars" className="flex text-amber-400">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 fill-current" />
                 ))}
               </div>
-              <span className="text-xs font-semibold text-white">5.0 / 5.0</span>
-              <span className="text-[11px] text-[#D5C7B7]">({BUSINESS_INFO.suppliedRating.sourceNote})</span>
+              <span className="text-xs font-semibold text-white">4.9 / 5.0</span>
+              <span className="text-[11px] text-[#D5C7B7]">({BUSINESS_INFO.suppliedRating.count} Google reviews)</span>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ export function Footer() {
               <div className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#DDB88C] shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-medium text-white">Kitchen Address:</p>
+                  <p className="font-medium text-white">Cafe Address:</p>
                   <p className="mt-0.5">{BUSINESS_INFO.address}</p>
                   <a
                     href={BUSINESS_INFO.mapsUrl}
@@ -111,7 +111,7 @@ export function Footer() {
 
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="w-4 h-4 text-[#DDB88C] shrink-0" />
-                <span>Service: <strong className="text-white">Takeout / Self-Pickup</strong></span>
+                <span>Service: <strong className="text-white">Dine-in, Takeout & Pickup</strong></span>
               </div>
             </div>
           </div>
@@ -126,7 +126,7 @@ export function Footer() {
             </p>
             <div className="space-y-2">
               <a
-                href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Home Bakery! I want to inquire about custom orders.")}`}
+                href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Bakers Cafe LIC! I want to inquire about custom orders.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-[#3B5934] hover:bg-[#30482B] text-white text-xs font-semibold transition-colors shadow-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#7FB378]"
@@ -147,7 +147,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#D5C7B7]">
-          <p>© {new Date().getFullYear()} Home Bakery (Karachi, Pakistan). All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Bakers Cafe LIC (Astoria, NY, USA). All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-6">
             <Link href="/privacy" className="hover:text-white transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#DDB88C] rounded-xs">
               Privacy Policy

@@ -47,24 +47,24 @@ export function Header() {
             <span className="w-2 h-2 rounded-full bg-[#7FB378] animate-pulse"></span>
             <span className="inline-flex items-center gap-1.5">
               <MapPin className="w-3.5 h-3.5 text-[#DDB88C] shrink-0" />
-              <span>Home-based artisan bakery in Gulberg Town, Karachi</span>
+              <span>Halal cafe & bakery in Astoria, Queens, NY</span>
             </span>
             <span className="hidden md:inline text-[#D5C7B7]">•</span>
-            <span className="hidden md:inline text-[#FAF7F2]/90">Freshly baked to order (Takeout Default)</span>
+            <span className="hidden md:inline text-[#FAF7F2]/90">Freshly baked to order · Dine-in & Takeout</span>
           </div>
           <div className="flex items-center gap-4 text-[#FAF7F2]">
             <a
-              href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Home Bakery! I would like to inquire about placing an order.")}`}
+              href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hello Bakers Cafe LIC! I would like to inquire about placing an order.")}`}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Contact Home Bakery on WhatsApp at ${BUSINESS_INFO.phone}`}
+              aria-label={`Contact Bakers Cafe LIC on WhatsApp at ${BUSINESS_INFO.phone}`}
               className="flex items-center gap-1.5 hover:text-[#DDB88C] transition-colors focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-[#DDB88C] rounded-xs"
             >
               <MessageCircle className="w-3.5 h-3.5 text-[#7FB378]" />
               <span>WhatsApp: {BUSINESS_INFO.phone}</span>
             </a>
             <span className="hidden sm:inline text-[#D5C7B7]">•</span>
-            <span className="hidden sm:inline text-amber-200 font-medium">★ 5.0 Google Rating</span>
+            <span className="hidden sm:inline text-amber-200 font-medium">★ 4.9 Google Rating</span>
           </div>
         </div>
       </div>
@@ -120,7 +120,7 @@ export function Header() {
 
               {/* Direct WhatsApp Action */}
               <a
-                href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hi Home Bakery, I'd like to check today's availability and menu.")}`}
+                href={`https://wa.me/${BUSINESS_INFO.whatsappNumber}?text=${encodeURIComponent("Hi Bakers Cafe LIC, I'd like to check today's availability and menu.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Order freshly baked treats directly via WhatsApp"
@@ -197,11 +197,11 @@ export function Header() {
                 className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-lg bg-[#3B5934] text-white text-sm font-semibold shadow-xs focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#3B5934]"
               >
                 <MessageCircle className="w-4 h-4" />
-                <span>Chat on WhatsApp (+92 330 2964562)</span>
+                <span>Chat on WhatsApp (+1 718-489-9077)</span>
               </a>
               <div className="flex items-center justify-center gap-2 text-xs text-[#6B5B52] pt-1">
                 <MapPin className="w-3.5 h-3.5 text-[#8F5323]" />
-                <span>Gulberg Town, Block 17, Karachi</span>
+                <span>34-06 9th St, Astoria, NY</span>
               </div>
             </div>
           </div>
